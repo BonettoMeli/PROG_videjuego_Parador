@@ -1,0 +1,44 @@
+efecto que necesitamos para el juego:
+- cofre !
+- puertas tren !
+- auto no arranca !
+- efecto del tren avanzando !
+- sonido de semilla magica !
+- efecto de agua !
+- efecto de botones !
+- interferencias !
+- tren llegando !
+
+Musica que necesitamos:
+- musica para el audio
+- musica para las escenas en el juego de estaciones
+- musica final
+- musica espera cambio de dimenciones(estaciones)
+
+sonido conversaciones:
+- viejo hablando contando la historia
+- voz del maquinista 
+         .jardin
+         .archivo
+         .invertida
+         .luces
+- voz del personaje para la historia
+- voz del viejo diciendo la adivinanza para el jardin
+- voz de la chica
+
+
+---------------------ADIVINANZA DEL COFRE(JARDÌN)------------------------------
+RESPUESTA: 
+1- MOSNTERA/CERIMÀN - A
+2- BROMELIA - M
+3- NENÙFARES - T
+4- ORQUIDEAS - V
+
+TEXTO: Primero, la que tiene costillas te mostrara el camino (a)
+       Segundo, la que tiene un corazon de fuego te dara el siguiente paso (m)
+       Tercero, la que tiene su espejo en el agua te abrira la puerta (t)
+       Cuerto, la que vive en el aire te mostrara la verdad (v)  
+--------------------------------------------------------------------------------
+ELEVENLABS:
+VOZ DE LA CHICA:
+- Liz - Warm y friendly

@@ -1,0 +1,68 @@
+
+
+
+        pantalla.blit(carga2, (0, 0))
+        if tiempo > 2000:
+            pantalla.blit(n1, (0, 0))
+        if tiempo > 6000:
+            pantalla.blit(n2, (0, 0))
+        if tiempo > 10000:
+            pantalla.blit(n3, (0, 0))
+        if tiempo > 14000:
+            pantalla.blit(n4, (0, 0))
+        if tiempo > 18000:
+            pantalla.blit(n5, (0, 0))
+        if tiempo > 22000:
+            pantalla.blit(n6, (0, 0))
+        if tiempo > 24000:
+            pantalla.blit(n7, (0, 0))
+            pantalla_actual = "comienzo"
+            tiempo_comienzo = pygame.time.get_ticks()
+
+------------------------------------------------------------
+
+
+
+    elif pantalla_actual == "comienzo":  
+        pantalla.fill((244, 228, 188))   
+        tiempo = pygame.time.get_ticks() - tiempo_comienzo
+
+        pantalla.blit(auto1, (0, 0))
+        if tiempo > 3000:
+            pantalla.blit(auto2, (475, 0))
+            interfe.play()
+
+        if tiempo > 6000:
+            pantalla.blit(auto3, (920, 0))
+            interfe.stop()
+            pantalla_actual = "auto_parado"
+            tiempo_comienzo = pygame.time.get_ticks()
+-------------------------------------------------------------------------
+            elif pantalla_actual == "comienzo":
+                if boton1_historia.collidepoint(evento.pos):
+                    botonson.play()
+                    pantalla_actual == ""
+
+---------------------------------------------------------------------------
+    elif pantalla_actual == "llegada_estacion":
+        pantalla.fill((244, 228, 188))   
+        tiempo = pygame.time.get_ticks() - tiempo_llegadaa
+
+        pantalla.blit(llegada1, (0, 0))
+        if tiempo > 2000:
+            pantalla.blit(llegada2, (0, 0))
+
+        if tiempo > 4000:
+            pantalla.blit(llegada3, (0, 0))
+---------------------------------------------------------------------------
+        if tiempo > 8000:
+            pantalla_actual = "llego_tren"
+            tiempo_tren = pygame.time.get_ticks()
+
+   
+ elif pantalla_actual == "llego_tren":
+        pantalla.fill((244, 228, 188))  
+        tiempo = pygame.time.get_ticks() - tiempo_tren
+
+        if tiempo > 2000:
+            pantalla.blit()
