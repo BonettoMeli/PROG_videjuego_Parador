@@ -2,17 +2,14 @@ import sys
 import pygame
 pygame.init()
 pygame.mixer.init()
-
 #------------creo la pantalla y le doy nombre----------------------------------------
 pantalla = pygame.display.set_mode((1400,800))
 pygame.display.set_caption("Videojuego ¨EL PARADOR¨")
-
 #-------------PANTALLA DE INICIO-----------------------------------------------------
 imagen_inicio = pygame.image.load('visual/Inicio.png')
 imagen = pygame.transform.scale(imagen_inicio, (1400, 800))
 
 boton_jugar = pygame.Rect(510, 468, 350, 65)
-
 #---------------IMAGENES----------------------------------------------
 carga = pygame.image.load('visual/explorando_dimen.png')
 carga = pygame.transform.scale(carga, (1400, 800))
@@ -85,7 +82,6 @@ charla11 = pygame.image.load("visual/charla11.jpeg")
 maquinista1 = pygame.image.load("visual/maquinista1.jpg")
 maquinista2 = pygame.image.load("visual/maquinista2.jpeg")
 
-
 man = pygame.transform.scale(man,(1400, 800))
 charla1 = pygame.transform.scale(charla1, (1400, 800))
 charla2 = pygame.transform.scale(charla2, (1400, 800))
@@ -104,11 +100,9 @@ maquinista2 = pygame.transform.scale(maquinista2, (1400, 800))
 
 boton_cabina = pygame.Rect(600, 726, 220, 61)
 
-
 bolso = pygame.image.load("visual/bolso.png")
 bolso = pygame.transform.scale(bolso, (150, 130))
 #-------------------------------------------------------------------------
-
 nivel1 = pygame.image.load("visual/Nivel1.jpeg")
 nivel2 = pygame.image.load("visual/Nivel2.jpeg")
 nivel3 = pygame.image.load("visual/Nivel3.jpeg")
@@ -118,7 +112,6 @@ nivel1 = pygame.transform.scale(nivel1, (1400, 800))
 nivel2 = pygame.transform.scale(nivel2, (1400, 800))
 nivel3 = pygame.transform.scale(nivel3, (1400, 800))
 nivel4 = pygame.transform.scale(nivel4, (1400, 800))
-
 #-----------------NIVEL UNO-----------------------------------------------
 interior = pygame.image.load("visual/vagon_vacio.jpeg")
 interior = pygame.transform.scale(interior, (1400, 800))
@@ -158,12 +151,10 @@ hoja_V = pygame.transform.scale(hoja_V, (600, 400))
 
 maquinista_hablando = False
 #-----------------BOTONES NIVEL UNO------------------------------
-
 flecha_centro = pygame.Rect(750, 450, 100, 100)  #x-y-ancho-largo
 flecha_centro2 = pygame.Rect(660, 380, 100, 180 )
 
 flecha_derecha = pygame.Rect(1220, 280, 180, 220)
-
 flecha_izquierda = pygame.Rect(30, 280, 100, 220)
 
 flecha_abajo = pygame.Rect(820, 600, 120, 140) #dentro del invernadero
@@ -180,17 +171,15 @@ flecha_centro_central_peque = pygame.Rect(660, 420, 100, 100)
 
 BAcertijo = pygame.Rect(890, 280, 150, 300)
 
+flecha_centro_casa = pygame.Rect(950, 300, 150, 200)
 
 #pygame.draw.rect(pantalla, (255, 0, 0), flecha_cabina2, 3) ----- para dibujar los botones
-
 planta_A = pygame.Rect(500, 180, 220, 220)
 planta_M = pygame.Rect(450, 330, 280, 180)
 planta_T = pygame.Rect(680, 620, 180, 110)# x y ancho largo
 planta_V = pygame.Rect(20, 150, 280, 280)
 
 planta_ampliada = None
-
-
 rueda1 = pygame.Rect(470, 230, 110, 190)
 rueda2 = pygame.Rect(585, 230, 110, 190)
 rueda3 = pygame.Rect(700, 230, 110, 190)
@@ -202,12 +191,11 @@ letras = ["A", "A", "A", "A"]
 abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 fuente = pygame.font.SysFont("Times New Roman", 80)
+fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
 def siguiente_letra(letra):
     indice = abecedario.index(letra)
     return abecedario[(indice + 1) % len(abecedario)]
-
-
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
 tiempo_gracias = 0
@@ -218,6 +206,9 @@ libro = pygame.image.load("visual/libro_archivo.jpeg")
 cabina2 = pygame.image.load("visual/cabina2.jpeg")
 vagon_archivo = pygame.image.load("visual/vagon_interior.jpeg")
 puerta = pygame.image.load("visual/biblioteca_sumergido.jpeg")
+puerta_zoom = pygame.image.load("visual/puerta_zoom.jpeg")
+casa_afuera = pygame.image.load("visual/casa_afuera.jpeg")
+casa_adentro = pygame.image.load("visual/casa_adentro.jpeg")
 
 afuera2 = pygame.transform.scale(afuera2, (1400, 800))
 camino = pygame.transform.scale(camino, (1400, 800))
@@ -225,22 +216,76 @@ libro = pygame.transform.scale(libro, (1400, 800))
 cabina2 = pygame.transform.scale(cabina2, (1400, 800))
 vagon_archivo = pygame.transform.scale(vagon_archivo, (1400, 800))
 puerta = pygame.transform.scale(puerta, (1400, 800))
+puerta_zoom = pygame.transform.scale(puerta_zoom, (1400, 800))
+casa_afuera = pygame.transform.scale(casa_afuera, (1400, 800))
+casa_adentro = pygame.transform.scale(casa_adentro, (1400, 800))
 
-BCentro_n2 = pygame.Rect(620, 670, 120, 80)
-B_interior = pygame.Rect(620, 570, 120, 60)
-B_libro = pygame.Rect(200, 300, 260, 250)
-B_libro_atras = pygame.Rect(1220, 450, 120, 100)
+panel = pygame.image.load("visual/mueble_palancas.jpeg")
+panel = pygame.transform.scale(panel, (1400, 800))
+palanca_arriba = pygame.image.load("visual/P_arriba.png")
+palanca_arriba = pygame.transform.scale(palanca_arriba,(270,350))
+palanca_abajo = pygame.image.load("visual/P_abajo.png")
+palanca_abajo = pygame.transform.scale(palanca_abajo,(250,350))
+
+libro1 = pygame.image.load("visual/libro1.png")
+libro1 = pygame.transform.scale(libro1, (900, 500))
+libro2 = pygame.image.load("visual/libro2.png")
+libro2 = pygame.transform.scale(libro2, (900, 500))
+libro3 = pygame.image.load("visual/libro3.jpeg")
+libro3 = pygame.transform.scale(libro3, (900, 500))
+libro4 = pygame.image.load("visual/libro4.png")
+libro4 = pygame.transform.scale(libro4, (900, 500))
+libro5 = pygame.image.load("visual/libro5.png")
+libro5 = pygame.transform.scale(libro5, (900, 500))
+
+llave1 = pygame.image.load("visual/llave_abajo.jpeg")
+llave1 = pygame.transform.scale(llave1, (1400,800))
+
+inte_biblio = pygame.image.load("visual/interior_biblioteca.png")
+inte_biblio = pygame.transform.scale(inte_biblio, (1400,800))
+mapa = pygame.image.load("visual/sala_mapa.jpeg")
+mapa = pygame.transform.scale(mapa, (1400,800))
+cofre_archi = pygame.image.load("visual/cofre_archivo_cerrado.png")
+cofre_archi = pygame.transform.scale(cofre_archi, (1400,800))
+
 atras = pygame.Rect(620, 670, 120, 80)
+B_libro = pygame.Rect(200, 300, 260, 250)
+B_interior = pygame.Rect(620, 570, 120, 60)
+BCentro_n2 = pygame.Rect(620, 670, 120, 80)
+B_libro_atras = pygame.Rect(1220, 450, 120, 100)
+
+Rect_libro = pygame.Rect(250,150,900,500)
+B_flecha_libro_der = pygame.Rect(1050,500,80,100)
+B_flecha_libro_izq = pygame.Rect(280,500,80,100)
 
 camino1 = pygame.Rect(510, 540, 100, 100)
 camino2 = pygame.Rect(750, 500, 100, 100)
 camino3 = pygame.Rect(880, 550, 100, 100)
 
 botonMaquinista = pygame.Rect(900, 300, 250, 380)
-#--------------------SONIDOS--Y--MUSICA-----------------------------------
-#pygame.mixer.music.load("musica_sonido/nueve.mp3")
-#pygame.mixer.music.play()
 
+B_puerta = pygame.Rect(600, 320, 210, 380)
+B_volver_puerta = pygame.Rect(650,700,100,100)
+B_palancas = pygame.Rect(450, 450, 430, 220)
+
+cofre_A = pygame.Rect(620, 300, 150, 100)
+numeros = [0,0,0,0]
+
+def siguiente_numero(numero):
+    return (numero + 1) % 10
+
+C_num1 = pygame.Rect(500,480,90,90)
+C_num2 = pygame.Rect(620,480,90,90)
+C_num3 = pygame.Rect(740,480,90,90)
+C_num4 = pygame.Rect(850,480,90,90)
+
+palancas = [False, False, False, False]
+B_palanca1 = pygame.Rect(220,300,100,210)
+B_palanca2 = pygame.Rect(500,300,100,210)
+B_palanca3 = pygame.Rect(780,300,100,210)
+B_palanca4 = pygame.Rect(1050,300,100,210)
+
+#--------------------SONIDOS--Y--MUSICA-----------------------------------
 texto_gris = pygame.mixer.Sound("musica_sonido/1_texto_gris_audio.mpeg")
 auto_paro_sonido0 = pygame.mixer.Sound("musica_sonido/y_eso.mpeg")
 auto_paro_sonido = pygame.mixer.Sound("musica_sonido/2_ay_no_el_auto_se_paro.mpeg")
@@ -259,7 +304,6 @@ charla8_sonido = pygame.mixer.Sound("musica_sonido/14_rapido_ve_a_preguntarle.mp
 charla9_sonido = pygame.mixer.Sound("musica_sonido/17_sin_combustible_maquinista.mp3")
 charla10_sonido = pygame.mixer.Sound("musica_sonido/15_el_maquinista_me_dijo.mpeg")
 charla11_sonido = pygame.mixer.Sound("musica_sonido/16_claro_por_supuesto.mp3")
-
 
 sonido_n1 = False
 auto_paro_reproducido = False
@@ -285,17 +329,13 @@ favela = pygame.mixer.Sound("musica_sonido/Favela.mp3")
 favela.set_volume(0.7)
 
 maquinista_gracias1 = pygame.mixer.Sound("musica_sonido/18_gracias_maquinista.mp3")
-
-
 chica_auto_paro2 = pygame.mixer.Sound("musica_sonido/chica_estacion_cerca.mp3")
 interfe = pygame.mixer.Sound("musica_sonido/interferencia_efecto.mp3")
 interfe.set_volume(0.1)
 
 cofre_efecto = pygame.mixer.Sound("musica_sonido/cofre_abriendose.mp3")
-
 semilla_efecto = pygame.mixer.Sound("musica_sonido/efecto_semilla.mp3")
 semilla_efecto.set_volume(0.05)
-
 
 botonson = pygame.mixer.Sound("musica_sonido/boton_efecto.mp3")
 ruido_tren = pygame.mixer.Sound("musica_sonido/Bocina_tren.mp3")
@@ -313,7 +353,6 @@ cascada.set_volume(0.05)
 
 tren_humo = pygame.mixer.Sound("musica_sonido/tren_humo.mp3")
 tren_humo.set_volume(0.1)
-
 
 #-----------FUNCIONES FLECHAS-------------------------------------------------------------
 def flecha_derecha_f(x, y):
@@ -386,6 +425,19 @@ def flecha_camino_der_f(x, y):
         [(x-30,y-20),(x+50,y-30),(x+10,y+30)]
     )
 
+def flecha_libro_der_f(x, y):
+    pygame.draw.polygon(
+        pantalla,
+        (255,255,255),
+        [(x+25, y), (x, y-30), (x, y+30)]
+    )
+
+def flecha_libro_izq_f(x, y):
+    pygame.draw.polygon(
+        pantalla,
+        (255,255,255),
+        [(x-25, y), (x, y-30), (x, y+30)]
+    )
 
 def inventario_f():
     pantalla.blit(bolso, (1210,610))
@@ -400,7 +452,6 @@ def inventario_f():
             if inventario_lista[i] == objeto_seleccionado:
                 pygame.draw.rect(pantalla, (255,255,0), casillas[i], 3)
 
-
 def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
     global pantalla_actual #le dice a la funcion que quiere modificar la variable ya existente
     if boton.collidepoint(evento.pos):
@@ -409,18 +460,13 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
         pantalla_actual = destino
         return True #si toca el boton
     return False #si no toca el boton
-
 #--------------INVENTARIO-------------------------------------------------
-
 Boton_bolso = pygame.Rect(1220, 610, 130, 130)
-
 inventario = pygame.image.load("visual/inventario.png")
 inventario = pygame.transform.scale(inventario, (500, 400))
 
 inventario_lista = []
-
 objeto_seleccionado = None
-
 imagenes_objetos = {
     "semilla_objeto": semilla_transp
 }
@@ -434,10 +480,8 @@ casillas = [
     pygame.Rect(860, 640, 60, 60), # '' 6
 ]
 
-
-#----------INICIO JUEGO-------------------------------------------------------------------------------
-
-pantalla_actual = "cofre" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
+pantalla_actual = "puerta_interior" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -445,39 +489,44 @@ codigo_encontrado = []
 codigo_correcto = "AMTV"
 codigo_ingresado = ""
 
+num_encontrado = []
+num_correcto = "7352"
+num_ingresado = ""
+
 AAA = True  #Para que la imagen de cofre abierto se mantenga una vez que se abre el cofre
 BBB = True  #Para que la imagen de cofre vacio se mantenga una vez que se lleva la semilla
 inventario_abierto = False
 auto0_paro_reproducido = False
+libro_abierto = False
+pagina_libro = 1
 
+panel_resuelto = False
+llave_recogida = False
+
+Mensaje_ce = False
+tiempo_cerrado = 0
 
 while True:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        
         if evento.type == pygame.KEYDOWN:
 
             if pantalla_actual == "cofre":
-
                 if evento.key == pygame.K_BACKSPACE:
                     codigo_ingresado = codigo_ingresado[:-1]
-
                 else:
                     codigo_ingresado += evento.unicode.upper()
                 
                 if codigo_ingresado == codigo_correcto:
                     tiempo_cofre_abierto = pygame.time.get_ticks()
-                    pantalla_actual = "cofre_desbloqueando"
-                    
-
+                    pantalla_actual = "cofre_desbloqueando"      
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
 
             if Boton_bolso.collidepoint(evento.pos) and pantalla_actual not in pantallas_ocultas:
                 inventario_abierto = not inventario_abierto
-
             if inventario_abierto:
                 for i in range(len(casillas)):
                     if casillas[i].collidepoint(evento.pos):
@@ -518,10 +567,8 @@ while True:
 
             #-----------------------------nivel 1-------------------------------------------------------
             elif pantalla_actual == "jardin":
-
                 cambiar_pantalla_si_toca(flecha_centro, "invernadero", evento)
                 cambiar_pantalla_si_toca(flecha_izquierda, "afuera", evento)
-
                 if flecha_derecha.collidepoint(evento.pos):
                     if AAA:
                         pantalla_actual = "cofre"
@@ -549,7 +596,6 @@ while True:
 
 
             elif pantalla_actual == "cofre":
-
                 if BAcertijo.collidepoint(evento.pos):
                     acertijo1.play()
 
@@ -571,7 +617,6 @@ while True:
                         pantalla_actual = "semilla"
                     else:
                         pantalla_actual = "cofre_vacio"
-                    
             
             elif pantalla_actual == "cofre_zoom":
                 if flecha_cabina2.collidepoint(evento.pos):
@@ -592,14 +637,12 @@ while True:
                 elif rueda4.collidepoint(evento.pos):
                         letras[3] = siguiente_letra(letras[3])
 
-
             elif pantalla_actual == "semilla":
                 if cambiar_pantalla_si_toca(flecha_cabina2,"cofre_abierto",evento):
                     AAA = False
                 if cambiar_pantalla_si_toca(flecha_centro_central_peque,"cofre_vacio",evento): #si selecciona la semilla...
                     inventario_lista.append("semilla_objeto")
                     BBB = False
-
 
             elif pantalla_actual == "cofre_vacio":
                 if cambiar_pantalla_si_toca(flecha_cabina2,"cofre_abierto",evento):
@@ -612,7 +655,6 @@ while True:
                         pantalla_actual = "cofre"
                     else:
                         pantalla_actual = "cofre_abierto"
-
                 cambiar_pantalla_si_toca(flecha_derecha,"jardin",evento)
                 cambiar_pantalla_si_toca(flecha_centro2,"interior",evento)
 
@@ -639,8 +681,7 @@ while True:
                     charla9_son_reproduciendo = False
                     maquinista_hablando = False
 
-
-                #------------------------------------------------------------------------------
+                #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
             elif pantalla_actual == "archivo":
                 cambiar_pantalla_si_toca(BCentro_n2,"caminos",evento)
                 cambiar_pantalla_si_toca(B_interior,"interior2",evento)
@@ -651,11 +692,80 @@ while True:
                 cambiar_pantalla_si_toca(camino2,"puerta_biblioteca",evento)
                 cambiar_pantalla_si_toca(camino3,"casa",evento)
 
+            elif pantalla_actual == "casa":
+                cambiar_pantalla_si_toca(flecha_izquierda,"caminos",evento)
+                cambiar_pantalla_si_toca(flecha_centro_casa,"casa2",evento)
+
+            elif pantalla_actual == "casa2":
+                cambiar_pantalla_si_toca(flecha_izquierda,"casa",evento)
+                cambiar_pantalla_si_toca(B_palancas,"panel",evento)
+
             elif pantalla_actual == "puerta_biblioteca":
                 cambiar_pantalla_si_toca(atras,"caminos",evento)
+                cambiar_pantalla_si_toca(flecha_centro_central_peque,"puerta",evento)
+
+            elif pantalla_actual == "llave":
+                cambiar_pantalla_si_toca(flecha_izquierda,"casa",evento)
 
             elif pantalla_actual == "libro":
-                cambiar_pantalla_si_toca(B_libro_atras,"caminos",evento)
+                if B_libro.collidepoint(evento.pos):
+                    libro_abierto = True
+
+                elif B_flecha_libro_der.collidepoint(evento.pos):
+                    if pagina_libro < 5:
+                        pagina_libro += 1
+                elif B_flecha_libro_izq.collidepoint(evento.pos):
+                    if pagina_libro > 1:
+                        pagina_libro -= 1
+
+                elif B_libro_atras.collidepoint(evento.pos):
+                    libro_abierto = False
+                    pagina_libro = 1
+                    pantalla_actual = "caminos"
+                elif not Rect_libro.collidepoint(evento.pos):
+                    libro_abierto = False
+
+            elif pantalla_actual == "panel":
+                if B_palanca1.collidepoint(evento.pos):
+                    palancas[0] = not palancas[0]
+                elif B_palanca2.collidepoint(evento.pos):
+                    palancas[1] = not palancas[1]
+                elif B_palanca3.collidepoint(evento.pos):
+                    palancas[2] = not palancas[2]
+                elif B_palanca4.collidepoint(evento.pos):
+                    palancas[3] = not palancas[3]
+                cambiar_pantalla_si_toca(flecha_cabina2,"casa2",evento)
+
+            elif pantalla_actual == "puerta":
+                cambiar_pantalla_si_toca(atras,"puerta_biblioteca",evento)
+                if B_puerta.collidepoint(evento.pos):
+                    if "llave" in inventario_lista:
+                        pantalla_actual = "siguiente_pantalla"
+                    else:
+                        Mensaje_ce = True
+                        tiempo_cerrado = pygame.time.get_ticks()
+
+            elif pantalla_actual == "puerta_interior":
+                cambiar_pantalla_si_toca(flecha_derecha,"sala_mapa",evento)
+                cambiar_pantalla_si_toca(B_volver_puerta,"puerta",evento)
+                cambiar_pantalla_si_toca(cofre_A,"cofre_cerrado_archivo",evento)
+
+            elif pantalla_actual == "cofre_cerrado_archivo":
+                cambiar_pantalla_si_toca(B_volver_puerta,"puerta_interior",evento)
+                if C_num1.collidepoint(evento.pos):
+                    numeros[0] = siguiente_numero(numeros[0])
+
+                elif C_num2.collidepoint(evento.pos):
+                    numeros[1] = siguiente_numero(numeros[1])
+
+                elif C_num3.collidepoint(evento.pos):
+                    numeros[2] = siguiente_numero(numeros[2])
+
+                elif C_num4.collidepoint(evento.pos):
+                    numeros[3] = siguiente_numero(numeros[3])
+
+            elif pantalla_actual == "sala_mapa":
+                cambiar_pantalla_si_toca(B_volver_puerta,"puerta_interior",evento)
 
             elif pantalla_actual == "interior2":
                 cambiar_pantalla_si_toca(flecha_atras,"archivo",evento) 
@@ -663,32 +773,27 @@ while True:
 
             elif pantalla_actual == "cabina2":
                 cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento)
-
     #----------------------------------------------------------------------------------------------------------        
     if pantalla_actual == "inicio":
         pantalla.blit(imagen, (0, 0))
         mouse = pygame.mouse.get_pos()
-
         if boton_jugar.collidepoint(mouse):
             pygame.draw.rect(pantalla, (80, 80, 80), boton_jugar, 3)
 
     elif pantalla_actual == "carga":
         pantalla.blit(carga, (0, 0))
-
         if pygame.time.get_ticks() - tiempo_carga > 1000:
             pantalla_actual = "juego"
 
     elif pantalla_actual == "juego":
         pantalla.blit(intro, (0, 0))
         mouse = pygame.mouse.get_pos()
-
         if boton_jugar2.collidepoint(mouse):
             pygame.draw.rect(pantalla, (205, 170, 125), boton_jugar2, 4)
 
     elif pantalla_actual == "historia":
         pantalla.fill((244, 228, 188)) 
         tiempo = pygame.time.get_ticks() - tiempo_historia
-
         pantalla.blit(carga2, (0, 0))
         if tiempo > 2000:
             pantalla.blit(n1, (0, 0))
@@ -709,7 +814,6 @@ while True:
             pantalla.blit(n7, (0, 0))
             pantalla_actual = "n7"
 
-
     elif pantalla_actual == "comienzo":  
         texto_gris.stop()
         if not favela_reproduciendo:
@@ -718,7 +822,6 @@ while True:
 
         pantalla.fill((244, 228, 188))   
         tiempo = pygame.time.get_ticks() - tiempo_comienzo
-
         pantalla.blit(auto1, (0, 0))
 
         if tiempo > 6000:
@@ -735,13 +838,11 @@ while True:
 
             sin_arranque.play()
             pantalla_actual = "auto3"
-        
 
     elif pantalla_actual == "auto_parado":
         auto_paro_sonido0.stop()
         pantalla.fill((244, 228, 188))
         tiempo = pygame.time.get_ticks() - tiempo_auto_parado
-
         pantalla.blit(parte2, (0, 0))
 
         if not auto_paro_reproducido:
@@ -754,7 +855,6 @@ while True:
             auto_paro_sonido2.play()
             pantalla_actual = "parte3"
             sin_arranque.stop()
-
 
     elif pantalla_actual == "llegada_estacion":
         auto_paro_sonido2.stop()
@@ -777,7 +877,6 @@ while True:
             ruido_tren.stop()
             pantalla_actual = "llegada3"
 
-
     elif pantalla_actual == "boleto":
         pantalla.fill((244, 228, 188))  
         tiempo = pygame.time.get_ticks() - tiempo_boleto
@@ -793,11 +892,9 @@ while True:
         if tiempo > 5000:
             pantalla.blit(tren3, (920, 0))
             pantalla_actual = "tren3"
-
     
     elif pantalla_actual == "charla":
         tiempo = pygame.time.get_ticks() - tiempo_charla
-
         pantalla.blit(man, (0, 0))
         if tiempo > 2000:
             pantalla.fill((0, 0, 0))
@@ -877,7 +974,6 @@ while True:
             pantalla_actual = "afuera"
 
     #________________________________________ NIVEL 1 ___________________________________________________
-     
     elif pantalla_actual == "n7":
         pantalla.blit(n7, (0,0))
         flecha_abajo_derecha_f(1340, 720)
@@ -894,24 +990,20 @@ while True:
     elif pantalla_actual == "tren3":
         flecha_abajo_derecha_f(1340, 720)
     
-    
     elif pantalla_actual == "jardin":
         pantalla.blit(jardin, (0,0))
-
         flecha_derecha_f(1280, 400)
         flecha_arriba_f(820, 510)
         flecha_izquierda_f(120, 400)
 
     elif pantalla_actual == "afuera":
         pantalla.blit(afuera, (0,0))
-    
         flecha_izquierda_f(120, 400)
         flecha_derecha_f(1280, 400)
         flecha_arriba_f(700, 560)
     
     elif pantalla_actual == "interior":
         pantalla.blit(interior, (0,0))
-
         flecha_abajo_f(650,660)
         flecha_arriba_f(685,510)
 
@@ -935,20 +1027,17 @@ while True:
 
         texto1 = fuente.render(letras[0], True, (0,0,0))
         pantalla.blit(texto1, (493,290))
-
         texto2 = fuente.render(letras[1], True, (0,0,0))
         pantalla.blit(texto2, (607,290))
-
         texto3 = fuente.render(letras[2], True, (0,0,0))
         pantalla.blit(texto3, (723,290))
-
         texto4 = fuente.render(letras[3], True, (0,0,0))
         pantalla.blit(texto4, (837,290))
 
-        #pygame.draw.rect(pantalla, (255,0,0), rueda1, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), rueda2, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), rueda3, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), rueda4, 2)
+        pygame.draw.rect(pantalla, (255,0,0), rueda1, 2)
+        pygame.draw.rect(pantalla, (255,0,0), rueda2, 2)
+        pygame.draw.rect(pantalla, (255,0,0), rueda3, 2)
+        pygame.draw.rect(pantalla, (255,0,0), rueda4, 2)
 
         if "".join(letras) == "AMTV":
             tiempo_cofre_abierto = pygame.time.get_ticks()
@@ -963,7 +1052,6 @@ while True:
     elif pantalla_actual == "semilla":
         pantalla.blit(cofre_semilla, (0, 0)) 
         flecha_abajo_f(710,660)
-        
 
     elif pantalla_actual == "cofre_vacio":
         pantalla.blit(cofre_vacio, (0, 0))
@@ -988,15 +1076,13 @@ while True:
         flecha_abajo_f(900,660)
 
     elif pantalla_actual == "cabina":
-
         if maquinista_hablando:
             pantalla.blit(maquinista2, (0,0))
         else:
             pantalla.blit(maquinista1, (0,0))
 
-        #pygame.draw.rect(pantalla, (255,0,0), botonMaquinista, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botonMaquinista, 2)
         flecha_abajo_f(710,660)
-
         if maquinista_hablando:
             if pygame.time.get_ticks() - tiempo_maquinista > 6000:
                 maquinista_hablando = False
@@ -1024,44 +1110,157 @@ while True:
     #________________________________________ NIVEL 2 ___________________________________________________
     elif pantalla_actual == "archivo":
         pantalla.blit(afuera2, (0, 0))
-
+        flecha_arriba_f(680,610)
+        flecha_abajo_f(680,680)
         pygame.draw.rect(pantalla, (255,0,0), B_interior, 2)
         pygame.draw.rect(pantalla, (255,0,0), Boton_bolso, 2)
 
-        flecha_arriba_f(680,610)
-        flecha_abajo_f(680,680)
-
-
     elif pantalla_actual == "caminos":
         pantalla.blit(camino, (0, 0))
-
         flecha_abajo_f(730,680)
+        flecha_camino_izq_f(580,600)
+        flecha_camino_med_f(800,570)
+        flecha_camino_der_f(910,610)
         pygame.draw.rect(pantalla, (255,0,0), camino1, 2)
         pygame.draw.rect(pantalla, (255,0,0), camino2, 2)
         pygame.draw.rect(pantalla, (255,0,0), camino3, 2)
 
-        flecha_camino_izq_f(580,600)
-        flecha_camino_med_f(800,570)
-        flecha_camino_der_f(910,610)
+    elif pantalla_actual == "casa":
+        pantalla.blit(casa_afuera, (0,0))
+        flecha_izquierda_f(100, 400)
+        flecha_arriba_f(1000, 450)
+        pygame.draw.rect(pantalla, (255,0,0), flecha_centro_casa, 2)
+        pygame.draw.rect(pantalla, (255,0,0), flecha_izquierda, 2)
+
+    elif pantalla_actual == "casa2":
+        pantalla.blit(casa_adentro, (0, 0))
+        flecha_izquierda_f(100, 400)
+        pygame.draw.rect(pantalla, (255,0,0), B_palancas, 2)
+
+    elif pantalla_actual == "panel":
+        pantalla.blit(panel, (0,0))
+        if palancas[0]:
+            pantalla.blit(palanca_arriba, (150,200))
+        else:
+            pantalla.blit(palanca_abajo, (150, 280))
+        if palancas[1]:
+            pantalla.blit(palanca_arriba, (420,200))
+        else:
+            pantalla.blit(palanca_abajo, (420, 280))
+        if palancas[2]:
+            pantalla.blit(palanca_arriba, (700,200))
+        else:
+            pantalla.blit(palanca_abajo, (700, 280))
+        if palancas[3]:
+            pantalla.blit(palanca_arriba, (970,200))
+        else:
+            pantalla.blit(palanca_abajo, (970, 280))
+
+        if palancas == [False, True, False, True]:
+            panel_resuelto = True 
+
+        flecha_abajo_f(710,660)
+        pygame.draw.rect(pantalla, (255,0,0), B_palanca1, 2)
+        pygame.draw.rect(pantalla, (255,0,0), B_palanca2, 2)
+        pygame.draw.rect(pantalla, (255,0,0), B_palanca3, 2)
+        pygame.draw.rect(pantalla, (255,0,0), B_palanca4, 2)
+
+    elif pantalla_actual == "llave":
+        pantalla.blit(llave1, (0,0))
+        flecha_izquierda_f(100, 400)
 
     elif pantalla_actual == "libro":
         pantalla.blit(libro, (0, 0))
 
-        #pygame.draw.rect(pantalla, (255,0,0), B_libro_atras, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_libro, 2)
+        if libro_abierto:
+            sombra = pygame.Surface((1400,800))
+            sombra.set_alpha(150)
+            sombra.fill((0,0,0))
+            pantalla.blit(sombra, (0,0))
 
+            if pagina_libro == 1:
+                pantalla.blit(libro1, (250,150))
+                flecha_libro_der_f(1080,550)
+
+            elif pagina_libro == 2:
+                pantalla.blit(libro2, (250,150))
+                flecha_libro_izq_f(320,550)
+                flecha_libro_der_f(1080,550)
+
+            elif pagina_libro == 3:
+                pantalla.blit(libro3, (250,150))
+                flecha_libro_izq_f(320,550)
+                flecha_libro_der_f(1080,550)
+
+            elif pagina_libro == 4:
+                pantalla.blit(libro5, (250,150))
+                flecha_libro_izq_f(320,550)
+                flecha_libro_der_f(1080,550)
+
+            elif pagina_libro == 5:
+                pantalla.blit(libro4, (250,150))
+                flecha_libro_izq_f(320,550)
+
+        flecha_abajo_derecha_f(1250,500)
         flecha_abajo_derecha_f(1250, 500)
+        pygame.draw.rect(pantalla, (255,0,0), B_libro_atras, 2)
+        pygame.draw.rect(pantalla, (255,0,0), B_libro, 2)
 
     elif pantalla_actual == "puerta_biblioteca":
         pantalla.blit(puerta, (0, 0))
-
         flecha_abajo_pequena_f(680, 690)
+        flecha_arriba_f(680, 500)
         pygame.draw.rect(pantalla, (255,0,0), atras, 2)
-    
+        pygame.draw.rect(pantalla, (255,0,0), flecha_centro_central_peque, 2)
+
+    elif pantalla_actual == "puerta":
+        pantalla.blit(puerta_zoom, (0, 0))
+        flecha_abajo_pequena_f(700, 710)
+
+        if Mensaje_ce:
+            pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
+            pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
+
+            Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
+            pantalla.blit(Cerrado, (1150,40))
+
+            if pygame.time.get_ticks() - tiempo_cerrado > 2000:
+                Mensaje_ce = False
+        pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
+        pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
+
+    elif pantalla_actual == "puerta_interior":
+        pantalla.blit(inte_biblio,(0,0))
+        flecha_derecha_f(1280,400)
+        flecha_abajo_pequena_f(700, 710)
+
+        pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
+        pygame.draw.rect(pantalla, (255,0,0), flecha_derecha, 2)
+        pygame.draw.rect(pantalla, (255,0,0), cofre_A, 2)
+
+    elif pantalla_actual == "sala_mapa":
+        pantalla.blit(mapa,(0,0))
+        flecha_abajo_pequena_f(700, 710)
+
+    elif pantalla_actual == "cofre_cerrado_archivo":
+        pantalla.blit(cofre_archi, (0,0))
+        num1 = fuente.render(str(numeros[0]), True, (255,255,255))
+        pantalla.blit(num1, (530,480))
+        num2 = fuente.render(str(numeros[1]), True, (255,255,255))
+        pantalla.blit(num2, (650,480))
+        num3 = fuente.render(str(numeros[2]), True, (255,255,255))
+        pantalla.blit(num3, (770,480))
+        num4 = fuente.render(str(numeros[3]), True, (255,255,255))
+        pantalla.blit(num4, (880,480))
+
+        flecha_abajo_pequena_f(700, 710)
+        pygame.draw.rect(pantalla, (255,0,0), C_num1, 2)
+        pygame.draw.rect(pantalla, (255,0,0), C_num2, 2)
+        pygame.draw.rect(pantalla, (255,0,0), C_num3, 2)
+        pygame.draw.rect(pantalla, (255,0,0), C_num4, 2)
 
     elif pantalla_actual == "interior2":
         pantalla.blit(vagon_archivo, (0,0))
-
         flecha_abajo_f(620,660)
         flecha_arriba_f(640,550)
     
@@ -1070,7 +1269,6 @@ while True:
         flecha_abajo_f(710,660)
 
 #------------------------------------------------------------------------
-
     pantallas_ocultas = ["inicio", "carga", "juego", "historia",
                         "n7", "comienzo", "auto3", "auto_parado", 
                         "parte3", "llegada_estacion", "llegada3", 
@@ -1078,6 +1276,5 @@ while True:
 
     if pantalla_actual not in pantallas_ocultas:
         inventario_f()
-        #pygame.draw.rect(pantalla, (255,0,0), Boton_bolso, 2)
 
     pygame.display.flip()
