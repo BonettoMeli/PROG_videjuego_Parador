@@ -1188,14 +1188,24 @@ while True:
         if tiempo > 14000:
             pantalla_actual = "intro_archivo"
             tiempo_intro2 = pygame.time.get_ticks()
+           
         
     #________________________________________ NIVEL 2 ___________________________________________________
     elif pantalla_actual == "intro_archivo":
         tiempo = pygame.time.get_ticks() - tiempo_intro2
-        if tiempo < 3000:
-            pantalla.blit(intro_archivo, (0,0))
         if tiempo < 5000:
-            pantalla.blit(cabina2_hablando, (0,0))
+            pantalla.blit(intro_archivo, (0,0))
+            
+        elif tiempo < 11000:
+            if not maquinista2_intro_son_reproduciendo:
+                maquinista2_intro.play()
+                maquinista2_intro_son_reproduciendo = True
+            pantalla.blit(cabina2_hablando,(0,0))
+        elif tiempo < 13000:
+            pantalla.fill((0, 0, 0))
+        else:
+            maquinista2_intro.stop()
+            maquinista2_intro_son_reproduciendo = False
             pantalla_actual = "archivo"
 
 
