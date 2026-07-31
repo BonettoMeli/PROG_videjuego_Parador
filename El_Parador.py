@@ -199,11 +199,13 @@ def siguiente_letra(letra):
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
 tiempo_gracias = 0
+tiempo_intro2 = 0
 
 afuera2 = pygame.image.load("visual/tren_archivo_afuera.jpg")
 camino = pygame.image.load("visual/tres_caminos.jpeg")
 libro = pygame.image.load("visual/libro_archivo.jpeg")
 cabina2 = pygame.image.load("visual/cabina2.jpeg")
+cabina2_hablando = pygame.image.load("visual/cabina2_hablando.jpeg")
 vagon_archivo = pygame.image.load("visual/vagon_interior.jpeg")
 puerta = pygame.image.load("visual/biblioteca_sumergido.jpeg")
 puerta_zoom = pygame.image.load("visual/puerta_zoom.jpeg")
@@ -212,11 +214,15 @@ casa_afuera = pygame.image.load("visual/casa_afuera.jpeg")
 casa_adentro = pygame.image.load("visual/casa_adentro.jpeg")
 cofre_abierto2 = pygame.image.load("visual/cofre_abierto2.jpeg")
 cofre_vacio2 = pygame.image.load("visual/cofre_vacio2.jpeg")
+gracias2 = pygame.image.load("visual/gracias2.jpeg")
+maquinista_fusible = pygame.image.load("visual/cabina2_hablando.jpeg")
+intro_archivo = pygame.image.load("visual/intro_archivo.jpeg")
 
 afuera2 = pygame.transform.scale(afuera2, (1400, 800))
 camino = pygame.transform.scale(camino, (1400, 800))
 libro = pygame.transform.scale(libro, (1400, 800))
 cabina2 = pygame.transform.scale(cabina2, (1400, 800))
+cabina2_hablando = pygame.transform.scale(cabina2_hablando, (1400, 800))
 vagon_archivo = pygame.transform.scale(vagon_archivo, (1400, 800))
 puerta = pygame.transform.scale(puerta, (1400, 800))
 puerta_zoom = pygame.transform.scale(puerta_zoom, (1400, 800))
@@ -225,6 +231,9 @@ casa_afuera = pygame.transform.scale(casa_afuera, (1400, 800))
 casa_adentro = pygame.transform.scale(casa_adentro, (1400, 800))
 cofre_abierto2 = pygame.transform.scale(cofre_abierto2, (1400, 800))
 cofre_vacio2 = pygame.transform.scale(cofre_vacio2, (1400, 800))
+gracias2 = pygame.transform.scale(gracias2, (1400, 800))
+maquinista_fusible = pygame.transform.scale(maquinista_fusible, (1400,800))
+intro_archivo = pygame.transform.scale(intro_archivo, (1400,800))
 
 panel = pygame.image.load("visual/mueble_palancas.jpeg")
 panel = pygame.transform.scale(panel, (1400, 800))
@@ -341,13 +350,22 @@ charla9_son_reproduciendo = False
 charla10_son_reproduciendo = False
 charla11_son_reproduciendo = False
 
+gracias2_son_reproduciendo = False
+maquinista2_intro_son_reproduciendo = False
+gracias_maquinista2 = pygame.mixer.Sound("musica_sonido/gracias_maquinista2.mp3")
+maquinista2_intro = pygame.mixer.Sound("musica_sonido/maquinista2_intro.mp3")
+
+
 maquinista_gracias1_son_reproduciendo = False
+maquinista_gracias2_son_reproduciendo = False
 favela_reproduciendo = False
 
 favela = pygame.mixer.Sound("musica_sonido/Favela.mp3")
 favela.set_volume(0.7)
 
 maquinista_gracias1 = pygame.mixer.Sound("musica_sonido/18_gracias_maquinista.mp3")
+maquinista_gracias2 = pygame.mixer.Sound("musica_sonido/gracias_maquinista2.mp3")
+
 chica_auto_paro2 = pygame.mixer.Sound("musica_sonido/chica_estacion_cerca.mp3")
 interfe = pygame.mixer.Sound("musica_sonido/interferencia_efecto.mp3")
 interfe.set_volume(0.1)
@@ -502,7 +520,7 @@ casillas = [
 ]
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "gracias" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -817,8 +835,25 @@ while True:
                 cambiar_pantalla_si_toca(flecha_cabina,"cabina2",evento)
 
             elif pantalla_actual == "cabina2":
-                cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento)
+                if cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento):
+                    maquinista2_intro.stop()
+                if botonMaquinista.collidepoint(evento.pos):
 
+                    if objeto_seleccionado == "fusible_objeto":
+                        inventario_lista.remove("fusible_objeto")
+                        objeto_seleccionado = None
+                        pantalla_actual = "gracias2"
+                        tiempo_gracias = pygame.time.get_ticks()
+                    else:
+                        if not maquinista2_intro_son_reproduciendo:
+                            maquinista2_intro.play()
+                            maquinista2_intro_son_reproduciendo = True
+                            tiempo_maquinista2 = pygame.time.get_ticks()
+
+                if cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento):
+                    maquinista2_intro.stop()
+                    maquinista2_intro_son_reproduciendo = False
+                    maquinista_hablando2 = False
     #----------------------------------------------------------------------------------------------------------        
     if pantalla_actual == "inicio":
         pantalla.blit(imagen, (0, 0))
@@ -1151,9 +1186,20 @@ while True:
         if tiempo > 12000:
             pantalla.blit(carga, (0, 0))
         if tiempo > 14000:
-            pantalla_actual = "archivo"
+            pantalla_actual = "intro_archivo"
+            tiempo_intro2 = pygame.time.get_ticks()
         
     #________________________________________ NIVEL 2 ___________________________________________________
+    elif pantalla_actual == "intro_archivo":
+        tiempo = pygame.time.get_ticks() - tiempo_intro2
+        if tiempo < 3000:
+            pantalla.blit(intro_archivo, (0,0))
+        if tiempo < 5000:
+            pantalla.blit(cabina2_hablando, (0,0))
+            pantalla_actual = "archivo"
+
+
+    
     elif pantalla_actual == "archivo":
         pantalla.blit(afuera2, (0, 0))
         flecha_arriba_f(680,610)
@@ -1327,8 +1373,33 @@ while True:
         flecha_arriba_f(640,550)
     
     elif pantalla_actual == "cabina2":
-        pantalla.blit(cabina2, (0,0))
+        if maquinista2_intro_son_reproduciendo:
+            pantalla.blit(maquinista_fusible, (0,0))
+            tiempo = pygame.time.get_ticks() - tiempo_maquinista2
+            if tiempo > 4000:
+                maquinista_intro_son_reproduciendo = False
+                pantalla.blit(cabina2,(0,0))
+        else:
+            pantalla.blit(cabina2,(0,0))
+                
         flecha_abajo_f(710,660)
+
+    elif pantalla_actual == "gracias2":
+        pantalla.blit(gracias2,(0,0))
+        tiempo = pygame.time.get_ticks() - tiempo_gracias
+        if tiempo < 100:
+            if not maquinista_gracias2_son_reproduciendo:
+                maquinista_gracias1.play()
+                maquinista_gracias2_son_reproduciendo = True
+    
+        if tiempo > 5000:
+            pantalla.fill((0, 0, 0))
+        if tiempo > 7000:
+            pantalla.blit(nivel3, (0, 0))
+        if tiempo > 12000:
+            pantalla.blit(carga, (0, 0))
+        if tiempo > 14000:
+            pantalla_actual = "nivel3" 
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia",
