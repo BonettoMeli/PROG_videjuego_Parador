@@ -520,7 +520,7 @@ casillas = [
 ]
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "gracias" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -1399,7 +1399,7 @@ while True:
         tiempo = pygame.time.get_ticks() - tiempo_gracias
         if tiempo < 100:
             if not maquinista_gracias2_son_reproduciendo:
-                maquinista_gracias1.play()
+                maquinista_gracias2.play()
                 maquinista_gracias2_son_reproduciendo = True
     
         if tiempo > 5000:
