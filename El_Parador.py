@@ -207,8 +207,11 @@ cabina2 = pygame.image.load("visual/cabina2.jpeg")
 vagon_archivo = pygame.image.load("visual/vagon_interior.jpeg")
 puerta = pygame.image.load("visual/biblioteca_sumergido.jpeg")
 puerta_zoom = pygame.image.load("visual/puerta_zoom.jpeg")
+puerta_abierta1 = pygame.image.load("visual/puerta_abierta.png")
 casa_afuera = pygame.image.load("visual/casa_afuera.jpeg")
 casa_adentro = pygame.image.load("visual/casa_adentro.jpeg")
+cofre_abierto2 = pygame.image.load("visual/cofre_abierto2.jpeg")
+cofre_vacio2 = pygame.image.load("visual/cofre_vacio2.jpeg")
 
 afuera2 = pygame.transform.scale(afuera2, (1400, 800))
 camino = pygame.transform.scale(camino, (1400, 800))
@@ -217,8 +220,11 @@ cabina2 = pygame.transform.scale(cabina2, (1400, 800))
 vagon_archivo = pygame.transform.scale(vagon_archivo, (1400, 800))
 puerta = pygame.transform.scale(puerta, (1400, 800))
 puerta_zoom = pygame.transform.scale(puerta_zoom, (1400, 800))
+puerta_abierta1 = pygame.transform.scale(puerta_abierta1, (1400, 800))
 casa_afuera = pygame.transform.scale(casa_afuera, (1400, 800))
 casa_adentro = pygame.transform.scale(casa_adentro, (1400, 800))
+cofre_abierto2 = pygame.transform.scale(cofre_abierto2, (1400, 800))
+cofre_vacio2 = pygame.transform.scale(cofre_vacio2, (1400, 800))
 
 panel = pygame.image.load("visual/mueble_palancas.jpeg")
 panel = pygame.transform.scale(panel, (1400, 800))
@@ -240,6 +246,13 @@ libro5 = pygame.transform.scale(libro5, (900, 500))
 
 llave1 = pygame.image.load("visual/llave_abajo.jpeg")
 llave1 = pygame.transform.scale(llave1, (1400,800))
+llave2 = pygame.image.load("visual/sin_llave.jpeg")
+llave2 = pygame.transform.scale(llave2, (1400,800))
+
+llave_transp = pygame.image.load("visual/llave_transparente.png")
+llave_transp = pygame.transform.scale(llave_transp, (100, 90))
+fusible_transp = pygame.image.load("visual/fusible_transparente.png")
+fusible_transp = pygame.transform.scale(fusible_transp, (100, 90))
 
 inte_biblio = pygame.image.load("visual/interior_biblioteca.png")
 inte_biblio = pygame.transform.scale(inte_biblio, (1400,800))
@@ -247,6 +260,9 @@ mapa = pygame.image.load("visual/sala_mapa.jpeg")
 mapa = pygame.transform.scale(mapa, (1400,800))
 cofre_archi = pygame.image.load("visual/cofre_archivo_cerrado.png")
 cofre_archi = pygame.transform.scale(cofre_archi, (1400,800))
+
+archivo2_viejo = pygame.image.load("visual/archivo2_viejo.jpeg")
+archivo2_viejo = pygame.transform.scale(archivo2_viejo, (1400,800))
 
 atras = pygame.Rect(620, 670, 120, 80)
 B_libro = pygame.Rect(200, 300, 260, 250)
@@ -267,6 +283,7 @@ botonMaquinista = pygame.Rect(900, 300, 250, 380)
 B_puerta = pygame.Rect(600, 320, 210, 380)
 B_volver_puerta = pygame.Rect(650,700,100,100)
 B_palancas = pygame.Rect(450, 450, 430, 220)
+B_fusible = pygame.Rect(600, 400, 200, 200)
 
 cofre_A = pygame.Rect(620, 300, 150, 100)
 numeros = [0,0,0,0]
@@ -284,6 +301,8 @@ B_palanca1 = pygame.Rect(220,300,100,210)
 B_palanca2 = pygame.Rect(500,300,100,210)
 B_palanca3 = pygame.Rect(780,300,100,210)
 B_palanca4 = pygame.Rect(1050,300,100,210)
+
+B_llave = pygame.Rect(1050,300,100,200)
 
 #--------------------SONIDOS--Y--MUSICA-----------------------------------
 texto_gris = pygame.mixer.Sound("musica_sonido/1_texto_gris_audio.mpeg")
@@ -468,7 +487,9 @@ inventario = pygame.transform.scale(inventario, (500, 400))
 inventario_lista = []
 objeto_seleccionado = None
 imagenes_objetos = {
-    "semilla_objeto": semilla_transp
+    "semilla_objeto": semilla_transp, 
+    "llave_objeto":llave_transp,
+    "fusible_objeto":fusible_transp
 }
 
 casillas = [
@@ -481,7 +502,7 @@ casillas = [
 ]
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "puerta_interior" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -502,6 +523,8 @@ pagina_libro = 1
 
 panel_resuelto = False
 llave_recogida = False
+puerta_abierta = False
+fusible_recogido = False
 
 Mensaje_ce = False
 tiempo_cerrado = 0
@@ -699,13 +722,15 @@ while True:
             elif pantalla_actual == "casa2":
                 cambiar_pantalla_si_toca(flecha_izquierda,"casa",evento)
                 cambiar_pantalla_si_toca(B_palancas,"panel",evento)
+                if LLL == True:
+                    if B_llave.collidepoint(evento.pos):
+                        llave_recogida=True
+                        inventario_lista.append("llave_objeto")
+                        LLL=False
 
             elif pantalla_actual == "puerta_biblioteca":
                 cambiar_pantalla_si_toca(atras,"caminos",evento)
                 cambiar_pantalla_si_toca(flecha_centro_central_peque,"puerta",evento)
-
-            elif pantalla_actual == "llave":
-                cambiar_pantalla_si_toca(flecha_izquierda,"casa",evento)
 
             elif pantalla_actual == "libro":
                 if B_libro.collidepoint(evento.pos):
@@ -736,14 +761,25 @@ while True:
                     palancas[3] = not palancas[3]
                 cambiar_pantalla_si_toca(flecha_cabina2,"casa2",evento)
 
+
             elif pantalla_actual == "puerta":
-                cambiar_pantalla_si_toca(atras,"puerta_biblioteca",evento)
+                cambiar_pantalla_si_toca(atras, "puerta_biblioteca", evento)
+
                 if B_puerta.collidepoint(evento.pos):
-                    if "llave" in inventario_lista:
-                        pantalla_actual = "siguiente_pantalla"
+                    if puerta_abierta:
+                        pantalla_actual = "puerta_abierta1"
+                    elif objeto_seleccionado == "llave_objeto":
+                        inventario_lista.remove("llave_objeto")
+                        objeto_seleccionado = None
+                        puerta_abierta = True
+                        pantalla_actual = "puerta_abierta1"
                     else:
                         Mensaje_ce = True
                         tiempo_cerrado = pygame.time.get_ticks()
+
+            elif pantalla_actual == "puerta_abierta1":
+                cambiar_pantalla_si_toca(atras,"puerta_biblioteca",evento)
+                cambiar_pantalla_si_toca(B_puerta,"puerta_interior",evento)
 
             elif pantalla_actual == "puerta_interior":
                 cambiar_pantalla_si_toca(flecha_derecha,"sala_mapa",evento)
@@ -764,6 +800,15 @@ while True:
                 elif C_num4.collidepoint(evento.pos):
                     numeros[3] = siguiente_numero(numeros[3])
 
+            elif pantalla_actual == "cofre_abierto2":
+                cambiar_pantalla_si_toca(B_volver_puerta , "puerta_interior", evento)
+        
+                if B_fusible.collidepoint(evento.pos):
+                    if not fusible_recogido:
+                        fusible_recogido = True
+                        inventario_lista.append("fusible_objeto")
+                        
+
             elif pantalla_actual == "sala_mapa":
                 cambiar_pantalla_si_toca(B_volver_puerta,"puerta_interior",evento)
 
@@ -773,6 +818,7 @@ while True:
 
             elif pantalla_actual == "cabina2":
                 cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento)
+
     #----------------------------------------------------------------------------------------------------------        
     if pantalla_actual == "inicio":
         pantalla.blit(imagen, (0, 0))
@@ -1133,7 +1179,18 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), flecha_izquierda, 2)
 
     elif pantalla_actual == "casa2":
-        pantalla.blit(casa_adentro, (0, 0))
+        if panel_resuelto == False:
+            pantalla.blit(casa_adentro, (0, 0))
+            LLL=False
+        if panel_resuelto == True:
+            LLL=True
+            if llave_recogida == True:
+                pantalla.blit(llave2, (0,0))
+                LLL= False
+            else:
+                pantalla.blit(llave1, (0,0))
+            pygame.draw.rect(pantalla, (255,0,0), B_llave, 2)
+        
         flecha_izquierda_f(100, 400)
         pygame.draw.rect(pantalla, (255,0,0), B_palancas, 2)
 
@@ -1158,16 +1215,13 @@ while True:
 
         if palancas == [False, True, False, True]:
             panel_resuelto = True 
-
+            
         flecha_abajo_f(710,660)
         pygame.draw.rect(pantalla, (255,0,0), B_palanca1, 2)
         pygame.draw.rect(pantalla, (255,0,0), B_palanca2, 2)
         pygame.draw.rect(pantalla, (255,0,0), B_palanca3, 2)
         pygame.draw.rect(pantalla, (255,0,0), B_palanca4, 2)
 
-    elif pantalla_actual == "llave":
-        pantalla.blit(llave1, (0,0))
-        flecha_izquierda_f(100, 400)
 
     elif pantalla_actual == "libro":
         pantalla.blit(libro, (0, 0))
@@ -1229,6 +1283,13 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
         pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
 
+    elif pantalla_actual == "puerta_abierta1":
+        pantalla.blit(puerta_abierta1, (0,0))
+        flecha_abajo_pequena_f(700, 710)
+        pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
+        pygame.draw.rect(pantalla, (255,0,0), atras, 2)
+
+
     elif pantalla_actual == "puerta_interior":
         pantalla.blit(inte_biblio,(0,0))
         flecha_derecha_f(1280,400)
@@ -1259,8 +1320,19 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), C_num3, 2)
         pygame.draw.rect(pantalla, (255,0,0), C_num4, 2)
 
+        if numeros == [7,3,5,2]:
+            pantalla_actual = "cofre_abierto2"
+
+    elif pantalla_actual == "cofre_abierto2":
+        if fusible_recogido:
+            pantalla.blit(cofre_vacio2, (0,0))
+        else:
+            pantalla.blit(cofre_abierto2, (0,0))
+        flecha_abajo_pequena_f(700, 710)
+        pygame.draw.rect(pantalla, (255,0,0), B_fusible, 2)
+             
     elif pantalla_actual == "interior2":
-        pantalla.blit(vagon_archivo, (0,0))
+        pantalla.blit(archivo2_viejo, (0,0))
         flecha_abajo_f(620,660)
         flecha_arriba_f(640,550)
     
