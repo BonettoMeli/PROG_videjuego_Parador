@@ -1158,8 +1158,8 @@ while True:
         pantalla.blit(afuera2, (0, 0))
         flecha_arriba_f(680,610)
         flecha_abajo_f(680,680)
-        pygame.draw.rect(pantalla, (255,0,0), B_interior, 2)
-        pygame.draw.rect(pantalla, (255,0,0), Boton_bolso, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_interior, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), Boton_bolso, 2)
 
     elif pantalla_actual == "caminos":
         pantalla.blit(camino, (0, 0))
@@ -1167,16 +1167,16 @@ while True:
         flecha_camino_izq_f(580,600)
         flecha_camino_med_f(800,570)
         flecha_camino_der_f(910,610)
-        pygame.draw.rect(pantalla, (255,0,0), camino1, 2)
-        pygame.draw.rect(pantalla, (255,0,0), camino2, 2)
-        pygame.draw.rect(pantalla, (255,0,0), camino3, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), camino1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), camino2, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), camino3, 2)
 
     elif pantalla_actual == "casa":
         pantalla.blit(casa_afuera, (0,0))
         flecha_izquierda_f(100, 400)
         flecha_arriba_f(1000, 450)
-        pygame.draw.rect(pantalla, (255,0,0), flecha_centro_casa, 2)
-        pygame.draw.rect(pantalla, (255,0,0), flecha_izquierda, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), flecha_centro_casa, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), flecha_izquierda, 2)
 
     elif pantalla_actual == "casa2":
         if panel_resuelto == False:
@@ -1189,10 +1189,8 @@ while True:
                 LLL= False
             else:
                 pantalla.blit(llave1, (0,0))
-            pygame.draw.rect(pantalla, (255,0,0), B_llave, 2)
-        
+            #pygame.draw.rect(pantalla, (255,0,0), B_llave, 2)      
         flecha_izquierda_f(100, 400)
-        pygame.draw.rect(pantalla, (255,0,0), B_palancas, 2)
 
     elif pantalla_actual == "panel":
         pantalla.blit(panel, (0,0))
@@ -1217,11 +1215,10 @@ while True:
             panel_resuelto = True 
             
         flecha_abajo_f(710,660)
-        pygame.draw.rect(pantalla, (255,0,0), B_palanca1, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_palanca2, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_palanca3, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_palanca4, 2)
-
+        #pygame.draw.rect(pantalla, (255,0,0), B_palanca1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_palanca2, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_palanca3, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_palanca4, 2)
 
     elif pantalla_actual == "libro":
         pantalla.blit(libro, (0, 0))
@@ -1235,37 +1232,31 @@ while True:
             if pagina_libro == 1:
                 pantalla.blit(libro1, (250,150))
                 flecha_libro_der_f(1080,550)
-
             elif pagina_libro == 2:
                 pantalla.blit(libro2, (250,150))
                 flecha_libro_izq_f(320,550)
                 flecha_libro_der_f(1080,550)
-
             elif pagina_libro == 3:
                 pantalla.blit(libro3, (250,150))
                 flecha_libro_izq_f(320,550)
                 flecha_libro_der_f(1080,550)
-
             elif pagina_libro == 4:
                 pantalla.blit(libro5, (250,150))
                 flecha_libro_izq_f(320,550)
                 flecha_libro_der_f(1080,550)
-
             elif pagina_libro == 5:
                 pantalla.blit(libro4, (250,150))
                 flecha_libro_izq_f(320,550)
 
         flecha_abajo_derecha_f(1250,500)
         flecha_abajo_derecha_f(1250, 500)
-        pygame.draw.rect(pantalla, (255,0,0), B_libro_atras, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_libro, 2)
 
     elif pantalla_actual == "puerta_biblioteca":
         pantalla.blit(puerta, (0, 0))
         flecha_abajo_pequena_f(680, 690)
         flecha_arriba_f(680, 500)
-        pygame.draw.rect(pantalla, (255,0,0), atras, 2)
-        pygame.draw.rect(pantalla, (255,0,0), flecha_centro_central_peque, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), atras, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), flecha_centro_central_peque, 2)
 
     elif pantalla_actual == "puerta":
         pantalla.blit(puerta_zoom, (0, 0))
@@ -1274,20 +1265,19 @@ while True:
         if Mensaje_ce:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
-
             Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
             pantalla.blit(Cerrado, (1150,40))
 
             if pygame.time.get_ticks() - tiempo_cerrado > 2000:
                 Mensaje_ce = False
-        pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
-        pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
 
     elif pantalla_actual == "puerta_abierta1":
         pantalla.blit(puerta_abierta1, (0,0))
         flecha_abajo_pequena_f(700, 710)
-        pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
-        pygame.draw.rect(pantalla, (255,0,0), atras, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_puerta, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), atras, 2)
 
 
     elif pantalla_actual == "puerta_interior":
@@ -1295,9 +1285,9 @@ while True:
         flecha_derecha_f(1280,400)
         flecha_abajo_pequena_f(700, 710)
 
-        pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
-        pygame.draw.rect(pantalla, (255,0,0), flecha_derecha, 2)
-        pygame.draw.rect(pantalla, (255,0,0), cofre_A, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_volver_puerta, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), flecha_derecha, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), cofre_A, 2)
 
     elif pantalla_actual == "sala_mapa":
         pantalla.blit(mapa,(0,0))
@@ -1315,10 +1305,10 @@ while True:
         pantalla.blit(num4, (880,480))
 
         flecha_abajo_pequena_f(700, 710)
-        pygame.draw.rect(pantalla, (255,0,0), C_num1, 2)
-        pygame.draw.rect(pantalla, (255,0,0), C_num2, 2)
-        pygame.draw.rect(pantalla, (255,0,0), C_num3, 2)
-        pygame.draw.rect(pantalla, (255,0,0), C_num4, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), C_num1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), C_num2, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), C_num3, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), C_num4, 2)
 
         if numeros == [7,3,5,2]:
             pantalla_actual = "cofre_abierto2"
@@ -1329,7 +1319,7 @@ while True:
         else:
             pantalla.blit(cofre_abierto2, (0,0))
         flecha_abajo_pequena_f(700, 710)
-        pygame.draw.rect(pantalla, (255,0,0), B_fusible, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), B_fusible, 2)
              
     elif pantalla_actual == "interior2":
         pantalla.blit(archivo2_viejo, (0,0))
@@ -1350,3 +1340,11 @@ while True:
         inventario_f()
 
     pygame.display.flip()
+
+
+# FALTA SEGUNDO NIVEL:
+# intro
+# dar fusble al maquinista
+# que de las gracias
+# musica y sonido
+# cerrar nivel y pasar al tres
