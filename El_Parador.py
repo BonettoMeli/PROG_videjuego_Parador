@@ -312,6 +312,7 @@ B_palanca3 = pygame.Rect(780,300,100,210)
 B_palanca4 = pygame.Rect(1050,300,100,210)
 
 B_llave = pygame.Rect(1050,300,100,200)
+boton_viejo = pygame.Rect(950,350,200,300)
 
 #--------------------SONIDOS--Y--MUSICA-----------------------------------
 texto_gris = pygame.mixer.Sound("musica_sonido/1_texto_gris_audio.mpeg")
@@ -354,11 +355,16 @@ gracias2_son_reproduciendo = False
 maquinista2_intro_son_reproduciendo = False
 gracias_maquinista2 = pygame.mixer.Sound("musica_sonido/gracias_maquinista2.mp3")
 maquinista2_intro = pygame.mixer.Sound("musica_sonido/maquinista2_intro.mp3")
-
+viejo_intro2 = pygame.mixer.Sound("musica_sonido/voz_viejo_intro2.mp3")
+viejo_libro = pygame.mixer.Sound("musica_sonido/viejo_molesto3.mp3")
 
 maquinista_gracias1_son_reproduciendo = False
 maquinista_gracias2_son_reproduciendo = False
+viejo_intro2_son_reproduciendo = False
+viejo_libro_son_reproduciendo = False
+
 favela_reproduciendo = False
+
 
 favela = pygame.mixer.Sound("musica_sonido/Favela.mp3")
 favela.set_volume(0.7)
@@ -391,6 +397,11 @@ cascada.set_volume(0.05)
 tren_humo = pygame.mixer.Sound("musica_sonido/tren_humo.mp3")
 tren_humo.set_volume(0.1)
 
+efecto_palanca = pygame.mixer.Sound("musica_sonido/efecto_palanca.mp3")
+sistema_poleas = pygame.mixer.Sound("musica_sonido/sistema_poleas.mp3")
+efecto_hoja = pygame.mixer.Sound("musica_sonido/pagina_libro.mp3")
+efecto_Pcerrado = pygame.mixer.Sound("musica_sonido/puerta_cerrada.mp3")
+efecto_Pabierta = pygame.mixer.Sound("musica_sonido/puerta_abierta.mp3")
 #-----------FUNCIONES FLECHAS-------------------------------------------------------------
 def flecha_derecha_f(x, y):
     pygame.draw.polygon(
@@ -726,6 +737,7 @@ while True:
             elif pantalla_actual == "archivo":
                 cambiar_pantalla_si_toca(BCentro_n2,"caminos",evento)
                 cambiar_pantalla_si_toca(B_interior,"interior2",evento)
+                viejo_libro_son_reproduciendo = False
 
             elif pantalla_actual == "caminos":
                 cambiar_pantalla_si_toca(camino1,"libro",evento)
@@ -741,6 +753,7 @@ while True:
                 cambiar_pantalla_si_toca(flecha_izquierda,"casa",evento)
                 cambiar_pantalla_si_toca(B_palancas,"panel",evento)
                 if LLL == True:
+                    sistema_poleas.play()
                     if B_llave.collidepoint(evento.pos):
                         llave_recogida=True
                         inventario_lista.append("llave_objeto")
@@ -757,9 +770,11 @@ while True:
                 elif B_flecha_libro_der.collidepoint(evento.pos):
                     if pagina_libro < 5:
                         pagina_libro += 1
+                        efecto_hoja.play()
                 elif B_flecha_libro_izq.collidepoint(evento.pos):
                     if pagina_libro > 1:
                         pagina_libro -= 1
+                        efecto_hoja.play()
 
                 elif B_libro_atras.collidepoint(evento.pos):
                     libro_abierto = False
@@ -771,12 +786,16 @@ while True:
             elif pantalla_actual == "panel":
                 if B_palanca1.collidepoint(evento.pos):
                     palancas[0] = not palancas[0]
+                    efecto_palanca.play()
                 elif B_palanca2.collidepoint(evento.pos):
                     palancas[1] = not palancas[1]
+                    efecto_palanca.play()
                 elif B_palanca3.collidepoint(evento.pos):
                     palancas[2] = not palancas[2]
+                    efecto_palanca.play()
                 elif B_palanca4.collidepoint(evento.pos):
                     palancas[3] = not palancas[3]
+                    efecto_palanca.play()
                 cambiar_pantalla_si_toca(flecha_cabina2,"casa2",evento)
 
 
@@ -791,6 +810,7 @@ while True:
                         objeto_seleccionado = None
                         puerta_abierta = True
                         pantalla_actual = "puerta_abierta1"
+                        efecto_Pabierta.play()
                     else:
                         Mensaje_ce = True
                         tiempo_cerrado = pygame.time.get_ticks()
@@ -825,18 +845,26 @@ while True:
                     if not fusible_recogido:
                         fusible_recogido = True
                         inventario_lista.append("fusible_objeto")
-                        
 
             elif pantalla_actual == "sala_mapa":
                 cambiar_pantalla_si_toca(B_volver_puerta,"puerta_interior",evento)
 
             elif pantalla_actual == "interior2":
                 cambiar_pantalla_si_toca(flecha_atras,"archivo",evento) 
-                cambiar_pantalla_si_toca(flecha_cabina,"cabina2",evento)
+                cambiar_pantalla_si_toca(flecha_cabina,"cabina2",evento)               
+                if boton_viejo.collidepoint(evento.pos):
+                    if not viejo_libro_son_reproduciendo:
+                        viejo_libro.play()
+                        viejo_libro_son_reproduciendo = True
+                    else:
+                        viejo_libro_son_reproduciendo = False
+                if not pantalla_actual == "interior2":
+                    viejo_libro.stop()
 
             elif pantalla_actual == "cabina2":
                 if cambiar_pantalla_si_toca(flecha_cabina2,"interior2",evento):
                     maquinista2_intro.stop()
+                    viejo_libro.stop()
                 if botonMaquinista.collidepoint(evento.pos):
 
                     if objeto_seleccionado == "fusible_objeto":
@@ -1193,23 +1221,27 @@ while True:
     #________________________________________ NIVEL 2 ___________________________________________________
     elif pantalla_actual == "intro_archivo":
         tiempo = pygame.time.get_ticks() - tiempo_intro2
-        if tiempo < 5000:
+        if tiempo > 2000:
             pantalla.blit(intro_archivo, (0,0))
+            if not viejo_intro2_son_reproduciendo:
+                viejo_intro2.play()
+                viejo_intro2_son_reproduciendo = True
             
-        elif tiempo < 11000:
+        if tiempo > 8500:
+            viejo_intro2.stop()
+            viejo_intro2_son_reproduciendo = False
+            pantalla.blit(cabina2_hablando,(0,0))
             if not maquinista2_intro_son_reproduciendo:
                 maquinista2_intro.play()
                 maquinista2_intro_son_reproduciendo = True
-            pantalla.blit(cabina2_hablando,(0,0))
-        elif tiempo < 13000:
-            pantalla.fill((0, 0, 0))
-        else:
+            
+        if tiempo > 14000:
             maquinista2_intro.stop()
             maquinista2_intro_son_reproduciendo = False
+            pantalla.fill((0, 0, 0))
+        if tiempo > 15000:
             pantalla_actual = "archivo"
 
-
-    
     elif pantalla_actual == "archivo":
         pantalla.blit(afuera2, (0, 0))
         flecha_arriba_f(680,610)
@@ -1322,6 +1354,7 @@ while True:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
             Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
+            efecto_Pcerrado.play()
             pantalla.blit(Cerrado, (1150,40))
 
             if pygame.time.get_ticks() - tiempo_cerrado > 2000:
@@ -1368,6 +1401,7 @@ while True:
 
         if numeros == [7,3,5,2]:
             pantalla_actual = "cofre_abierto2"
+            cofre_efecto.play()
 
     elif pantalla_actual == "cofre_abierto2":
         if fusible_recogido:
@@ -1381,6 +1415,7 @@ while True:
         pantalla.blit(archivo2_viejo, (0,0))
         flecha_abajo_f(620,660)
         flecha_arriba_f(640,550)
+        pygame.draw.rect(pantalla, (255,0,0), boton_viejo, 2)
     
     elif pantalla_actual == "cabina2":
         if maquinista2_intro_son_reproduciendo:
@@ -1423,9 +1458,14 @@ while True:
     pygame.display.flip()
 
 
-# FALTA SEGUNDO NIVEL:
-# intro
-# dar fusble al maquinista
-# que de las gracias
-# musica y sonido
-# cerrar nivel y pasar al tres
+# COSAS QUE FALTAN:
+# musica y sonido en nivel 2
+# lograr que el bolso no se vean en las pantallas de los niveles
+# sacar logo de gemini en el libro_archivo
+
+# Programar orientado a objeto
+# dividir el programa en otros archivos para optimizar
+# nivel3
+# nivel4
+# fin del juego
+
