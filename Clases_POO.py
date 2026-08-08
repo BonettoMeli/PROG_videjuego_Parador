@@ -10,6 +10,10 @@ class Juego:
         pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
+        self.codigo_ingresado = ""
+        self.codigo_correcto = "AMTV"
+        self.tiempo_cofre_abierto = 0
+
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
         self.sonido_n1 = False
         self.auto_paro_reproducido = False
@@ -42,24 +46,97 @@ class Juego:
 
     def obtener_pantalla(self):
         return self.pantalla
-        def ejecutar(self):
-            print("el juego comenzo")
+    
+    def manejar_eventos(self):
+        eventos = pygame.event.get()
+        for evento in eventos:
+                if evento.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+        return eventos
 
+    def manejar_teclado(self, evento):
+        if evento.type == pygame.KEYDOWN:
+
+            if self.pantalla_actual == "cofre":
+                if evento.key == pygame.K_BACKSPACE:
+                    self.codigo_ingresado = self.codigo_ingresado[:-1]
+                else:
+                    self.codigo_ingresado += evento.unicode.upper()
+
+                if self.codigo_ingresado == self.codigo_correcto:
+                    self.tiempo_cofre_abierto = pygame.time.get_ticks()
+                    self.pantalla_actual = "cofre_desbloqueando"
+
+    def ejecutar(self):
+        print("juego")
 
 class Inventario():
     def __init__(self):
         self.abierto = False
         self.objetos = []
         self.objeto_seleccionado = None
+        self.boton_bolso = Boton(1220, 610, 130, 130)
+
+        self.imagenes_objetos = {
+            "semilla_objeto": "semilla_transp",
+            "llave_objeto": "llave_transp",
+            "fusible_objeto": "fusible_transp"}
+
+        self.casillas = [
+        Boton(520, 640, 60, 60), #casilla1
+        Boton(590, 640, 60, 60), # '' 2
+        Boton(655, 640, 60, 60), # '' 3
+        Boton(720, 640, 60, 60), # '' 4
+        Boton(790, 640, 60, 60), # '' 5
+        Boton(860, 640, 60, 60), # '' 6
+        ]
 
 
+    def alternar(self):
+        self.abierto = not self.abierto
+
+    def seleccionar(self, posicion, casillas):
+        if not self.abierto:
+            return
+        for i in range(len(casillas)):
+            if casillas[i].collidepoint(posicion):
+                if i<len(self.objetos):
+                    if self.objeto_seleccionado == self.objetos[i]:
+                        self.objeto_seleccionado = None
+                    else:
+                        self.objeto_seleccionado = self.objetos[i]
+
+    def manejar_click(self, posicion, pantalla_actual, pantallas_ocultas):
+        if self.boton_bolso.collidepoint(posicion) and pantalla_actual not in pantallas_ocultas:
+            self.alternar()
+        if self.abierto:
+            self.seleccionar(posicion, self.casillas)
+
+
+    def dibujar(self, pantalla, imagenes):
+        pantalla.blit(imagenes.bolso, (1210, 610))
+        if self.abierto:
+            pantalla.blit(imagenes.inventario, (470, 500))
+
+            for i in range(len(self.objetos)):
+                nombre = self.objetos[i]
+                if nombre == "semilla_objeto":
+                    imagen = imagenes.semilla_transp
+                elif nombre == "llave_objeto":
+                    imagen = imagenes.llave_transp
+                elif nombre == "fusible_objeto":
+                    imagen = imagenes.fusible_transp
+
+                imagen_centrada = imagen.get_rect(center=self.casillas[i].rect.center)
+                pantalla.blit(imagen, imagen_centrada)
+
+                if self.objetos[i] == self.objeto_seleccionado:pygame.draw.rect(pantalla,(255, 255, 0),self.casillas[i].rect,3)
 class Boton():
     def __init__(self, x, y, ancho, alto):
         self.rect = pygame.Rect(x, y, ancho, alto)
-
     def collidepoint(self,pos):
         return self.rect.collidepoint(pos)
-
     def dibujar(self, pantalla, color=(255,0,0), grosor=2): #boton_jugar.dibujar(pantalla)
         pygame.draw.rect(pantalla, color, self.rect, grosor)
 
@@ -70,7 +147,6 @@ class Imagenes():
         return pygame.transform.scale(imagen, (ancho, alto))
 
     def __init__(self):
-
         #------- INVENTARIO ------------------------------------------------------
         self.bolso = self.cargar("visual/bolso.png",150,130)
         self.inventario = self.cargar("visual/inventario.png",500,400)
@@ -146,7 +222,6 @@ class Imagenes():
         self.hoja_V = self.cargar("visual/hoja_V.jpg",600,400)
 
         #---------------- NIVEL DOS -------------------------------------------------------------------------
-
         self.camino = self.cargar("visual/tres_caminos.jpeg",1400,800)
 
         #LIBRO
@@ -186,10 +261,6 @@ class Imagenes():
         self.llave1 = self.cargar("visual/llave_abajo.jpeg",1400,800)
         self.llave2 = self.cargar("visual/sin_llave.jpeg",1400,800)
 
-
-
-
-
 class Sonidos():
     def cargar(self, ruta, volumen=1):
         sonido = pygame.mixer.Sound(ruta)
@@ -197,7 +268,6 @@ class Sonidos():
         return sonido
 
     def __init__(self):
-
         #----------EFECTOS------------------------------------------------------
         self.botonson = self.cargar("musica_sonido/boton_efecto.mp3")
         #del tren
@@ -207,7 +277,6 @@ class Sonidos():
         #
         self.cofre_efecto = self.cargar("musica_sonido/cofre_abriendose.mp3")
         self.semilla_efecto = self.cargar("musica_sonido/efecto_semilla.mp3",0.5)
-
         #-------------HISTORIA--------------------------------------------------------------------------------
         self.texto_gris = self.cargar("musica_sonido/1_texto_gris_audio.mpeg")
         self.auto_paro_sonido0 = self.cargar("musica_sonido/y_eso.mpeg")
@@ -232,7 +301,6 @@ class Sonidos():
         self.sin_arranque = self.cargar("musica_sonido/efecto_sin_arranque.mp3",0.3)
 
         self.favela = self.cargar("musica_sonido/Favela.mp3",0.7)
-
         #------------- dentro del TREN --------------------------------------------------------------------
         self.gracias_maquinista2 = self.cargar("musica_sonido/gracias_maquinista2.mp3")
         self.maquinista2_intro = self.cargar("musica_sonido/maquinista2_intro.mp3")
@@ -250,19 +318,3 @@ class Sonidos():
         self.efecto_hoja = self.cargar("musica_sonido/pagina_libro.mp3")
         self.efecto_Pcerrado = self.cargar("musica_sonido/puerta_cerrada.mp3")
         self.efecto_Pabierta = self.cargar("musica_sonido/puerta_abierta.mp3")
-
-
-
-
-
-        
-
-
-        
-        
-
-    
-
-       
-        
-        
