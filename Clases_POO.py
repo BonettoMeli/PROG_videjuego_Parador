@@ -1,5 +1,6 @@
 import sys
 import pygame
+from nivel1 import Nivel1
 
 class Juego:
     def __init__(self):
@@ -43,6 +44,8 @@ class Juego:
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
         self.inventario = Inventario()
+
+        self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos)
 
     def obtener_pantalla(self):
         return self.pantalla

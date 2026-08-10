@@ -4,6 +4,7 @@ pygame.init()
 pygame.mixer.init()
 
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton
+from nivel1 import Nivel1
 
 juego = Juego()
 imagenes = Imagenes()
@@ -750,7 +751,6 @@ while True:
         if tiempo > 90000:
             pantalla_actual = "afuera"
 
-    #________________________________________ NIVEL 1 ___________________________________________________
     elif pantalla_actual == "n7":
         pantalla.blit(imagenes.n7, (0,0))
         flecha_abajo_derecha_f(1340, 720)
@@ -766,7 +766,22 @@ while True:
 
     elif pantalla_actual == "tren3":
         flecha_abajo_derecha_f(1340, 720)
-    
+    #________________________________________ NIVEL 1 ___________________________________________________
+    if pantalla_actual in [
+        "jardin",
+        "afuera",
+        "interior",
+        "cofre",
+        "cofre_desbloqueando",
+        "cofre_zoom",
+        "cofre_abierto",
+        "semilla",
+        "cofre_vacio",
+        "invernadero",
+        "cabina",
+        "gracias"]:
+        juego.nivel1.dibujar(pantalla_actual)
+
     elif pantalla_actual == "jardin":
         pantalla.blit(imagenes.jardin, (0,0))
         flecha_derecha_f(1280, 400)
