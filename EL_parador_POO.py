@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton
+from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
 from nivel1 import Nivel1
 
 juego = Juego()
@@ -12,41 +12,10 @@ sonidos = Sonidos()
 inventario = Inventario()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
+botones  = Botones()
 
-#-----------------------BOTONES COMIENZO----------------------------------------------
-boton_jugar = Boton(510, 468, 350, 65)
-boton_jugar2 = Boton(600, 726, 220, 61)
-
-boton1_historia = Boton(600, 726, 220, 61)
-boton_cabina = Boton(600, 726, 220, 61)
-
-#-----------------BOTONES NIVEL UNO------------------------------
-flecha_centro = Boton(750, 450, 100, 100)  #x-y-ancho-largo
-flecha_centro2 = Boton(660, 380, 100, 180 )
-flecha_derecha = Boton(1220, 280, 180, 220)
-flecha_izquierda = Boton(30, 280, 100, 220)
-flecha_abajo = Boton(820, 600, 120, 140) #dentro del invernadero
-flecha_abajo2 = Boton(620, 430, 120, 140)
-flecha_atras = Boton(610, 600, 120, 140)
-flecha_cabina = Boton(600, 480, 120, 140)
-flecha_cabina2 = Boton(680, 600, 120, 140) #abajo al medio
-flecha_abajo_derecha = Boton(1240, 600, 140, 140)
-flecha_centro_central = Boton(600, 300, 220, 300)
-flecha_centro_central_peque = Boton(660, 420, 100, 100)
-flecha_centro_casa = Boton(950, 300, 150, 200)
-BAcertijo = Boton(890, 280, 150, 300)
-
-planta_A = Boton(500, 180, 220, 220)
-planta_M = Boton(450, 330, 280, 180)
-planta_T = Boton(680, 620, 180, 110)# x y ancho largo
-planta_V = Boton(20, 150, 280, 280)
-
+#-------------------- NIVEL 1 --------------------------------------------
 planta_ampliada = None
-rueda1 = Boton(470, 230, 110, 190)
-rueda2 = Boton(585, 230, 110, 190)
-rueda3 = Boton(700, 230, 110, 190)
-rueda4 = Boton(815, 230, 110, 190)
-
 letras = ["A", "A", "A", "A"]
 abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 fuente = pygame.font.SysFont("Times New Roman", 80)
@@ -55,87 +24,17 @@ fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 def siguiente_letra(letra):
     indice = abecedario.index(letra)
     return abecedario[(indice + 1) % len(abecedario)]
+
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
 tiempo_gracias = 0
 tiempo_intro2 = 0
 
-atras = Boton(620, 670, 120, 80)
-B_libro = Boton(200, 300, 260, 250)
-B_interior = Boton(620, 570, 120, 60)
-BCentro_n2 = Boton(620, 670, 120, 80)
-B_libro_atras = Boton(1220, 450, 120, 100)
-
-Rect_libro = Boton(250,150,900,500)
-B_flecha_libro_der = Boton(1050,500,80,100)
-B_flecha_libro_izq = Boton(280,500,80,100)
-
-camino1 = Boton(510, 540, 100, 100)
-camino2 = Boton(750, 500, 100, 100)
-camino3 = Boton(880, 550, 100, 100)
-
-botonMaquinista = Boton(900, 300, 250, 380)
-
-B_puerta = Boton(600, 320, 210, 380)
-B_volver_puerta = Boton(650,700,100,100)
-B_palancas = Boton(450, 450, 430, 220)
-B_fusible = Boton(600, 400, 200, 200)
-
-cofre_A = Boton(620, 300, 150, 100)
 numeros = [0,0,0,0]
-
 def siguiente_numero(numero):
     return (numero + 1) % 10
 
-C_num1 = Boton(500,480,90,90)
-C_num2 = Boton(620,480,90,90)
-C_num3 = Boton(740,480,90,90)
-C_num4 = Boton(850,480,90,90)
-
 palancas = [False, False, False, False]
-B_palanca1 = Boton(220,300,100,210)
-B_palanca2 = Boton(500,300,100,210)
-B_palanca3 = Boton(780,300,100,210)
-B_palanca4 = Boton(1050,300,100,210)
-
-B_llave = Boton(1050,300,100,200)
-boton_viejo = Boton(950,350,200,300)
-
-#--------------------SONIDOS--Y--MUSICA-----------------------------------
-favela_reproduciendo = False
-sonido_n1 = False
-auto_paro_reproducido = False
-llegada1_son_reproduciendo = False
-llegada2_son_reproduciendo = False
-boleto1_son_reproduciendo = False
-charla1_son_reproduciendo = False
-charla2_son_reproduciendo = False
-charla3_son_reproduciendo = False
-charla4_son_reproduciendo = False
-charla5_son_reproduciendo = False
-charla6_son_reproduciendo = False
-charla7_son_reproduciendo = False
-charla8_son_reproduciendo = False
-charla9_son_reproduciendo = False
-charla10_son_reproduciendo = False
-charla11_son_reproduciendo = False
-
-gracias2_son_reproduciendo = False
-maquinista2_intro_son_reproduciendo = False
-
-maquinista_gracias1_son_reproduciendo = False
-maquinista_gracias2_son_reproduciendo = False
-viejo_intro2_son_reproduciendo = False
-viejo_libro_son_reproduciendo = False
-
-juego.sonidos.favela.set_volume(0.7)
-juego.sonidos.interfe.set_volume(0.1)
-juego.sonidos.semilla_efecto.set_volume(0.05)
-juego.sonidos.ruido_tren.set_volume(0.3)
-juego.sonidos.sin_arranque.set_volume(0.3)
-juego.sonidos.acertijo1.set_volume(0.5)
-juego.sonidos.cascada.set_volume(0.05)
-juego.sonidos.tren_humo.set_volume(0.1)
 #-----------FUNCIONES FLECHAS-------------------------------------------------------------
 def flecha_derecha_f(x, y):
     pygame.draw.polygon(pantalla,
@@ -198,24 +97,21 @@ def flecha_libro_izq_f(x, y):
         (255,255,255),
         [(x-25, y), (x, y-30), (x, y+30)])
 
-
 def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
     global pantalla_actual #le dice a la funcion que quiere modificar la variable ya existente
     if boton.collidepoint(evento.pos):
         if sonido:
-            juego.sonidos.sonido.play()
+            sonido.play()
         pantalla_actual = destino
         return True #si toca el boton
     return False #si no toca el boton
-#--------------INVENTARIO-------------------------------------------------
-Boton_bolso = Boton(1220, 610, 130, 130)
 
+#--------------INVENTARIO-------------------------------------------------
 imagenes_objetos = {
     "semilla_objeto": imagenes.semilla_transp, 
     "llave_objeto": imagenes.llave_transp,
     "fusible_objeto": imagenes.fusible_transp
 }
-
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
 pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -256,31 +152,31 @@ while True:
             inventario.manejar_click(evento.pos, pantalla_actual, pantallas_ocultas)
 
             if pantalla_actual == "inicio": # BOTÓN DEL MENÚ PRINCIPAL
-                cambiar_pantalla_si_toca(boton_jugar,"carga",evento,botonson)
+                cambiar_pantalla_si_toca(botones.boton_jugar,"carga",evento,sonidos.botonson)
                 tiempo_carga = pygame.time.get_ticks()
 
             elif pantalla_actual == "juego": # BOTÓN DE LA PANTALLA DE INSTRUCCIONES
-                cambiar_pantalla_si_toca(boton_jugar2,"historia",evento,botonson)
+                cambiar_pantalla_si_toca(botones.boton_jugar2,"historia",evento,sonidos.botonson)
                 tiempo_historia = pygame.time.get_ticks()
             
             elif pantalla_actual == "n7":
-                cambiar_pantalla_si_toca(flecha_abajo_derecha,"comienzo",evento)
+                cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"comienzo",evento)
                 tiempo_comienzo = pygame.time.get_ticks()
             
             elif pantalla_actual == "auto3":
-                cambiar_pantalla_si_toca(flecha_abajo_derecha,"auto_parado",evento)
+                cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"auto_parado",evento)
                 tiempo_auto_parado = pygame.time.get_ticks()
             
             elif pantalla_actual == "parte3":
-                cambiar_pantalla_si_toca(flecha_abajo_derecha,"llegada_estacion",evento)
+                cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"llegada_estacion",evento)
                 tiempo_llegadaa = pygame.time.get_ticks()
 
             elif pantalla_actual == "llegada3":
-                cambiar_pantalla_si_toca(flecha_abajo_derecha,"boleto",evento)
+                cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"boleto",evento)
                 tiempo_boleto = pygame.time.get_ticks()
 
             elif pantalla_actual == "tren3":
-                cambiar_pantalla_si_toca(flecha_abajo_derecha,"charla",evento)
+                cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"charla",evento)
                 tiempo_charla = pygame.time.get_ticks()
 
             #-----------------------------nivel 1-------------------------------------------------------

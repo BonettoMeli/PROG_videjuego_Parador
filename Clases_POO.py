@@ -143,6 +143,77 @@ class Boton():
     def dibujar(self, pantalla, color=(255,0,0), grosor=2): #boton_jugar.dibujar(pantalla)
         pygame.draw.rect(pantalla, color, self.rect, grosor)
 
+class Botones:
+    def __init__ (self):
+        #-----------------------BOTONES COMIENZO----------------------------------------------
+        self.boton_jugar = Boton(510, 468, 350, 65)
+        self.boton_jugar2 = Boton(600, 726, 220, 61)
+
+        self.boton1_historia = Boton(600, 726, 220, 61)
+        self.boton_cabina = Boton(600, 726, 220, 61)
+        #-----------------BOTONES NIVEL UNO------------------------------
+        self.flecha_centro = Boton(750, 450, 100, 100)  #x-y-ancho-largo
+        self.flecha_centro2 = Boton(660, 380, 100, 180 )
+        self.flecha_derecha = Boton(1220, 280, 180, 220)
+        self.flecha_izquierda = Boton(30, 280, 100, 220)
+        self.flecha_abajo = Boton(820, 600, 120, 140) #dentro del invernadero
+        self.flecha_abajo2 = Boton(620, 430, 120, 140)
+        self.flecha_atras = Boton(610, 600, 120, 140)
+        self.flecha_cabina = Boton(600, 480, 120, 140)
+        self.flecha_cabina2 = Boton(680, 600, 120, 140) #abajo al medio
+        self.flecha_abajo_derecha = Boton(1240, 600, 140, 140)
+        self.flecha_centro_central = Boton(600, 300, 220, 300)
+        self.flecha_centro_central_peque = Boton(660, 420, 100, 100)
+        self.flecha_centro_casa = Boton(950, 300, 150, 200)
+        self.BAcertijo = Boton(890, 280, 150, 300)
+
+        self.planta_A = Boton(500, 180, 220, 220)
+        self.planta_M = Boton(450, 330, 280, 180)
+        self.planta_T = Boton(680, 620, 180, 110)# x y ancho largo
+        self.planta_V = Boton(20, 150, 280, 280)
+
+        self.rueda1 = Boton(470, 230, 110, 190)
+        self.rueda2 = Boton(585, 230, 110, 190)
+        self.rueda3 = Boton(700, 230, 110, 190)
+        self.rueda4 = Boton(815, 230, 110, 190)
+
+        self.atras = Boton(620, 670, 120, 80)
+        self.B_libro = Boton(200, 300, 260, 250)
+        self.B_interior = Boton(620, 570, 120, 60)
+        self.BCentro_n2 = Boton(620, 670, 120, 80)
+        self.B_libro_atras = Boton(1220, 450, 120, 100)
+
+        self.Rect_libro = Boton(250,150,900,500)
+        self.B_flecha_libro_der = Boton(1050,500,80,100)
+        self.B_flecha_libro_izq = Boton(280,500,80,100)
+
+        self.camino1 = Boton(510, 540, 100, 100)
+        self.camino2 = Boton(750, 500, 100, 100)
+        self.camino3 = Boton(880, 550, 100, 100)
+
+        self.botonMaquinista = Boton(900, 300, 250, 380)
+
+        self.B_puerta = Boton(600, 320, 210, 380)
+        self.B_volver_puerta = Boton(650,700,100,100)
+        self.B_palancas = Boton(450, 450, 430, 220)
+        self.B_fusible = Boton(600, 400, 200, 200)
+
+        self.cofre_A = Boton(620, 300, 150, 100)
+
+        self.C_num1 = Boton(500,480,90,90)
+        self.C_num2 = Boton(620,480,90,90)
+        self.C_num3 = Boton(740,480,90,90)
+        self.C_num4 = Boton(850,480,90,90)
+
+        self.B_palanca1 = Boton(220,300,100,210)
+        self.B_palanca2 = Boton(500,300,100,210)
+        self.B_palanca3 = Boton(780,300,100,210)
+        self.B_palanca4 = Boton(1050,300,100,210)
+
+        self.B_llave = Boton(1050,300,100,200)
+        self.boton_viejo = Boton(950,350,200,300)
+
+        self.Boton_bolso = Boton(1220, 610, 130, 130)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
