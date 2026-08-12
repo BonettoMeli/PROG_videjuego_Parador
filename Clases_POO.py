@@ -11,8 +11,6 @@ class Juego:
         pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
-        self.codigo_ingresado = ""
-        self.codigo_correcto = "AMTV"
         self.tiempo_cofre_abierto = 0
 
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
@@ -44,8 +42,9 @@ class Juego:
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
         self.inventario = Inventario()
+        self.botones = Botones()
 
-        self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos)
+        self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos, self.botones)
 
     def obtener_pantalla(self):
         return self.pantalla
