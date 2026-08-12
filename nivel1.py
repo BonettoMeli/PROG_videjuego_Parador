@@ -44,7 +44,7 @@ class Nivel1:
 
         elif pantalla_actual == "cabina":
             self.pantalla.blit(self.imagenes.maquinista1, (0,0))
-            if self.maquinista_hablando:
+            if self.sonidos.maquinista_hablando:
                 self.pantalla.blit(self.imagenes.maquinista2, (0,0))
             else:
                 self.pantalla.blit(self.imagenes.maquinista1, (0,0))

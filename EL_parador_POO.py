@@ -893,7 +893,6 @@ while True:
 
         flecha_abajo_pequena_f(700, 710)
 
-
         if numeros == [7,3,5,2]:
             pantalla_actual = "cofre_abierto2"
             juego.sonidos.cofre_efecto.play()
