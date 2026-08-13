@@ -531,7 +531,7 @@ casillas = [
 ]
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -573,7 +573,7 @@ while True:
                 
                 if codigo_ingresado == codigo_correcto:
                     tiempo_cofre_abierto = pygame.time.get_ticks()
-                    pantalla_actual = "cofre_desbloqueando"      
+                    pantalla_actual = "cofre_abierto"      
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
 

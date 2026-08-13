@@ -1,6 +1,5 @@
 import sys
 import pygame
-from nivel1 import Nivel1
 
 class Juego:
     def __init__(self):
@@ -11,7 +10,8 @@ class Juego:
         pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
-        self.tiempo_cofre_abierto = 0
+        self.pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
+                             "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla"]
 
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
         self.sonido_n1 = False
@@ -38,13 +38,68 @@ class Juego:
         self.viejo_libro_son_reproduciendo = False
         self.favela_reproduciendo = False
 
+        #----------- INVENTARIO --------------------------------------------
+        self.inventario_abierto = False
+        self.tiempo_carga = 0
+        self.tiempo_historia = 0
+
+        #----------- NIVEL UNO -----------------------------------------------------------------------
+
+        self.AAA = True  #Para que la imagen de cofre abierto se mantenga una vez que se abre el cofre
+        self.BBB = True  #Para que la imagen de cofre vacio se mantenga una vez que se lleva la semilla
+
+        self.letras = ["A", "A", "A", "A"]
+        self.codigo_ingresado = ""
+        self.codigo_correcto = "AMTV"
+        self.abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.planta_ampliada = None
+        self.fuente = pygame.font.SysFont("Times New Roman", 80)
+        self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
+
+        self.maquinista_hablando = False
+        self.tiempo_cofre_abierto = 0
+        self.tiempo_gracias = 0 
+        self.tiempo_maquinista = 0
+
+        #------------ NIVEL DOS ----------------------------------------------------------------------
+        self.LLL=True
+        self.libro_abierto = False
+        self.pagina_libro = 1
+        self.panel_resuelto = False
+        self.llave_recogida = False
+        self.puerta_abierta = False
+        self.fusible_recogido = False
+        self.maquinista_hablando2 = False
+        
+
+        self.Mensaje_ce = False
+        self.tiempo_cerrado = 0
+
+        self.num_encontrado = []
+        self.num_correcto = "7352"
+        self.num_ingresado = ""
+
+        self.tiempo_maquinista2 = 0
+        self.tiempo_gracias = 0
+        self.tiempo_intro2 = 0
+
+        self.numeros = [0,0,0,0]
+
+        self.palancas = [False, False, False, False]
+
         #---------------------------------------------------------
+
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
         self.inventario = Inventario()
         self.botones = Botones()
 
-        self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos, self.botones)
+    def siguiente_letra(self, letra):
+        indice = self.abecedario.index(letra)
+        return self.abecedario[(indice + 1) % len(self.abecedario)]
+
+    def siguiente_numero(self, numero):
+        return (numero + 1) % 10
 
     def obtener_pantalla(self):
         return self.pantalla
@@ -56,6 +111,56 @@ class Juego:
                     pygame.quit()
                     sys.exit()
         return eventos
+    
+    def cambiar_pantalla_si_toca(self, boton, destino, evento, sonido=None):
+        if boton.collidepoint(evento.pos):
+            if sonido:
+                sonido.play()
+            self.pantalla_actual = destino
+            return True
+        return False
+
+
+    def dibujar(self):
+
+        #------------- NIVEL UNO ---------------------------------------
+        if self.pantalla_actual == "jardin":
+            self.pantalla.blit(self.imagenes.jardin, (0, 0))
+
+        elif self.pantalla_actual == "afuera":
+            self.pantalla.blit(self.imagenes.afuera, (0,0))
+
+        elif self.pantalla_actual == "interior":
+            self.pantalla.blit(self.imagenes.interior, (0,0))
+
+        elif self.pantalla_actual == "cofre":
+            self.pantalla.blit(self.imagenes.cofre, (0,0))
+
+        elif self.pantalla_actual == "cofre_desbloqueando":
+            self.pantalla.blit(self.imagenes.cofre_desbloqueando, (0,0))
+
+        elif self.pantalla_actual == "cofre_zoom":
+            self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
+
+        elif self.pantalla_actual == "invernadero":
+            self.pantalla.blit(self.imagenes.invernadero, (0,0))
+
+        elif self.pantalla_actual == "cabina":
+            if self.maquinista_hablando:
+                self.pantalla.blit(self.imagenes.maquinista2, (0,0))
+            else:
+                self.pantalla.blit(self.imagenes.maquinista1, (0,0))
+
+        elif self.pantalla_actual == "gracias":
+            self.pantalla.blit(self.imagenes.gracias1, (0,0))
+
+        #-----------NIVEL DOS ----------------------------------------------------------
+
+
+
+
+
+
 
     def manejar_teclado(self, evento):
         if evento.type == pygame.KEYDOWN:
@@ -69,6 +174,304 @@ class Juego:
                 if self.codigo_ingresado == self.codigo_correcto:
                     self.tiempo_cofre_abierto = pygame.time.get_ticks()
                     self.pantalla_actual = "cofre_desbloqueando"
+
+    def manejar_mouse(self, evento):
+        if evento.type != pygame.MOUSEBUTTONDOWN:
+            return
+        self.inventario.manejar_click(
+        evento.pos,
+        self.pantalla_actual,
+        self.pantallas_ocultas
+        )
+
+        if self.pantalla_actual == "inicio":  # BOTÓN DEL MENÚ PRINCIPAL
+            self.cambiar_pantalla_si_toca(
+                self.botones.boton_jugar,
+                "carga",
+                evento,
+                self.sonidos.botonson
+            )
+            self.tiempo_carga = pygame.time.get_ticks()
+
+        elif self.pantalla_actual == "juego":  # BOTÓN DE INSTRUCCIONES
+            self.cambiar_pantalla_si_toca(
+                self.botones.boton_jugar2,
+                "historia",
+                evento,
+                self.sonidos.botonson
+            )
+            self.tiempo_historia = pygame.time.get_ticks()
+
+        #--------- NIVEL UNO --------------------------------------------------------
+        elif self.pantalla_actual == "jardin":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_centro, "invernadero", evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_izquierda, "afuera", evento)
+            if self.botones.flecha_derecha.collidepoint(evento.pos):
+                if self.AAA:
+                    self.pantalla_actual = "cofre"
+                else:
+                    self.pantalla_actual = "cofre_abierto"
+
+        elif self.pantalla_actual == "invernadero":
+            if self.planta_ampliada is not None:
+                self.planta_ampliada = None
+
+            if self.botones.planta_A.collidepoint(evento.pos):
+                self.planta_ampliada = "A"
+
+            elif self.botones.planta_M.collidepoint(evento.pos):
+                self.planta_ampliada = "M"
+
+            elif self.botones.planta_T.collidepoint(evento.pos):
+                self.planta_ampliada = "T"
+
+            elif self.botones.planta_V.collidepoint(evento.pos):
+                self.planta_ampliada = "V"
+                    
+            elif self.botones.flecha_abajo.collidepoint(evento.pos):
+                self.pantalla_actual = "jardin"
+
+
+        elif self.pantalla_actual == "cofre":
+            if self.botones.BAcertijo.collidepoint(evento.pos):
+                self.sonidos.acertijo1.play()
+
+            elif self.cambiar_pantalla_si_toca(self.botones.flecha_izquierda,"jardin",evento):
+                self.sonidos.acertijo1.stop()
+
+            elif self.cambiar_pantalla_si_toca(self.botones.flecha_derecha,"afuera",evento):
+                self.sonidos.acertijo1.stop()
+
+            self.cambiar_pantalla_si_toca(self.botones.flecha_centro_central,"cofre_zoom",evento)
+
+        elif self.pantalla_actual == "cofre_abierto":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_izquierda,"jardin",evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_derecha,"afuera",evento)
+                
+            if self.botones.flecha_centro_central.collidepoint(evento.pos):
+                if self.BBB == True:
+                    self.sonidos.semilla_efecto.play()
+                    self.pantalla_actual = "semilla"
+                else:
+                    self.pantalla_actual = "cofre_vacio"
+        
+        elif self.pantalla_actual == "cofre_zoom":
+            if self.botones.flecha_cabina2.collidepoint(evento.pos):
+                if self.AAA == True:
+                    self.pantalla_actual = "cofre"
+                else:
+                    self.pantalla_actual = "cofre_abierto"
+            if self.botones.rueda1.collidepoint(evento.pos):
+                self.letras[0] = self.siguiente_letra(self.letras[0])
+
+            elif self.botones.rueda2.collidepoint(evento.pos):
+                 self.letras[1] = self.siguiente_letra(self.letras[1])
+
+            elif self.botones.rueda3.collidepoint(evento.pos):
+                self.letras[2] = self.siguiente_letra(self.letras[2])
+
+            elif self.botones.rueda4.collidepoint(evento.pos):
+                self.letras[3] = self.siguiente_letra(self.letras[3])
+
+        elif self.pantalla_actual == "semilla":
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"cofre_abierto",evento):
+                self.AAA = False
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_centro_central_peque,"cofre_vacio",evento): #si selecciona la semilla...
+                self.inventario.objetos.append("semilla_objeto")
+                print(self.inventario.objetos)
+                self.BBB = False
+
+        elif self.pantalla_actual == "cofre_vacio":
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"cofre_abierto",evento):
+                self.AAA = False
+
+        elif self.pantalla_actual == "afuera":
+            self.sonidos.cascada.play()
+            if self.botones.flecha_izquierda.collidepoint(evento.pos):
+                if self.AAA == True:
+                    self.pantalla_actual = "cofre"
+                else:
+                    self.pantalla_actual = "cofre_abierto"
+            self.cambiar_pantalla_si_toca(self.botones.flecha_derecha,"jardin",evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_centro2,"interior",evento)
+
+        elif self.pantalla_actual == "interior":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_atras,"afuera",evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_cabina,"cabina",evento)
+
+        elif self.pantalla_actual == "cabina":
+            if self.botones.botonMaquinista.collidepoint(evento.pos):
+                if self.inventario.objeto_seleccionado == "semilla_objeto":
+                    self.inventario.objetos.remove("semilla_objeto")
+                    self.inventario.objeto_seleccionado = None
+                    self.pantalla_actual = "gracias"
+                    self.tiempo_gracias = pygame.time.get_ticks()
+                else:
+                    if not self.charla9_son_reproduciendo:
+                        self.sonidos.charla9_sonido.play()
+                        self.charla9_son_reproduciendo = True
+                        self.maquinista_hablando = True
+                        self.tiempo_maquinista = pygame.time.get_ticks()
+
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"interior",evento):
+                self.sonidos.charla9_sonido.stop()
+                self.charla9_son_reproduciendo = False
+                self.maquinista_hablando = False     
+
+
+
+    #----------- NIVEL DOS -----------------------------------------------------
+        elif self.pantalla_actual == "archivo":
+            self.cambiar_pantalla_si_toca(self.botones.BCentro_n2,"caminos",evento)
+            self.cambiar_pantalla_si_toca(self.botones.B_interior,"interior2",evento)
+            self.viejo_libro_son_reproduciendo = False
+    
+        elif self.pantalla_actual == "caminos":
+            self.cambiar_pantalla_si_toca(self.botones.camino1,"libro",evento)
+            self.cambiar_pantalla_si_toca(self.botones.atras,"archivo",evento)
+            self.cambiar_pantalla_si_toca(self.botones.camino2,"puerta_biblioteca",evento)
+            self.cambiar_pantalla_si_toca(self.botones.camino3,"casa",evento)
+    
+        elif self.pantalla_actual == "casa":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_izquierda,"caminos",evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_centro_casa,"casa2",evento)
+    
+        elif self.pantalla_actual == "casa2":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_izquierda,"casa",evento)
+            self.cambiar_pantalla_si_toca(self.botones.B_palancas,"panel",evento)
+            if self.LLL == True:
+                self.sonidos.sistema_poleas.play()
+                if self.botones.B_llave.collidepoint(evento.pos):
+                    self.llave_recogida=True
+                    self.inventario.objetos.append("llave_objeto")
+                    print(self.inventario.objetos)
+                    self.LLL=False
+    
+        elif self.pantalla_actual == "puerta_biblioteca":
+            self.cambiar_pantalla_si_toca(self.botones.atras,"caminos",evento)
+            self.cambiar_pantalla_si_toca(self.botones.flecha_centro_central_peque,"puerta",evento)
+    
+        elif self.pantalla_actual == "libro":
+            if self.botones.B_libro.collidepoint(evento.pos):
+                self.libro_abierto = True
+    
+            elif self.botones.B_flecha_libro_der.collidepoint(evento.pos):
+                if self.pagina_libro < 5:
+                    self.pagina_libro += 1
+                    self.sonidos.efecto_hoja.play()
+            elif self.botones.B_flecha_libro_izq.collidepoint(evento.pos):
+                if self.pagina_libro > 1:
+                    self.pagina_libro -= 1
+                    self.sonidos.efecto_hoja.play()
+    
+            elif self.botones.B_libro_atras.collidepoint(evento.pos):
+                self.libro_abierto = False
+                self.pagina_libro = 1
+                self.pantalla_actual = "caminos"
+            elif not self.botones.Rect_libro.collidepoint(evento.pos):
+                self.libro_abierto = False
+    
+        elif self.pantalla_actual == "panel":
+            if self.botones.B_palanca1.collidepoint(evento.pos):
+                self.palancas[0] = not self.palancas[0]
+                self.sonidos.efecto_palanca.play()
+            elif self.botones.B_palanca2.collidepoint(evento.pos):
+                self.palancas[1] = not self.palancas[1]
+                self.sonidos.efecto_palanca.play()
+            elif self.botones.B_palanca3.collidepoint(evento.pos):
+                self.palancas[2] = not self.palancas[2]
+                self.sonidos.efecto_palanca.play()
+            elif self.botones.B_palanca4.collidepoint(evento.pos):
+                self.palancas[3] = not self.palancas[3]
+                self.sonidos.efecto_palanca.play()
+            self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"casa2",evento)
+    
+    
+        elif self.pantalla_actual == "puerta":
+            self.cambiar_pantalla_si_toca(self.botones.atras, "puerta_biblioteca", evento)
+    
+            if self.botones.B_puerta.collidepoint(evento.pos):
+                if self.puerta_abierta:
+                    self.pantalla_actual = "puerta_abierta1"
+                elif self.inventario.objeto_seleccionado == "llave_objeto":
+                    self.inventario.objetos.remove("llave_objeto")
+                    self.inventario.objeto_seleccionado = None
+                    self.puerta_abierta = True
+                    self.pantalla_actual = "puerta_abierta1"
+                    self.sonidos.efecto_Pabierta.play()
+                else:
+                    self.Mensaje_ce = True
+                    self.tiempo_cerrado = pygame.time.get_ticks()
+    
+        elif self.pantalla_actual == "puerta_abierta1":
+            self.cambiar_pantalla_si_toca(self.botones.atras,"puerta_biblioteca",evento)
+            self.cambiar_pantalla_si_toca(self.botones.B_puerta,"puerta_interior",evento)
+    
+        elif self.pantalla_actual == "puerta_interior":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_derecha,"sala_mapa",evento)
+            self.cambiar_pantalla_si_toca(self.botones.B_volver_puerta,"puerta",evento)
+            self.cambiar_pantalla_si_toca(self.botones.cofre_A,"cofre_cerrado_archivo",evento)
+    
+        elif self.pantalla_actual == "cofre_cerrado_archivo":
+            self.cambiar_pantalla_si_toca(self.botones.B_volver_puerta,"puerta_interior",evento)
+            if self.botones.C_num1.collidepoint(evento.pos):
+                self.numeros[0] = self.siguiente_numero(self.numeros[0])
+    
+            elif self.botones.C_num2.collidepoint(evento.pos):
+                self.numeros[1] = self.siguiente_numero(self.numeros[1])
+    
+            elif self.botones.C_num3.collidepoint(evento.pos):
+                self.numeros[2] = self.siguiente_numero(self.numeros[2])
+    
+            elif self.botones.C_num4.collidepoint(evento.pos):
+                self.numeros[3] = self.siguiente_numero(self.numeros[3])
+    
+        elif self.pantalla_actual == "cofre_abierto2":
+            self.cambiar_pantalla_si_toca(self.botones.B_volver_puerta , "puerta_interior", evento)
+            
+            if self.botones.B_fusible.collidepoint(evento.pos):
+                if not self.fusible_recogido:
+                    self.fusible_recogido = True
+                    self.inventario.objetos.append("fusible_objeto")
+                    print(self.inventario.objetos)
+    
+        elif self.pantalla_actual == "sala_mapa":
+            self.cambiar_pantalla_si_toca(self.botones.B_volver_puerta,"puerta_interior",evento)
+    
+        elif self.pantalla_actual == "interior2":
+            self.cambiar_pantalla_si_toca(self.botones.flecha_atras,"archivo",evento) 
+            self.cambiar_pantalla_si_toca(self.botones.flecha_cabina,"cabina2",evento)               
+            if self.botones.boton_viejo.collidepoint(evento.pos):
+                if not self.viejo_libro_son_reproduciendo:
+                    self.sonidos.viejo_libro.play()
+                    self.viejo_libro_son_reproduciendo = True
+                else:
+                    self.viejo_libro_son_reproduciendo = False
+            if not self.pantalla_actual == "interior2":
+                self.sonidos.viejo_libro.stop()
+    
+        elif self.pantalla_actual == "cabina2":
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"interior2",evento):
+                self.sonidos.maquinista2_intro.stop()
+                self.sonidos.viejo_libro.stop()
+            if self.botones.botonMaquinista.collidepoint(evento.pos):
+    
+                if self.inventario.objeto_seleccionado == "fusible_objeto":
+                    self.inventario.objetos.remove("fusible_objeto")
+                    self.inventario.objeto_seleccionado = None
+                    self.pantalla_actual = "gracias2"
+                    self.tiempo_gracias = pygame.time.get_ticks()
+                else:
+                    if not self.maquinista2_intro_son_reproduciendo:
+                        self.sonidos.maquinista2_intro.play()
+                        self.maquinista2_intro_son_reproduciendo = True
+                        self.tiempo_maquinista2 = pygame.time.get_ticks()
+    
+            if self.cambiar_pantalla_si_toca(self.botones.flecha_cabina2,"interior2",evento):
+                self.sonidos.maquinista2_intro.stop()
+                self.maquinista2_intro_son_reproduciendo = False
+                self.maquinista_hablando2 = False  
+
 
     def ejecutar(self):
         print("juego")
@@ -211,8 +614,6 @@ class Botones:
 
         self.B_llave = Boton(1050,300,100,200)
         self.boton_viejo = Boton(950,350,200,300)
-
-        self.Boton_bolso = Boton(1220, 610, 130, 130)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):

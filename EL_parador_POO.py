@@ -12,7 +12,10 @@ sonidos = Sonidos()
 inventario = Inventario()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
+boton = Boton()
 botones  = Botones()
+nivel1 = Nivel1()
+
 
 #-------------------- NIVEL 1 --------------------------------------------
 fuente = pygame.font.SysFont("Times New Roman", 80)
@@ -258,13 +261,13 @@ while True:
                         if not juego.charla9_son_reproduciendo:
                             juego.sonidos.charla9_sonido.play()
                             charla9_son_reproduciendo = True
-                            juego.maquinista_hablando = True
+                            juego.nivel1.maquinista_hablando = True
                             tiempo_maquinista = pygame.time.get_ticks()
 
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior",evento):
                     juego.sonidos.charla9_sonido.stop()
                     juego.charla9_son_reproduciendo = False
-                    juego.maquinista_hablando = False
+                    juego.nivel1.maquinista_hablando = False
 
                 #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
             elif pantalla_actual == "archivo":
@@ -633,7 +636,7 @@ while True:
     elif pantalla_actual == "tren3":
         flecha_abajo_derecha_f(1340, 720)
     #________________________________________ NIVEL 1 ___________________________________________________
-    if pantalla_actual in ["jardin", "afuera", "interior", "cofre", "cofre_desbloqueando",
+    if pantalla_actual in ["jardin", "afuera", "interior", "cofre",
         "cofre_zoom", "cofre_abierto", "semilla", "cofre_vacio", "invernadero", "cabina", "gracias"]:
 
         juego.nivel1.dibujar(pantalla_actual)
@@ -656,11 +659,6 @@ while True:
         flecha_izquierda_f(120,400)
         flecha_derecha_f(1280,400)
 
-    elif pantalla_actual == "cofre_desbloqueando":
-        if pygame.time.get_ticks() - juego.nivel1.tiempo_cofre_abierto > 1000:
-            juego.sonidos.cofre_efecto.play()
-            pantalla_actual = "cofre_abierto"
-
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
 
@@ -680,11 +678,15 @@ while True:
 
         if "".join(juego.nivel1.letras) == "AMTV":
             juego.nivel1.tiempo_cofre_abierto = pygame.time.get_ticks()
-            pantalla_actual = "cofre_desbloqueando"
+            pantalla_actual = "cofre_abierto"
 
     elif pantalla_actual == "cofre_abierto":
         flecha_izquierda_f(120,400)
         flecha_derecha_f(1280,400)
+
+        if pygame.time.get_ticks() - juego.nivel1.tiempo_cofre_abierto > 1000:
+                    juego.sonidos.cofre_efecto.play()
+                    pantalla_actual = "cofre_abierto"
 
     elif pantalla_actual == "semilla":
         flecha_abajo_f(710,660)
@@ -714,7 +716,7 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), botones.botonMaquinista, 2)
         flecha_abajo_f(710,660)
         if juego.nivel1.maquinista_hablando:
-            if pygame.time.get_ticks() - juego.nivel1tiempo_maquinista > 6000:
+            if pygame.time.get_ticks() - juego.nivel1.tiempo_maquinista > 6000:
                 juego.maquinista_hablando = False
                 juego.charla9_son_reproduciendo = False
 

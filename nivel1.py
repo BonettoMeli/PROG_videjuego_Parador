@@ -6,6 +6,7 @@ class Nivel1:
         self.imagenes = imagenes
         self.sonidos = sonidos
         self.botones = botones
+        self.maquinista_hablando = False
 
         self.tiempo_maquinista = 0
         self.tiempo_gracias = 0
@@ -33,8 +34,8 @@ class Nivel1:
         elif pantalla_actual == "cofre":
             self.pantalla.blit(self.imagenes.cofre, (0,0))
             
-        elif pantalla_actual == "cofre_desbloqueado":
-            self.pantalla.blit(self.imagenes.cofre_desbloqueado, (0,0))
+        elif pantalla_actual == "cofre_desbloqueando":
+            self.pantalla.blit(self.imagenes.cofre_desbloqueando, (0,0))
 
         elif pantalla_actual == "cofre_zoom":
             self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
@@ -57,24 +58,7 @@ class Nivel1:
         return self.abecedario[(indice + 1) % len(self.abecedario)]
 
 
-    def manejar_click(self, evento, pantalla_actual, posicion, botones, inventario):
-        if pantalla_actual == "jardin":
-            if botones.flecha_centro.collidepoint(evento.pos):
-                pantalla_actual = "invernadero"
 
-            if botones.flecha_centro.collidepoint(evento.pos):
-                pantalla_actual = "invernadero"
-
-            elif botones.flecha_izquierda.collidepoint(evento.pos):
-                pantalla_actual = "afuera"
-
-            elif botones.flecha_derecha.collidepoint(evento.pos):
-                if self.AAA:
-                    pantalla_actual = "cofre"
-                else:
-                    pantalla_actual = "cofre_abierto"
-
-        return pantalla_actual
             
 
 
