@@ -4,7 +4,6 @@ pygame.init()
 pygame.mixer.init()
 
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
-from nivel1 import Nivel1
 
 juego = Juego()
 imagenes = Imagenes()
@@ -12,10 +11,7 @@ sonidos = Sonidos()
 inventario = Inventario()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
-boton = Boton()
 botones  = Botones()
-nivel1 = Nivel1()
-
 
 #-------------------- NIVEL 1 --------------------------------------------
 fuente = pygame.font.SysFont("Times New Roman", 80)
