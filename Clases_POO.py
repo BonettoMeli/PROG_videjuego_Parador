@@ -38,6 +38,9 @@ class Juego:
         self.viejo_libro_son_reproduciendo = False
         self.favela_reproduciendo = False
 
+        self.fuente = pygame.font.SysFont("Times New Roman", 80)
+        self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
+
         #---------------------------------------------------------
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()

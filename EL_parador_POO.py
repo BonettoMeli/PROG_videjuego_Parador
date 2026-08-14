@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
+from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Botones
 from nivel1 import Nivel1
 
 juego = Juego()
@@ -13,10 +13,6 @@ inventario = Inventario()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
 botones  = Botones()
-
-#-------------------- NIVEL 1 --------------------------------------------
-fuente = pygame.font.SysFont("Times New Roman", 80)
-fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
@@ -658,13 +654,13 @@ while True:
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
 
-        texto1 = fuente.render(juego.nivel1.letras[0], True, (0,0,0))
+        texto1 = juego.fuente.render(juego.nivel1.letras[0], True, (0,0,0))
         pantalla.blit(texto1, (493,290))
-        texto2 = fuente.render(juego.nivel1.letras[1], True, (0,0,0))
+        texto2 = juego.fuente.render(juego.nivel1.letras[1], True, (0,0,0))
         pantalla.blit(texto2, (607,290))
-        texto3 = fuente.render(juego.nivel1.letras[2], True, (0,0,0))
+        texto3 = juego.fuente.render(juego.nivel1.letras[2], True, (0,0,0))
         pantalla.blit(texto3, (723,290))
-        texto4 = fuente.render(juego.nivel1.letras[3], True, (0,0,0))
+        texto4 = juego.fuente.render(juego.nivel1.letras[3], True, (0,0,0))
         pantalla.blit(texto4, (837,290))
 
         pygame.draw.rect(pantalla, (255,0,0), botones.rueda1, 2)
@@ -858,7 +854,7 @@ while True:
         if Mensaje_ce:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
-            Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
+            Cerrado = juego.fuente_pequenia.render("Cerrado", True, (255,255,255))
             juego.sonidos.efecto_Pcerrado.play()
             pantalla.blit(Cerrado, (1150,40))
 
@@ -880,13 +876,13 @@ while True:
 
     elif pantalla_actual == "cofre_cerrado_archivo":
         pantalla.blit(imagenes.cofre_archi, (0,0))
-        num1 = fuente.render(str(numeros[0]), True, (255,255,255))
+        num1 = juego.fuente.render(str(numeros[0]), True, (255,255,255))
         pantalla.blit(num1, (530,480))
-        num2 = fuente.render(str(numeros[1]), True, (255,255,255))
+        num2 = juego.fuente.render(str(numeros[1]), True, (255,255,255))
         pantalla.blit(num2, (650,480))
-        num3 = fuente.render(str(numeros[2]), True, (255,255,255))
+        num3 = juego.fuente.render(str(numeros[2]), True, (255,255,255))
         pantalla.blit(num3, (770,480))
-        num4 = fuente.render(str(numeros[3]), True, (255,255,255))
+        num4 = juego.fuente.render(str(numeros[3]), True, (255,255,255))
         pantalla.blit(num4, (880,480))
 
         flecha_abajo_pequena_f(700, 710)
