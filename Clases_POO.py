@@ -126,39 +126,174 @@ class Juego:
         #------------- NIVEL UNO ---------------------------------------
         if self.pantalla_actual == "jardin":
             self.pantalla.blit(self.imagenes.jardin, (0, 0))
+            self.flecha_derecha_f(1280, 400)
+            self.flecha_arriba_f(820, 510)
+            self.flecha_izquierda_f(120, 400)
 
         elif self.pantalla_actual == "afuera":
             self.pantalla.blit(self.imagenes.afuera, (0,0))
+            self.flecha_izquierda_f(120, 400)
+            self.flecha_derecha_f(1280, 400)
+            self.flecha_arriba_f(700, 560)
 
         elif self.pantalla_actual == "interior":
             self.pantalla.blit(self.imagenes.interior, (0,0))
+            self.flecha_abajo_f(650,660)
+            self.flecha_arriba_f(685,510)
 
         elif self.pantalla_actual == "cofre":
             self.pantalla.blit(self.imagenes.cofre, (0,0))
-
-        elif self.pantalla_actual == "cofre_desbloqueando":
-            self.pantalla.blit(self.imagenes.cofre_desbloqueando, (0,0))
+            self.flecha_izquierda_f(120,400)
+            self.flecha_derecha_f(1280,400)
 
         elif self.pantalla_actual == "cofre_zoom":
             self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
+            self.flecha_abajo_f(710,660)
+
+            texto1 = self.fuente.render(self.letras[0], True, (0,0,0))
+            self.pantalla.blit(texto1, (493,290))
+            texto2 = self.fuente.render(self.letras[1], True, (0,0,0))
+            self.pantalla.blit(texto2, (607,290))
+            texto3 = self.fuente.render(self.letras[2], True, (0,0,0))
+            self.pantalla.blit(texto3, (723,290))
+            texto4 = self.fuente.render(self.letras[3], True, (0,0,0))
+            self.pantalla.blit(texto4, (837,290))
+
+            pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda1, 2)
+            pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda2, 2)
+            pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda3, 2)
+            pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda4, 2)
+
+        elif self.pantalla_actual == "cofre_abierto":
+            self.pantalla.blit(self.imagenes.cofre_abierto, (0,0))
+            self.flecha_izquierda_f(120,400)
+            self.flecha_derecha_f(1280,400)
 
         elif self.pantalla_actual == "invernadero":
             self.pantalla.blit(self.imagenes.invernadero, (0,0))
+            if self.planta_ampliada == "A":
+                self.pantalla.blit(self.imagenes.hoja_A, (700,200))
+            elif self.planta_ampliada == "M":
+                self.pantalla.blit(self.imagenes.hoja_M, (700,200))
+            elif self.planta_ampliada == "T":
+                self.pantalla.blit(self.imagenes.hoja_T, (700,200))
+            elif self.planta_ampliada == "V":
+                self.pantalla.blit(self.imagenes.hoja_V, (700,200))
+            
+            self.flecha_abajo_f(900,660)
+            
+
+        elif self.pantalla_actual == "semilla":
+            self.flecha_abajo_f(710,660)
+
+        elif self.pantalla_actual == "cofre_vacio":
+            self.flecha_abajo_f(710,660)
 
         elif self.pantalla_actual == "cabina":
             if self.maquinista_hablando:
                 self.pantalla.blit(self.imagenes.maquinista2, (0,0))
             else:
                 self.pantalla.blit(self.imagenes.maquinista1, (0,0))
+            pygame.draw.rect(self.pantalla, (255,0,0), self.botones.botonMaquinista, 2)
+            self.flecha_abajo_f(710,660)
 
         elif self.pantalla_actual == "gracias":
-            self.pantalla.blit(self.imagenes.gracias1, (0,0))
+            tiempo = pygame.time.get_ticks() - self.tiempo_gracias
+            if tiempo < 5000:
+                self.pantalla.blit(self.imagenes.gracias1, (0,0))
+            elif tiempo < 12000:
+                self.pantalla.blit(self.imagenes.gracias2, (0,0))
+            else:
+                self.pantalla.blit(self.imagenes.gracias3, (0,0))
 
         #-----------NIVEL DOS ----------------------------------------------------------
 
 
 
+    #-----------FUNCIONES FLECHAS-------------------------------------------------------------
+    def flecha_derecha_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x+40,y),(x,y-50),(x,y+50)])
 
+    def flecha_izquierda_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x-40,y),(x,y-50),(x,y+50)])
+
+    def flecha_arriba_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x,y-30),(x-40,y),(x+40,y)])
+
+    def flecha_abajo_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x,y+60),(x-50,y),(x+50,y)])
+
+    def flecha_abajo_pequena_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x,y+40),(x-50,y),(x+50,y)])
+
+    def flecha_abajo_derecha_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x,y-40),(x,y+40),(x+40,y)])
+
+    def flecha_arriba_grande_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x,y-60),(x-50,y),(x+50,y)])
+
+    def flecha_camino_izq_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x-50,y-40),(x+20,y-30),(x-20,y+10)])
+
+    def flecha_camino_med_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x+50,y-40),(x-40,y-10),(x+10,y+10)])
+
+    def flecha_camino_der_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x-30,y-20),(x+50,y-30),(x+10,y+30)])
+
+    def flecha_libro_der_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x+25, y), (x, y-30), (x, y+30)])
+
+    def flecha_libro_izq_f(self,x, y):
+        pygame.draw.polygon(self.pantalla,(255,255,255),
+            [(x-25, y), (x, y-30), (x, y+30)])
+        
+
+    def tiempos_de_pantalla(self):
+        # ---------------- COFRE ZOOM ----------------
+        if "".join(self.letras) == "AMTV": #mantener esto en el programa principal
+                    self.tiempo_cofre_abierto = pygame.time.get_ticks()
+                    self.pantalla_actual = "cofre_abierto"
+        # ---------------- COFRE ---------------------
+        if self.pantalla_actual == "cofre_desbloqueando":
+            if pygame.time.get_ticks() - self.tiempo_cofre_abierto > 1000:
+                self.sonidos.cofre_efecto.play()
+                self.pantalla_actual = "cofre_abierto"
+        # ---------------- COFRE ABIERTO ---------------------
+        if pygame.time.get_ticks() - self.tiempo_cofre_abierto > 1000:
+            self.sonidos.cofre_efecto.play()
+            self.pantalla_actual = "cofre_abierto"
+        # ---------------- CABINA ---------------------
+        if self.maquinista_hablando:
+            if pygame.time.get_ticks() - self.tiempo_maquinista > 6000:
+                self.maquinista_hablando = False
+                self.charla9_son_reproduciendo = False
+        # ---------------- GRACIAS -------------------
+        if self.pantalla_actual == "gracias":
+            tiempo = pygame.time.get_ticks() - self.tiempo_gracias
+            if tiempo < 100:
+                if not self.maquinista_gracias1_son_reproduciendo:
+                    self.sonidos.maquinista_gracias1.play()
+                    self.maquinista_gracias1_son_reproduciendo = True
+
+            elif tiempo > 5000 and not self.maquinista_gracias2_son_reproduciendo:
+                self.sonidos.maquinista_gracias2.play()
+                self.maquinista_gracias2_son_reproduciendo = True
+
+            elif tiempo > 14000:
+                self.pantalla_actual = "intro_archivo"
+                self.tiempo_intro2 = pygame.time.get_ticks()
 
 
 
