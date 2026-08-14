@@ -4,6 +4,7 @@ pygame.init()
 pygame.mixer.init()
 
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
+from nivel1 import Nivel1
 
 juego = Juego()
 imagenes = Imagenes()
@@ -176,7 +177,6 @@ while True:
                     
                 elif botones.flecha_abajo.collidepoint(evento.pos):
                     pantalla_actual = "jardin"
-
 
             elif pantalla_actual == "cofre":
                 if botones.BAcertijo.collidepoint(evento.pos):
@@ -909,11 +909,11 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), botones.boton_viejo, 2)
     
     elif pantalla_actual == "cabina2":
-        if sonidos.maquinista2_intro_son_reproduciendo:
+        if juego.maquinista2_intro_son_reproduciendo:
             pantalla.blit(imagenes.maquinista_fusible, (0,0))
             tiempo = pygame.time.get_ticks() - tiempo_maquinista2
             if tiempo > 4000:
-                maquinista_intro_son_reproduciendo = False
+                juego.maquinista_intro_son_reproduciendo = False
                 pantalla.blit(imagenes.cabina2,(0,0))
         else:
             pantalla.blit(imagenes.cabina2,(0,0))
@@ -924,7 +924,7 @@ while True:
         pantalla.blit(imagenes.gracias2,(0,0))
         tiempo = pygame.time.get_ticks() - juego.nivel1.tiempo_gracias
         if tiempo < 100:
-            if not maquinista_gracias2_son_reproduciendo:
+            if not juego.maquinista_gracias2_son_reproduciendo:
                 juego.sonidos.maquinista_gracias2.play()
                 maquinista_gracias2_son_reproduciendo = True
     

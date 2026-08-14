@@ -35,17 +35,26 @@ class Nivel1:
             self.pantalla.blit(self.imagenes.cofre, (0,0))
             
         elif pantalla_actual == "cofre_desbloqueando":
-            self.pantalla.blit(self.imagenes.cofre_desbloqueando, (0,0))
+            self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
+
+        elif pantalla_actual == "cofre_abierto":
+            self.pantalla.blit(self.imagenes.cofre_abierto, (0,0))
 
         elif pantalla_actual == "cofre_zoom":
             self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
+
+        elif pantalla_actual == "semilla":
+            self.pantalla.blit(self.imagenes.cofre_semilla, (0,0))
+
+        elif pantalla_actual == "cofre_vacio":
+            self.pantalla.blit(self.imagenes.cofre_vacio, (0,0))
 
         elif pantalla_actual == "invernadero":
             self.pantalla.blit(self.imagenes.invernadero, (0,0))
 
         elif pantalla_actual == "cabina":
             self.pantalla.blit(self.imagenes.maquinista1, (0,0))
-            if self.sonidos.maquinista_hablando:
+            if self.maquinista_hablando:
                 self.pantalla.blit(self.imagenes.maquinista2, (0,0))
             else:
                 self.pantalla.blit(self.imagenes.maquinista1, (0,0))
