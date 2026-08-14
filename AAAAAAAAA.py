@@ -6,12 +6,11 @@ pygame.mixer.init()
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
 
 juego = Juego()
-#imagenes = Imagenes()
-#sonidos = Sonidos()
+imagenes = Imagenes()
+sonidos = Sonidos()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
-#botones  = Botones()
-
+botones  = Botones()
 
 #-----------FUNCIONES FLECHAS-------------------------------------------------------------
 def flecha_derecha_f(x, y):
@@ -349,16 +348,17 @@ while True:
 
         if "".join(juego.letras) == "AMTV": #mantener esto en el programa principal
             juego.tiempo_cofre_abierto = pygame.time.get_ticks()
-            juego.pantalla_actual = "cofre_abierto"
+            juego.pantalla_actual = "cofre_desbloqueando"
 
-    elif juego.pantalla_actual == "cofre_abierto":
-        flecha_izquierda_f(120,400)
-        flecha_derecha_f(1280,400)
-
+    elif juego.pantalla_actual == "cofre_desbloqueando":
         if pygame.time.get_ticks() - juego.tiempo_cofre_abierto > 1000:
                     juego.sonidos.cofre_efecto.play()
                     juego.pantalla_actual = "cofre_abierto"
 
+    elif juego.pantalla_actual == "cofre_abierto":
+        flecha_izquierda_f(120,400)
+        flecha_derecha_f(1280,400)
+    
     elif juego.pantalla_actual == "semilla":
         flecha_abajo_f(710,660)
 

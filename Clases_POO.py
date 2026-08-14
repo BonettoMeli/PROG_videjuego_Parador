@@ -164,6 +164,9 @@ class Juego:
             pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda3, 2)
             pygame.draw.rect(self.pantalla, (255,0,0), self.botones.rueda4, 2)
 
+        elif self.pantalla_actual == "cofre_desbloqueando":
+            self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
+
         elif self.pantalla_actual == "cofre_abierto":
             self.pantalla.blit(self.imagenes.cofre_abierto, (0,0))
             self.flecha_izquierda_f(120,400)
@@ -184,9 +187,11 @@ class Juego:
             
 
         elif self.pantalla_actual == "semilla":
+            self.pantalla.blit(self.imagenes.cofre_semilla, (0,0))
             self.flecha_abajo_f(710,660)
 
         elif self.pantalla_actual == "cofre_vacio":
+            self.pantalla.blit(self.imagenes.cofre_vacio, (0,0))
             self.flecha_abajo_f(710,660)
 
         elif self.pantalla_actual == "cabina":
@@ -452,8 +457,6 @@ class Juego:
                 self.sonidos.charla9_sonido.stop()
                 self.charla9_son_reproduciendo = False
                 self.maquinista_hablando = False     
-
-
 
     #----------- NIVEL DOS -----------------------------------------------------
         elif self.pantalla_actual == "archivo":
