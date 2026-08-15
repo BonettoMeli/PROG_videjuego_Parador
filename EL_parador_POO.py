@@ -102,7 +102,7 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "camino3" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -433,15 +433,21 @@ while True:
                 #cambiar_pantalla_si_toca(botones.flecha_atras,"tren_ciudad_invertida",evento)
 
             elif pantalla_actual == "flechas_ciudad_invertida":
-                cambiar_pantalla_si_toca(botones.flecha_cabina2,"camino1",evento)
+                cambiar_pantalla_si_toca(botones.B_camino_flechas,"camino1",evento)
                 cambiar_pantalla_si_toca(botones.flecha_atras,"ciudad_invertida",evento)
 
-            #elif pantalla_actual == "camino1":
-                #cambiar_pantalla_si_toca(botones.camino1,"ciudad_invertida",evento)
-                #cambiar_pantalla_si_toca(botones.camino2,"ciudad_invertida",evento)
-                #cambiar_pantalla_si_toca(botones.camino3,"camino2",evento)
+            elif pantalla_actual == "camino1":
+                cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento)
+                cambiar_pantalla_si_toca(botones.B_camino2_ciudad,"ciudad_invertida",evento)
+                cambiar_pantalla_si_toca(botones.B_camino3_ciudad,"camino2",evento)
 
+            elif pantalla_actual == "camino2":
+                cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento)
+                cambiar_pantalla_si_toca(botones.B_camino2_ciudad,"camino3",evento)
+                cambiar_pantalla_si_toca(botones.B_camino3_ciudad,"ciudad_invertida",evento)
 
+            elif pantalla_actual == "camino3":
+                cambiar_pantalla_si_toca(botones.B_camino_medio,"camino4",evento)
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -963,7 +969,8 @@ while True:
         if tiempo > 14000:
             pantalla_actual = "ciudad_invertida" 
 #________________________________________ NIVEL 3 ___________________________________________________
-    if pantalla_actual in ["ciudad_invertida", "flechas_ciudad_invertida", "camino1"]:
+    if pantalla_actual in ["ciudad_invertida", "flechas_ciudad_invertida", "camino1", "camino2",
+                           "camino3","camino4"]:
         juego.nivel3.dibujar(pantalla_actual)
 
     if pantalla_actual == "ciudad_invertida":
@@ -975,17 +982,26 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0),botones.B_camino_flechas,2)
         flecha_abajo_pequena_f(680,690)
 
-    #elif pantalla_actual == "camino1":
-        #flecha_abajo_f(730,680)
-        #flecha_camino_izq_f(580,600)
-        #flecha_camino_med_f(800,570)
-        #flecha_camino_der_f(910,610)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.camino1, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.camino2, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.camino3, 2)
-        
-        
+    elif pantalla_actual == "camino1":
+        flecha_camino_izq_f(580,550)
+        flecha_arriba_f(720,480)
+        flecha_camino_der_f(840,530)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino1_ciudad, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
 
+    elif pantalla_actual == "camino2":
+        flecha_camino_izq_f(580,550)
+        flecha_arriba_f(720,480)
+        flecha_camino_der_f(840,530)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino1_ciudad, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
+
+    elif pantalla_actual == "camino3":
+        flecha_arriba_f(700,570)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_medio, 2)
+        
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
                         "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla"]

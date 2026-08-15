@@ -219,8 +219,12 @@ class Botones:
 
         #nivel 3
         self.B_camino = Boton(420,600,100,100)
-        self.B_camino_flechas = Boton(700,600,100,100)
-        #self.B_camino1 = Boton()
+        self.B_camino_flechas = Boton(890,520,100,100)
+        self.B_camino1_ciudad = Boton(510,470,100,100)
+        self.B_camino2_ciudad = Boton(660,440,100,60)
+        self.B_camino3_ciudad = Boton(810,480,100,100)
+        self.B_camino_medio = Boton(650,510,100,60)
+
         self.Boton_bolso = Boton(1220, 610, 130, 130)
 
 class Imagenes():

@@ -15,12 +15,12 @@ class nivel3:
         elif pantalla_actual == "flechas_ciudad_invertida":
             self.pantalla.blit(self.imagenes.flechas_ciudad_invertida, (0, 0))
 
-        #elif pantalla_actual == "camino1":
-        #    self.pantalla.blit(self.imagenes.camino1, (0, 0))
-        #elif pantalla_actual == "camino2":
-        #    self.pantalla.blit(self.imagenes.camino2, (0, 0))
-        #elif pantalla_actual == "camino3":
-        #    self.pantalla.blit(self.imagenes.camino3, (0, 0))
-        #elif pantalla_actual == "camino4":
-        #    self.pantalla.blit(self.imagenes.camino4, (0, 0))
+        elif pantalla_actual == "camino1":
+            self.pantalla.blit(self.imagenes.camino1, (0, 0))
+        elif pantalla_actual == "camino2":
+            self.pantalla.blit(self.imagenes.camino2, (0, 0))
+        elif pantalla_actual == "camino3":
+            self.pantalla.blit(self.imagenes.camino3, (0, 0))
+        elif pantalla_actual == "camino4":
+            self.pantalla.blit(self.imagenes.camino4, (0, 0))
                                
