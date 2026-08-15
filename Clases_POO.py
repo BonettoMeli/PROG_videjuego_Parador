@@ -12,6 +12,9 @@ class Juego:
         pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
+        self.fuente = pygame.font.SysFont("Times New Roman", 80)
+        self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
+
         self.tiempo_cofre_abierto = 0
 
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
@@ -48,7 +51,7 @@ class Juego:
         self.inventario = Inventario()
         self.botones = Botones()
 
-        self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos, self.botones)
+        self.nivel1 = Nivel1 (self.pantalla, self.imagenes)
         self.nivel3 = nivel3 (self.pantalla, self.imagenes, self.sonidos, self.botones)
 
     def obtener_pantalla(self):
@@ -74,9 +77,6 @@ class Juego:
                 if self.codigo_ingresado == self.codigo_correcto:
                     self.tiempo_cofre_abierto = pygame.time.get_ticks()
                     self.pantalla_actual = "cofre_desbloqueando"
-
-    def ejecutar(self):
-        print("juego")
 
 class Inventario():
     def __init__(self):

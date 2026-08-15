@@ -11,16 +11,9 @@ juego = Juego()
 imagenes = Imagenes()
 sonidos = Sonidos()
 inventario = Inventario()
-juego.ejecutar()
 pantalla = juego.obtener_pantalla()
 botones  = Botones()
-#nivel1 = Nivel1()
 #nivel3 = nivel3()
-
-
-#-------------------- NIVEL 1 --------------------------------------------
-fuente = pygame.font.SysFont("Times New Roman", 80)
-fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
@@ -102,7 +95,7 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "camino3" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -111,6 +104,7 @@ num_correcto = "7352"
 num_ingresado = ""
 
 inventario_abierto = False
+mostrar_inventario = True
 
 libro_abierto = False
 pagina_libro = 1
@@ -121,8 +115,11 @@ fusible_recogido = False
 
 Mensaje_ce = False
 tiempo_cerrado = 0
+tiempo_intro2 = 0
+
 
 while True:
+    mostrar_inventario = True
     eventos = juego.manejar_eventos()
     for evento in eventos:
         juego.manejar_teclado(evento)
@@ -206,7 +203,7 @@ while True:
                 
                 if botones.flecha_centro_central.collidepoint(evento.pos):
                     if juego.nivel1.BBB == True:
-                        juego.sonidos.semilla_efecto.play()
+
                         pantalla_actual = "semilla"
                     else:
                         pantalla_actual = "cofre_vacio"
@@ -340,7 +337,6 @@ while True:
                     palancas[3] = not palancas[3]
                     juego.sonidos.efecto_palanca.play()
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"casa2",evento)
-
 
             elif pantalla_actual == "puerta":
                 cambiar_pantalla_si_toca(botones.atras, "puerta_biblioteca", evento)
@@ -690,19 +686,14 @@ while True:
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
 
-        texto1 = fuente.render(juego.nivel1.letras[0], True, (0,0,0))
+        texto1 = juego.fuente.render(juego.nivel1.letras[0], True, (0,0,0))
         pantalla.blit(texto1, (493,290))
-        texto2 = fuente.render(juego.nivel1.letras[1], True, (0,0,0))
+        texto2 = juego.fuente.render(juego.nivel1.letras[1], True, (0,0,0))
         pantalla.blit(texto2, (607,290))
-        texto3 = fuente.render(juego.nivel1.letras[2], True, (0,0,0))
+        texto3 = juego.fuente.render(juego.nivel1.letras[2], True, (0,0,0))
         pantalla.blit(texto3, (723,290))
-        texto4 = fuente.render(juego.nivel1.letras[3], True, (0,0,0))
+        texto4 = juego.fuente.render(juego.nivel1.letras[3], True, (0,0,0))
         pantalla.blit(texto4, (837,290))
-
-        pygame.draw.rect(pantalla, (255,0,0), botones.rueda1, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.rueda2, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.rueda3, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.rueda4, 2)
 
         if "".join(juego.nivel1.letras) == "AMTV":
             juego.nivel1.tiempo_cofre_abierto = pygame.time.get_ticks()
@@ -711,17 +702,20 @@ while True:
     elif pantalla_actual == "cofre_abierto":
         flecha_izquierda_f(120,400)
         flecha_derecha_f(1280,400)
+        juego.sonidos.cofre_efecto.play()
 
         if pygame.time.get_ticks() - juego.nivel1.tiempo_cofre_abierto > 1000:
-                    juego.sonidos.cofre_efecto.play()
                     pantalla_actual = "cofre_abierto"
+                    juego.sonidos.cofre_efecto.stop()
+                    juego.sonidos.semilla_efecto.stop()
 
     elif pantalla_actual == "semilla":
+        juego.sonidos.semilla_efecto.play()
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "cofre_vacio":
         flecha_abajo_f(710,660)
-        juego.sonidos.semilla_efecto.stop()
+        
 
     elif pantalla_actual == "invernadero":
         if juego.nivel1.planta_ampliada == "A":
@@ -741,7 +735,6 @@ while True:
         else:
             pantalla.blit(imagenes.maquinista1, (0,0))
 
-        pygame.draw.rect(pantalla, (255,0,0), botones.botonMaquinista, 2)
         flecha_abajo_f(710,660)
         if juego.nivel1.maquinista_hablando:
             if pygame.time.get_ticks() - juego.nivel1.tiempo_maquinista > 6000:
@@ -759,6 +752,7 @@ while True:
                 juego.maquinista_gracias1_son_reproduciendo = True
 
         if tiempo > 5000:
+            juego.sonidos.cascada.stop()
             pantalla.fill((0, 0, 0))
         if tiempo > 7000:
             pantalla.blit(imagenes.nivel2, (0, 0))
@@ -767,9 +761,8 @@ while True:
         if tiempo > 14000:
             pantalla_actual = "intro_archivo"
             tiempo_intro2 = pygame.time.get_ticks()
-           
     #________________________________________ NIVEL 2 ___________________________________________________
-    elif pantalla_actual == "intro_archivo":
+    if pantalla_actual == "intro_archivo":
         tiempo = pygame.time.get_ticks() - tiempo_intro2
         if tiempo > 2000:
             pantalla.blit(imagenes.intro_archivo, (0,0))
@@ -777,7 +770,7 @@ while True:
                 juego.sonidos.viejo_intro2.play()
                 juego.viejo_intro2_son_reproduciendo = True
             
-        if tiempo > 8500:
+        if tiempo > 12000:
             juego.sonidos.viejo_intro2.stop()
             viejo_intro2_son_reproduciendo = False
             pantalla.blit(imagenes.cabina2_hablando,(0,0))
@@ -785,11 +778,11 @@ while True:
                 juego.sonidos.maquinista2_intro.play()
                 juego.maquinista2_intro_son_reproduciendo = True
             
-        if tiempo > 14000:
+        if tiempo > 17000:
             juego.sonidos.maquinista2_intro.stop()
             juego.maquinista2_intro_son_reproduciendo = False
             pantalla.fill((0, 0, 0))
-        if tiempo > 15000:
+        if tiempo > 18000:
             pantalla_actual = "archivo"
 
     elif pantalla_actual == "archivo":
@@ -890,7 +883,7 @@ while True:
         if Mensaje_ce:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
-            Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
+            Cerrado = juego.fuente_pequenia.render("Cerrado", True, (255,255,255))
             juego.sonidos.efecto_Pcerrado.play()
             pantalla.blit(Cerrado, (1150,40))
 
@@ -912,13 +905,13 @@ while True:
 
     elif pantalla_actual == "cofre_cerrado_archivo":
         pantalla.blit(imagenes.cofre_archi, (0,0))
-        num1 = fuente.render(str(numeros[0]), True, (255,255,255))
+        num1 = juego.fuente.render(str(numeros[0]), True, (255,255,255))
         pantalla.blit(num1, (530,480))
-        num2 = fuente.render(str(numeros[1]), True, (255,255,255))
+        num2 = juego.fuente.render(str(numeros[1]), True, (255,255,255))
         pantalla.blit(num2, (650,480))
-        num3 = fuente.render(str(numeros[2]), True, (255,255,255))
+        num3 = juego.fuente.render(str(numeros[2]), True, (255,255,255))
         pantalla.blit(num3, (770,480))
-        num4 = fuente.render(str(numeros[3]), True, (255,255,255))
+        num4 = juego.fuente.render(str(numeros[3]), True, (255,255,255))
         pantalla.blit(num4, (880,480))
 
         flecha_abajo_pequena_f(700, 710)
@@ -938,14 +931,13 @@ while True:
         pantalla.blit(imagenes.archivo2_viejo, (0,0))
         flecha_abajo_f(620,660)
         flecha_arriba_f(640,550)
-        pygame.draw.rect(pantalla, (255,0,0), botones.boton_viejo, 2)
     
     elif pantalla_actual == "cabina2":
-        if sonidos.maquinista2_intro_son_reproduciendo:
+        if juego.maquinista2_intro_son_reproduciendo:
             pantalla.blit(imagenes.maquinista_fusible, (0,0))
             tiempo = pygame.time.get_ticks() - tiempo_maquinista2
             if tiempo > 4000:
-                maquinista_intro_son_reproduciendo = False
+                juego.maquinista_intro_son_reproduciendo = False
                 pantalla.blit(imagenes.cabina2,(0,0))
         else:
             pantalla.blit(imagenes.cabina2,(0,0))
@@ -956,9 +948,9 @@ while True:
         pantalla.blit(imagenes.gracias2,(0,0))
         tiempo = pygame.time.get_ticks() - juego.nivel1.tiempo_gracias
         if tiempo < 100:
-            if not maquinista_gracias2_son_reproduciendo:
+            if not juego.maquinista_gracias2_son_reproduciendo:
                 juego.sonidos.maquinista_gracias2.play()
-                maquinista_gracias2_son_reproduciendo = True
+                juego.maquinista_gracias2_son_reproduciendo = True
     
         if tiempo > 5000:
             pantalla.fill((0, 0, 0))
@@ -1004,7 +996,10 @@ while True:
         
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
-                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla"]
-    inventario.dibujar(pantalla, juego.imagenes)
+                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla", "gracias", "intro_archivo", "gracias2"]
+
+
+    if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
+        inventario.dibujar(pantalla, juego.imagenes)
     
     pygame.display.flip()

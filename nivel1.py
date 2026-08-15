@@ -1,11 +1,7 @@
-import pygame
-
 class Nivel1:
-    def __init__(self, pantalla, imagenes, sonidos, botones):
+    def __init__(self, pantalla, imagenes):
         self.pantalla = pantalla
         self.imagenes = imagenes
-        self.sonidos = sonidos
-        self.botones = botones
         self.maquinista_hablando = False
 
         self.tiempo_maquinista = 0
