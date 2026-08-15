@@ -3,8 +3,9 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Botones
+from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
 from nivel1 import Nivel1
+from Nivel3 import nivel3
 
 juego = Juego()
 imagenes = Imagenes()
@@ -13,6 +14,13 @@ inventario = Inventario()
 juego.ejecutar()
 pantalla = juego.obtener_pantalla()
 botones  = Botones()
+#nivel1 = Nivel1()
+#nivel3 = nivel3()
+
+
+#-------------------- NIVEL 1 --------------------------------------------
+fuente = pygame.font.SysFont("Times New Roman", 80)
+fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
@@ -73,6 +81,11 @@ def flecha_libro_izq_f(x, y):
     pygame.draw.polygon(pantalla,(255,255,255),
         [(x-25, y), (x, y-30), (x, y+30)])
 
+def flecha_camino_f(x,y):
+    pygame.draw.polygon(pantalla,(255,255,255),
+        [(x, y+70), (x+60, y+20), (x+100, y+70)])
+
+
 def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
     global pantalla_actual #le dice a la funcion que quiere modificar la variable ya existente
     if boton.collidepoint(evento.pos):
@@ -89,7 +102,7 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -145,7 +158,7 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_abajo_derecha,"charla",evento)
                 tiempo_charla = pygame.time.get_ticks()
 
-            #-----------------------------nivel 1-------------------------------------------------------
+    #-----------------------------nivel 1-------------------------------------------------------
             elif pantalla_actual == "jardin":
                 cambiar_pantalla_si_toca(botones.flecha_centro, "invernadero", evento)
                 cambiar_pantalla_si_toca(botones.flecha_izquierda, "afuera", evento)
@@ -173,6 +186,7 @@ while True:
                     
                 elif botones.flecha_abajo.collidepoint(evento.pos):
                     pantalla_actual = "jardin"
+
 
             elif pantalla_actual == "cofre":
                 if botones.BAcertijo.collidepoint(evento.pos):
@@ -261,7 +275,7 @@ while True:
                     juego.charla9_son_reproduciendo = False
                     juego.nivel1.maquinista_hablando = False
 
-                #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
+    #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
             elif pantalla_actual == "archivo":
                 cambiar_pantalla_si_toca(botones.BCentro_n2,"caminos",evento)
                 cambiar_pantalla_si_toca(botones.B_interior,"interior2",evento)
@@ -412,6 +426,22 @@ while True:
                     juego.sonidos.maquinista2_intro.stop()
                     maquinista2_intro_son_reproduciendo = False
                     juego.maquinista_hablando2 = False
+
+    #------------------------------- NIVEL 3 (flechas y botones)---------------------------------------
+            elif pantalla_actual == "ciudad_invertida":
+                cambiar_pantalla_si_toca(botones.B_camino,"flechas_ciudad_invertida",evento)
+                #cambiar_pantalla_si_toca(botones.flecha_atras,"tren_ciudad_invertida",evento)
+
+            elif pantalla_actual == "flechas_ciudad_invertida":
+                cambiar_pantalla_si_toca(botones.flecha_cabina2,"camino1",evento)
+                cambiar_pantalla_si_toca(botones.flecha_atras,"ciudad_invertida",evento)
+
+            #elif pantalla_actual == "camino1":
+                #cambiar_pantalla_si_toca(botones.camino1,"ciudad_invertida",evento)
+                #cambiar_pantalla_si_toca(botones.camino2,"ciudad_invertida",evento)
+                #cambiar_pantalla_si_toca(botones.camino3,"camino2",evento)
+
+
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -654,13 +684,13 @@ while True:
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
 
-        texto1 = juego.fuente.render(juego.nivel1.letras[0], True, (0,0,0))
+        texto1 = fuente.render(juego.nivel1.letras[0], True, (0,0,0))
         pantalla.blit(texto1, (493,290))
-        texto2 = juego.fuente.render(juego.nivel1.letras[1], True, (0,0,0))
+        texto2 = fuente.render(juego.nivel1.letras[1], True, (0,0,0))
         pantalla.blit(texto2, (607,290))
-        texto3 = juego.fuente.render(juego.nivel1.letras[2], True, (0,0,0))
+        texto3 = fuente.render(juego.nivel1.letras[2], True, (0,0,0))
         pantalla.blit(texto3, (723,290))
-        texto4 = juego.fuente.render(juego.nivel1.letras[3], True, (0,0,0))
+        texto4 = fuente.render(juego.nivel1.letras[3], True, (0,0,0))
         pantalla.blit(texto4, (837,290))
 
         pygame.draw.rect(pantalla, (255,0,0), botones.rueda1, 2)
@@ -854,7 +884,7 @@ while True:
         if Mensaje_ce:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
-            Cerrado = juego.fuente_pequenia.render("Cerrado", True, (255,255,255))
+            Cerrado = fuente_pequenia.render("Cerrado", True, (255,255,255))
             juego.sonidos.efecto_Pcerrado.play()
             pantalla.blit(Cerrado, (1150,40))
 
@@ -876,13 +906,13 @@ while True:
 
     elif pantalla_actual == "cofre_cerrado_archivo":
         pantalla.blit(imagenes.cofre_archi, (0,0))
-        num1 = juego.fuente.render(str(numeros[0]), True, (255,255,255))
+        num1 = fuente.render(str(numeros[0]), True, (255,255,255))
         pantalla.blit(num1, (530,480))
-        num2 = juego.fuente.render(str(numeros[1]), True, (255,255,255))
+        num2 = fuente.render(str(numeros[1]), True, (255,255,255))
         pantalla.blit(num2, (650,480))
-        num3 = juego.fuente.render(str(numeros[2]), True, (255,255,255))
+        num3 = fuente.render(str(numeros[2]), True, (255,255,255))
         pantalla.blit(num3, (770,480))
-        num4 = juego.fuente.render(str(numeros[3]), True, (255,255,255))
+        num4 = fuente.render(str(numeros[3]), True, (255,255,255))
         pantalla.blit(num4, (880,480))
 
         flecha_abajo_pequena_f(700, 710)
@@ -905,11 +935,11 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), botones.boton_viejo, 2)
     
     elif pantalla_actual == "cabina2":
-        if juego.maquinista2_intro_son_reproduciendo:
+        if sonidos.maquinista2_intro_son_reproduciendo:
             pantalla.blit(imagenes.maquinista_fusible, (0,0))
             tiempo = pygame.time.get_ticks() - tiempo_maquinista2
             if tiempo > 4000:
-                juego.maquinista_intro_son_reproduciendo = False
+                maquinista_intro_son_reproduciendo = False
                 pantalla.blit(imagenes.cabina2,(0,0))
         else:
             pantalla.blit(imagenes.cabina2,(0,0))
@@ -920,7 +950,7 @@ while True:
         pantalla.blit(imagenes.gracias2,(0,0))
         tiempo = pygame.time.get_ticks() - juego.nivel1.tiempo_gracias
         if tiempo < 100:
-            if not juego.maquinista_gracias2_son_reproduciendo:
+            if not maquinista_gracias2_son_reproduciendo:
                 juego.sonidos.maquinista_gracias2.play()
                 maquinista_gracias2_son_reproduciendo = True
     
@@ -931,7 +961,31 @@ while True:
         if tiempo > 12000:
             pantalla.blit(imagenes.carga, (0, 0))
         if tiempo > 14000:
-            pantalla_actual = "nivel3" 
+            pantalla_actual = "ciudad_invertida" 
+#________________________________________ NIVEL 3 ___________________________________________________
+    if pantalla_actual in ["ciudad_invertida", "flechas_ciudad_invertida", "camino1"]:
+        juego.nivel3.dibujar(pantalla_actual)
+
+    if pantalla_actual == "ciudad_invertida":
+        flecha_abajo_pequena_f(680,690)
+        flecha_camino_f(420,600)
+
+    elif pantalla_actual == "flechas_ciudad_invertida":
+        flecha_camino_med_f(920,600)
+        pygame.draw.rect(pantalla, (255,0,0),botones.B_camino_flechas,2)
+        flecha_abajo_pequena_f(680,690)
+
+    #elif pantalla_actual == "camino1":
+        #flecha_abajo_f(730,680)
+        #flecha_camino_izq_f(580,600)
+        #flecha_camino_med_f(800,570)
+        #flecha_camino_der_f(910,610)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.camino1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.camino2, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.camino3, 2)
+        
+        
+
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
                         "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla"]

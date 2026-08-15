@@ -1,6 +1,7 @@
 import sys
 import pygame
 from nivel1 import Nivel1
+from Nivel3 import nivel3
 
 class Juego:
     def __init__(self):
@@ -48,6 +49,7 @@ class Juego:
         self.botones = Botones()
 
         self.nivel1 = Nivel1 (self.pantalla, self.imagenes, self.sonidos, self.botones)
+        self.nivel3 = nivel3 (self.pantalla, self.imagenes, self.sonidos, self.botones)
 
     def obtener_pantalla(self):
         return self.pantalla
@@ -215,6 +217,10 @@ class Botones:
         self.B_llave = Boton(1050,300,100,200)
         self.boton_viejo = Boton(950,350,200,300)
 
+        #nivel 3
+        self.B_camino = Boton(420,600,100,100)
+        self.B_camino_flechas = Boton(700,600,100,100)
+        #self.B_camino1 = Boton()
         self.Boton_bolso = Boton(1220, 610, 130, 130)
 
 class Imagenes():
@@ -336,6 +342,17 @@ class Imagenes():
         self.palanca_abajo = self.cargar("visual/P_abajo.png",250,350)
         self.llave1 = self.cargar("visual/llave_abajo.jpeg",1400,800)
         self.llave2 = self.cargar("visual/sin_llave.jpeg",1400,800)
+
+        #---------------- NIVEL TRES -------------------------------------------------------------------------
+        self.ciudad_invertida = self.cargar("visual/ciudad_invertida.jpeg",1400,800)
+        #CAMINOS
+        self.flechas_ciudad_invertida = self.cargar("visual/flechas_ciudad_invertida.jpeg",1400,800)
+        self.camino1 = self.cargar("visual/camino1_ciudad_invertida.jpeg",1400,800)
+        self.camino2 = self.cargar("visual/camino2_ciudad_invertida.jpeg",1400,800)
+        self.camino3 = self.cargar("visual/camino3_ciudad_invertida.jpeg",1400,800)
+        self.camino4 = self.cargar("visual/camino4_ciudad_invertida.jpeg",1400,800)
+        self.camino5 = self.cargar("visual/camino5_ciudad_invertida.jpeg",1400,800)
+
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):
