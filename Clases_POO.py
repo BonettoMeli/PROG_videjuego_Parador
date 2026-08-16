@@ -155,6 +155,8 @@ class Botones:
 
         self.boton1_historia = Boton(600, 726, 220, 61)
         self.boton_cabina = Boton(600, 726, 220, 61)
+
+        self.Boton_bolso = Boton(1220, 610, 130, 130)
         #-----------------BOTONES NIVEL UNO------------------------------
         self.flecha_centro = Boton(750, 450, 100, 100)  #x-y-ancho-largo
         self.flecha_centro2 = Boton(660, 380, 100, 180 )
@@ -225,7 +227,11 @@ class Botones:
         self.B_camino3_ciudad = Boton(810,480,100,100)
         self.B_camino_medio = Boton(650,510,100,60)
 
-        self.Boton_bolso = Boton(1220, 610, 130, 130)
+        #nivel4
+        self.boton_izq = Boton(300,550,150,150)
+        self.boton_der = Boton(850,550,150,150)
+        self.vagon_izq = Boton(150, 350, 100, 220)
+        self.afuera_juego = Boton(350, 400, 150, 150)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -356,6 +362,17 @@ class Imagenes():
         self.camino3 = self.cargar("visual/camino3_ciudad_invertida.jpeg",1400,800)
         self.camino4 = self.cargar("visual/camino4_ciudad_invertida.jpeg",1400,800)
         self.camino5 = self.cargar("visual/camino5_ciudad_invertida.jpeg",1400,800)
+
+        #---------------- NIVEL CUATRO -------------------------------------------------------------------------
+        self.estacion_n4 = self.cargar("visual/estacion4.jpeg",1400,800)
+        self.camino_luces = self.cargar("visual/clausurado.png",1400,800)
+
+        #Jugueteria
+        self.jugueteria = self.cargar("visual/Jugueteria.jfif",1400,800)
+        self.jugueteria_adentro = self.cargar("visual/Jugueteria_adentro.jpeg",1400,800)
+
+        #Parque
+        self.parque = self.cargar("visual/parque_diverciones.jpeg",1400,800)
 
 
 class Sonidos():

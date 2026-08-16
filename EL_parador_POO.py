@@ -95,7 +95,7 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "archivo" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "estacion4" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -444,6 +444,26 @@ while True:
 
             elif pantalla_actual == "camino3":
                 cambiar_pantalla_si_toca(botones.B_camino_medio,"camino4",evento)
+
+    #------------------------------- NIVEL 4 (flechas y botones)---------------------------------------   
+            elif pantalla_actual == "estacion4":
+                cambiar_pantalla_si_toca(botones.flecha_abajo,"caminos_nivel4",evento)
+
+            elif pantalla_actual == "caminos_nivel4":
+                cambiar_pantalla_si_toca(botones.boton_izq,"jugueteria_afuera",evento)
+                cambiar_pantalla_si_toca(botones.boton_der,"parque_diverciones",evento)
+                cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento)
+
+            elif pantalla_actual == "jugueteria_afuera":
+                cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
+                cambiar_pantalla_si_toca(botones.flecha_cabina2,"jugueteria_adentro",evento)
+
+            elif pantalla_actual == "jugueteria_adentro":
+                cambiar_pantalla_si_toca(botones.afuera_juego,"jugueteria_afuera",evento)
+
+            elif pantalla_actual == "parque_diverciones":
+                cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
+
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -994,10 +1014,45 @@ while True:
         flecha_arriba_f(700,570)
         pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_medio, 2)
         
+#________________________________________ NIVEL 4 ___________________________________________________
+    elif pantalla_actual == "estacion4":
+        pantalla.blit(imagenes.estacion_n4, (0,0))
+        flecha_izquierda_f(200,450)
+        flecha_arriba_grande_f(870,670)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_abajo, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.vagon_izq, 2)
+
+    elif pantalla_actual == "caminos_nivel4":
+        pantalla.blit(imagenes.camino_luces, (0,0))
+        flecha_camino_izq_f(400,630)
+        flecha_camino_der_f(900,630)
+        flecha_abajo_f(650,680)
+        pygame.draw.rect(pantalla, (255,0,0), botones.boton_izq, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.boton_der, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
+
+    elif pantalla_actual == "jugueteria_afuera":
+        pantalla.blit(imagenes.jugueteria, (0,0))
+        flecha_izquierda_f(120,400)
+        flecha_arriba_f(750,700)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
+
+    elif pantalla_actual == "jugueteria_adentro":
+        pantalla.blit(imagenes.jugueteria_adentro, (0,0))
+        flecha_camino_izq_f(450,530)
+        flecha_derecha_f(1280,400)
+        pygame.draw.rect(pantalla, (255,0,0), botones.afuera_juego, 2)
+
+    elif pantalla_actual == "parque_diverciones":
+        pantalla.blit(imagenes.parque, (0,0))
+        flecha_izquierda_f(120,400)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)  
+
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
-                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3", "charla", "gracias", "intro_archivo", "gracias2"]
-
+                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2"]
 
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)
