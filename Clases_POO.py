@@ -232,6 +232,7 @@ class Botones:
         self.boton_der = Boton(850,550,150,150)
         self.vagon_izq = Boton(150, 350, 100, 220)
         self.afuera_juego = Boton(350, 400, 150, 150)
+        self.boton_zoom = Boton(560,150,300,300)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -366,13 +367,18 @@ class Imagenes():
         #---------------- NIVEL CUATRO -------------------------------------------------------------------------
         self.estacion_n4 = self.cargar("visual/estacion4.jpeg",1400,800)
         self.camino_luces = self.cargar("visual/clausurado.png",1400,800)
+        self.vagon_luces = self.cargar("visual/vagon_nivel4.jpg",1400,800)
+        self.maquinista4 = self.cargar("visual/maquinista_n4.jfif",1400,800)
 
         #Jugueteria
         self.jugueteria = self.cargar("visual/Jugueteria.jfif",1400,800)
         self.jugueteria_adentro = self.cargar("visual/Jugueteria_adentro.jpeg",1400,800)
+        self.zona_rompecabezas = self.cargar("visual/Zona_rompecabezas.jfif",1400,800)
+        self.zoom_rompecabezas = self.cargar("visual/zoom_rompecabezas.jfif",1400,800)
 
         #Parque
-        self.parque = self.cargar("visual/parque_diverciones.jpeg",1400,800)
+        self.parque = self.cargar("visual/Parque_diverciones.jfif",1400,800)
+        self.parque_adentro = self.cargar("visual/parque_adentro.jfif",1400,800)
 
 
 class Sonidos():

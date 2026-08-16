@@ -448,6 +448,7 @@ while True:
     #------------------------------- NIVEL 4 (flechas y botones)---------------------------------------   
             elif pantalla_actual == "estacion4":
                 cambiar_pantalla_si_toca(botones.flecha_abajo,"caminos_nivel4",evento)
+                cambiar_pantalla_si_toca(botones.vagon_izq,"vagon_nivel4",evento)
 
             elif pantalla_actual == "caminos_nivel4":
                 cambiar_pantalla_si_toca(botones.boton_izq,"jugueteria_afuera",evento)
@@ -460,10 +461,28 @@ while True:
 
             elif pantalla_actual == "jugueteria_adentro":
                 cambiar_pantalla_si_toca(botones.afuera_juego,"jugueteria_afuera",evento)
+                cambiar_pantalla_si_toca(botones.flecha_derecha,"rompecabezas",evento)
 
+            elif pantalla_actual == "rompecabezas":
+                cambiar_pantalla_si_toca(botones.flecha_izquierda,"jugueteria_adentro",evento)
+                cambiar_pantalla_si_toca(botones.boton_zoom,"zoom_rompecabezas",evento)
+
+            elif pantalla_actual == "zoom_rompecabezas":
+                cambiar_pantalla_si_toca(botones.flecha_izquierda,"rompecabezas",evento)
+     
             elif pantalla_actual == "parque_diverciones":
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
+                cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_adentro",evento)
 
+            elif pantalla_actual == "parque_adentro":
+                cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_diverciones",evento)
+    
+            elif pantalla_actual == "vagon_nivel4":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
+                cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina_nivel4",evento)               
+
+            elif pantalla_actual == "cabina_nivel4":
+                cambiar_pantalla_si_toca(botones.flecha_cabina2,"vagon_nivel4",evento)
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -1044,11 +1063,36 @@ while True:
         flecha_derecha_f(1280,400)
         pygame.draw.rect(pantalla, (255,0,0), botones.afuera_juego, 2)
 
+    elif pantalla_actual == "rompecabezas":
+        pantalla.blit(imagenes.zona_rompecabezas, (0,0))
+        flecha_izquierda_f(120,400)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.boton_zoom, 2)
+
+    elif pantalla_actual == "zoom_rompecabezas":
+        pantalla.blit(imagenes.zoom_rompecabezas, (0,0))
+        flecha_izquierda_f(120,400)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
+
     elif pantalla_actual == "parque_diverciones":
         pantalla.blit(imagenes.parque, (0,0))
         flecha_izquierda_f(120,400)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)  
+
+    elif pantalla_actual == "parque_adentro":
+        pantalla.blit(imagenes.parque_adentro, (0,0))
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2) 
+
+    elif pantalla_actual == "vagon_nivel4":
+        pantalla.blit(imagenes.vagon_luces, (0,0))
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)  
+
+
+    elif pantalla_actual == "cabina_nivel4":
+        pantalla.blit(imagenes.maquinista4, (0,0))
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)  
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
