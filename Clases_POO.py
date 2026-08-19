@@ -34,8 +34,10 @@ class Juego:
         self.charla9_son_reproduciendo = False
         self.charla10_son_reproduciendo = False
         self.charla11_son_reproduciendo = False
+
         self.gracias2_son_reproduciendo = False
         self.maquinista2_intro_son_reproduciendo = False
+        self.maquinista3_intro_son_reproduciendo = False
         self.maquinista_gracias1_son_reproduciendo = False
         self.maquinista_gracias2_son_reproduciendo = False
         self.viejo_intro2_son_reproduciendo = False
@@ -88,7 +90,8 @@ class Inventario():
         self.imagenes_objetos = {
             "semilla_objeto": "semilla_transp",
             "llave_objeto": "llave_transp",
-            "fusible_objeto": "fusible_transp"}
+            "fusible_objeto": "fusible_transp",
+            "brujula_objeto": "brujula_trasp" }
 
         self.casillas = [
         Boton(520, 640, 60, 60), #casilla1
@@ -226,6 +229,10 @@ class Botones:
         self.B_camino2_ciudad = Boton(660,440,100,60)
         self.B_camino3_ciudad = Boton(810,480,100,100)
         self.B_camino_medio = Boton(650,510,100,60)
+        self.B_camino_abajo1 = Boton(600,400,100,100)
+        self.B_camino_abajo2 = Boton(780,400,100,100)
+        self.B_camino_ultimo1 = Boton(550,530,100,100)
+        self.B_camino_ultimo2 = Boton(780,560,100,100)
 
         #nivel4
         self.boton_izq = Boton(300,550,150,150)
@@ -356,6 +363,12 @@ class Imagenes():
 
         #---------------- NIVEL TRES -------------------------------------------------------------------------
         self.ciudad_invertida = self.cargar("visual/ciudad_invertida.jpeg",1400,800)
+        #TREN
+        self.tren_afuera = self.cargar("visual/vagon_afuera_nivel3.jpeg",1400,800)
+        self.tren_adentro = self.cargar("visual/vagon_nivel3.jpeg",1400,800)
+        self.maquinista1_n3 = self.cargar("visual/maquinista1_nivel3.jpeg",1400,800)
+        self.maquinista2_n3 = self.cargar("visual/maquinista2_nivel3.jpeg",1400,800)
+
         #CAMINOS
         self.flechas_ciudad_invertida = self.cargar("visual/flechas_ciudad_invertida.jpeg",1400,800)
         self.camino1 = self.cargar("visual/camino1_ciudad_invertida.jpeg",1400,800)
@@ -363,6 +376,11 @@ class Imagenes():
         self.camino3 = self.cargar("visual/camino3_ciudad_invertida.jpeg",1400,800)
         self.camino4 = self.cargar("visual/camino4_ciudad_invertida.jpeg",1400,800)
         self.camino5 = self.cargar("visual/camino5_ciudad_invertida.jpeg",1400,800)
+        self.camino6 = self.cargar("visual/camino6_ciudad_invertida.jpeg",1400,800)
+        self.camino7 = self.cargar("visual/camino7_ciudad_invertida.jpeg",1400,800)
+        self.camino8 = self.cargar("visual/camino8_ciudad_invertida.jpeg",1400,800)
+        self.camino_brujula = self.cargar("visual/camino_brujula.jpeg",1400,800)
+        self.camino_sin_brujula = self.cargar("visual/camino_sin_brujula.jpeg",1400,800)
 
         #---------------- NIVEL CUATRO -------------------------------------------------------------------------
         self.estacion_n4 = self.cargar("visual/estacion4.jpeg",1400,800)
@@ -438,3 +456,9 @@ class Sonidos():
         self.efecto_hoja = self.cargar("musica_sonido/pagina_libro.mp3")
         self.efecto_Pcerrado = self.cargar("musica_sonido/puerta_cerrada.mp3")
         self.efecto_Pabierta = self.cargar("musica_sonido/puerta_abierta.mp3")
+        #------------- NIVEL TRES -----------------------------------------------------------
+        self.maquinista3_hablando = self.cargar("musica_sonido/maquinista3_intro.mp3")
+        self.maquinista_gracias3 = self.cargar("musica_sonido/gracias_maquinista3.mp3")
+
+        #------------- NIVEL CUATRO -----------------------------------------------------------
+        self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mp3")

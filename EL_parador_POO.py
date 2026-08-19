@@ -76,7 +76,7 @@ def flecha_libro_izq_f(x, y):
 
 def flecha_camino_f(x,y):
     pygame.draw.polygon(pantalla,(255,255,255),
-        [(x, y+70), (x+60, y+20), (x+100, y+70)])
+        [(x, y+70), (x+50, y+20), (x+100, y+70)])
 
 
 def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
@@ -95,7 +95,7 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "estacion4" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -426,7 +426,16 @@ while True:
     #------------------------------- NIVEL 3 (flechas y botones)---------------------------------------
             elif pantalla_actual == "ciudad_invertida":
                 cambiar_pantalla_si_toca(botones.B_camino,"flechas_ciudad_invertida",evento)
-                #cambiar_pantalla_si_toca(botones.flecha_atras,"tren_ciudad_invertida",evento)
+                cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento)
+
+            elif pantalla_actual == "tren_afuera":
+                cambiar_pantalla_si_toca(botones.flecha_cabina,"tren_adentro",evento)
+                cambiar_pantalla_si_toca(botones.flecha_atras,"ciudad_invertida",evento)
+            
+            elif pantalla_actual == "tren_adentro":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento)
+                cambiar_pantalla_si_toca(botones.flecha_cabina,"maquinista1",evento)
+               
 
             elif pantalla_actual == "flechas_ciudad_invertida":
                 cambiar_pantalla_si_toca(botones.B_camino_flechas,"camino1",evento)
@@ -444,6 +453,50 @@ while True:
 
             elif pantalla_actual == "camino3":
                 cambiar_pantalla_si_toca(botones.B_camino_medio,"camino4",evento)
+
+            elif pantalla_actual == "camino4":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"camino5",evento)
+
+            elif pantalla_actual == "camino5":
+                cambiar_pantalla_si_toca(botones.B_camino_abajo1,"camino6",evento)
+                cambiar_pantalla_si_toca(botones.B_camino_abajo2,"ciudad_invertida",evento)
+
+            elif pantalla_actual == "camino6":
+                cambiar_pantalla_si_toca(botones.atras,"camino7",evento)
+
+            elif pantalla_actual == "camino7":
+                cambiar_pantalla_si_toca(botones.B_camino_ultimo1,"camino8",evento)
+                cambiar_pantalla_si_toca(botones.B_camino_ultimo2,"ciudad_invertida",evento) 
+
+            elif pantalla_actual == "camino8":
+                cambiar_pantalla_si_toca(botones.atras,"escena_brujula",evento)
+
+            elif pantalla_actual == "escena_brujula":
+                cambiar_pantalla_si_toca(botones.flecha_centro_central,"escena_sin_brujula",evento)
+                inventario.objetos.append("brujula_objeto")
+                print(inventario.objetos)
+
+
+            elif pantalla_actual == "maquinista1":
+                if cambiar_pantalla_si_toca(botones.flecha_cabina2,"tren_adentro",evento):
+                    juego.sonidos.maquinista3_hablando.stop()
+                if botones.botonMaquinista.collidepoint(evento.pos):
+                    if inventario.objeto_seleccionado == "brujula_objeto":
+                        inventario.objetos.remove("brujula_objeto")
+                        inventario.objeto_seleccionado = None
+                        pantalla_actual = "gracias3"
+                        juego.nivel3.tiempo_gracias3 = pygame.time.get_ticks()
+                    else:
+                        if not maquinista3_intro_son_reproduciendo:
+                            juego.sonidos.maquinista3_hablando.play()
+                            maquinista3_intro_son_reproduciendo = True
+                            tiempo_maquinista3 = pygame.time.get_ticks()
+                                
+                if cambiar_pantalla_si_toca(botones.flecha_cabina2,"tren_adentro",evento):
+                    juego.sonidos.maquinista3_hablando.stop()
+                    maquinista3_intro_son_reproduciendo = False
+                    juego.maquinista_hablando3 = False
+            
 
     #------------------------------- NIVEL 4 (flechas y botones)---------------------------------------   
             elif pantalla_actual == "estacion4":
@@ -1000,39 +1053,66 @@ while True:
         if tiempo > 14000:
             pantalla_actual = "ciudad_invertida" 
 #________________________________________ NIVEL 3 ___________________________________________________
-    if pantalla_actual in ["ciudad_invertida", "flechas_ciudad_invertida", "camino1", "camino2",
-                           "camino3","camino4"]:
+    if pantalla_actual in ["ciudad_invertida", "tren_afuera", "tren_adentro", "maquinista1", "maquinista2", "flechas_ciudad_invertida", "camino1", "camino2",
+                           "camino3","camino4","camino5","camino6","camino7","camino8","escena_brujula","escena_sin_brujula"]:
         juego.nivel3.dibujar(pantalla_actual)
 
     if pantalla_actual == "ciudad_invertida":
         flecha_abajo_pequena_f(680,690)
         flecha_camino_f(420,600)
 
+    elif pantalla_actual == "tren_afuera":
+        flecha_arriba_f(680,600)
+        flecha_abajo_pequena_f(680,690)
+
+    elif pantalla_actual == "tren_adentro":
+        flecha_abajo_f(640,660)
+        flecha_arriba_f(660,550)
+
+    elif pantalla_actual == "maquinista1":
+        flecha_abajo_f(710,660)
+    
     elif pantalla_actual == "flechas_ciudad_invertida":
         flecha_camino_med_f(920,600)
-        pygame.draw.rect(pantalla, (255,0,0),botones.B_camino_flechas,2)
         flecha_abajo_pequena_f(680,690)
 
     elif pantalla_actual == "camino1":
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino1_ciudad, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
 
     elif pantalla_actual == "camino2":
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino1_ciudad, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
-
+        
     elif pantalla_actual == "camino3":
         flecha_arriba_f(700,570)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_medio, 2)
-        
+
+    elif pantalla_actual == "camino4":
+        flecha_camino_f(660,600)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
+
+    elif pantalla_actual == "camino5":
+        flecha_camino_izq_f(680,480)
+        flecha_camino_der_f(820,470)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_abajo1, 2)
+
+    elif pantalla_actual == "camino6":
+        flecha_arriba_grande_f(700,750)
+        pygame.draw.rect(pantalla, (255,0,0), botones.atras, 2)
+
+    elif pantalla_actual == "camino7":
+        flecha_camino_izq_f(600,600)
+        flecha_camino_der_f(820,600)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo1, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo2, 2)
+
+    elif pantalla_actual == "camino8":
+        flecha_arriba_grande_f(700,750) 
+
 #________________________________________ NIVEL 4 ___________________________________________________
     elif pantalla_actual == "estacion4":
         pantalla.blit(imagenes.estacion_n4, (0,0))
@@ -1088,7 +1168,6 @@ while True:
         pantalla.blit(imagenes.vagon_luces, (0,0))
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)  
-
 
     elif pantalla_actual == "cabina_nivel4":
         pantalla.blit(imagenes.maquinista4, (0,0))
