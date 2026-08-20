@@ -44,8 +44,8 @@ class Juego:
         self.viejo_libro_son_reproduciendo = False
         self.favela_reproduciendo = False
 
-        self.fuente = pygame.font.SysFont("Times New Roman", 80)
-        self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
+        #self.fuente = pygame.font.SysFont("Times New Roman", 80)
+        #self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
         #---------------------------------------------------------
         self.imagenes = Imagenes()
@@ -54,7 +54,7 @@ class Juego:
         self.botones = Botones()
 
         self.nivel1 = Nivel1 (self.pantalla, self.imagenes)
-        self.nivel3 = nivel3 (self.pantalla, self.imagenes, self.sonidos, self.botones)
+        self.nivel3 = nivel3 (self.pantalla, self.imagenes, self.sonidos, self.botones, self)
 
     def obtener_pantalla(self):
         return self.pantalla
@@ -91,7 +91,7 @@ class Inventario():
             "semilla_objeto": "semilla_transp",
             "llave_objeto": "llave_transp",
             "fusible_objeto": "fusible_transp",
-            "brujula_objeto": "brujula_trasp" }
+            "brujula_objeto": "brujula_transp" }
 
         self.casillas = [
         Boton(520, 640, 60, 60), #casilla1
@@ -137,6 +137,8 @@ class Inventario():
                     imagen = imagenes.llave_transp
                 elif nombre == "fusible_objeto":
                     imagen = imagenes.fusible_transp
+                elif nombre == "brujula_objeto":
+                    imagen = imagenes.brujula_transp
 
                 imagen_centrada = imagen.get_rect(center=self.casillas[i].rect.center)
                 pantalla.blit(imagen, imagen_centrada)
@@ -301,6 +303,7 @@ class Imagenes():
         self.semilla_transp = self.cargar("visual/semilla_trasparente.png",100,90)
         self.fusible_transp = self.cargar("visual/fusible_transparente.png",100,90)
         self.llave_transp = self.cargar("visual/llave_transparente.png",100,90)
+        self.brujula_transp = self.cargar("visual/brujula_sin_fondo.png",85,75)
 
         #---------------- NIVEL UNO --------------------------------------------------------------------------
         self.interior = self.cargar("visual/vagon_vacio.jpeg",1400,800)
@@ -457,8 +460,8 @@ class Sonidos():
         self.efecto_Pcerrado = self.cargar("musica_sonido/puerta_cerrada.mp3")
         self.efecto_Pabierta = self.cargar("musica_sonido/puerta_abierta.mp3")
         #------------- NIVEL TRES -----------------------------------------------------------
-        self.maquinista3_hablando = self.cargar("musica_sonido/maquinista3_intro.mp3")
-        self.maquinista_gracias3 = self.cargar("musica_sonido/gracias_maquinista3.mp3")
+        self.maquinista3_hablando = self.cargar("musica_sonido/maquinista3_intro.mpeg")
+        self.maquinista_gracias3 = self.cargar("musica_sonido/gracias_maquinista3.mpeg")
 
         #------------- NIVEL CUATRO -----------------------------------------------------------
-        self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mp3")
+        self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mpeg")

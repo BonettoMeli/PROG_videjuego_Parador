@@ -92,7 +92,8 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
 imagenes_objetos = {
     "semilla_objeto": imagenes.semilla_transp, 
     "llave_objeto": imagenes.llave_transp,
-    "fusible_objeto": imagenes.fusible_transp}
+    "fusible_objeto": imagenes.fusible_transp,
+    "brujula_objeto": imagenes.brujula_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
 pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -413,9 +414,9 @@ while True:
                         pantalla_actual = "gracias2"
                         juego.nivel1.tiempo_gracias = pygame.time.get_ticks()
                     else:
-                        if not maquinista2_intro_son_reproduciendo:
+                        if not juego.maquinista2_intro_son_reproduciendo:
                             juego.sonidos.maquinista2_intro.play()
-                            maquinista2_intro_son_reproduciendo = True
+                            juego.maquinista2_intro_son_reproduciendo = True
                             tiempo_maquinista2 = pygame.time.get_ticks()
 
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior2",evento):
@@ -473,13 +474,18 @@ while True:
 
             elif pantalla_actual == "escena_brujula":
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"escena_sin_brujula",evento)
-                inventario.objetos.append("brujula_objeto")
-                print(inventario.objetos)
+                if "brujula_objeto" not in inventario.objetos:
+                    inventario.objetos.append("brujula_objeto")
 
+            elif pantalla_actual == "escena_brujula":
+                if cambiar_pantalla_si_toca(botones.flecha_centro_central,"escena_sin_brujula",evento):
+                    juego.nivel3.tiempo_escena_sin_brujula = pygame.time.get_ticks()
 
+            elif pantalla_actual == "escena_sin_brujula":
+                if pygame.time.get_ticks() - juego.nivel3.tiempo_escena_sin_brujula > 2000:
+                    pantalla_actual = "tren_afuera"
+                    
             elif pantalla_actual == "maquinista1":
-                if cambiar_pantalla_si_toca(botones.flecha_cabina2,"tren_adentro",evento):
-                    juego.sonidos.maquinista3_hablando.stop()
                 if botones.botonMaquinista.collidepoint(evento.pos):
                     if inventario.objeto_seleccionado == "brujula_objeto":
                         inventario.objetos.remove("brujula_objeto")
@@ -487,14 +493,14 @@ while True:
                         pantalla_actual = "gracias3"
                         juego.nivel3.tiempo_gracias3 = pygame.time.get_ticks()
                     else:
-                        if not maquinista3_intro_son_reproduciendo:
+                        if not juego.maquinista3_intro_son_reproduciendo:
                             juego.sonidos.maquinista3_hablando.play()
-                            maquinista3_intro_son_reproduciendo = True
-                            tiempo_maquinista3 = pygame.time.get_ticks()
+                            juego.maquinista3_intro_son_reproduciendo = True
+                            juego.nivel3.tiempo_maquinista3 = pygame.time.get_ticks()
                                 
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"tren_adentro",evento):
                     juego.sonidos.maquinista3_hablando.stop()
-                    maquinista3_intro_son_reproduciendo = False
+                    juego.maquinista3_intro_son_reproduciendo = False
                     juego.maquinista_hablando3 = False
             
 
