@@ -16,6 +16,7 @@ class Juego:
         self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
         self.tiempo_cofre_abierto = 0
+        self.tiempo_calesita = 0
 
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
         self.sonido_n1 = False

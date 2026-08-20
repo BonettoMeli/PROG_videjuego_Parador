@@ -97,7 +97,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "parque_adentro" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "calesita" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -548,9 +548,11 @@ while True:
             elif pantalla_actual == "calesita":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"parque_adentro",evento)
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"calesita_zoom",evento)
-
-            #elif pantalla_actual == "calesita_zoom":
-
+                    
+            elif pantalla_actual == "calesita_zoom":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"parque_adentro",evento)
+                if cambiar_pantalla_si_toca(botones.flecha_centro_central,"calesita_puzzle",evento):
+                    juego.tiempo_calesita = pygame.time.get_ticks()
 
             elif pantalla_actual == "vagon_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
@@ -1221,6 +1223,16 @@ while True:
         flecha_abajo_f(690,660)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.B_viejo_n4, 2)
+
+    elif pantalla_actual == "calesita_puzzle":
+        pantalla.blit(imagenes.viejo_zoom, (0, 0))
+        tiempo = pygame.time.get_ticks() - juego.tiempo_calesita
+        if tiempo > 500:
+            pantalla.blit(imagenes.viejo_puzzle, (0, 0))
+        if tiempo > 3000:
+            pantalla_actual = "calesita_zoom"
+        
+        flecha_abajo_f(690,660)
 
     elif pantalla_actual == "vagon_nivel4":
         pantalla.blit(imagenes.vagon_luces, (0,0))
