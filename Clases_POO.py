@@ -44,9 +44,7 @@ class Juego:
         self.viejo_libro_son_reproduciendo = False
         self.favela_reproduciendo = False
 
-        #self.fuente = pygame.font.SysFont("Times New Roman", 80)
-        #self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
-
+        self.voz_viejo_son_reproduciendo = False
         #---------------------------------------------------------
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
@@ -139,6 +137,8 @@ class Inventario():
                     imagen = imagenes.fusible_transp
                 elif nombre == "brujula_objeto":
                     imagen = imagenes.brujula_transp
+                elif nombre == "osito_objeto":
+                    imagen = imagenes.osito_transp
 
                 imagen_centrada = imagen.get_rect(center=self.casillas[i].rect.center)
                 pantalla.blit(imagen, imagen_centrada)
@@ -243,6 +243,8 @@ class Botones:
         self.vagon_izq = Boton(150, 350, 100, 220)
         self.afuera_juego = Boton(350, 400, 150, 150)
         self.boton_zoom = Boton(560,150,300,300)
+        self.boton_calesita = Boton(770,330,280,250)
+        self.B_viejo_n4 = Boton(550,150,400,400)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -305,7 +307,7 @@ class Imagenes():
         self.fusible_transp = self.cargar("visual/fusible_transparente.png",100,90)
         self.llave_transp = self.cargar("visual/llave_transparente.png",100,90)
         self.brujula_transp = self.cargar("visual/brujula_sin_fondo.png",85,75)
-
+        self.osito_transp = self.cargar("visual/osito_transp.png",100,90)
         #---------------- NIVEL UNO --------------------------------------------------------------------------
         self.interior = self.cargar("visual/vagon_vacio.jpeg",1400,800)
 
@@ -399,10 +401,19 @@ class Imagenes():
         self.zona_rompecabezas = self.cargar("visual/Zona_rompecabezas.jfif",1400,800)
         self.zoom_rompecabezas = self.cargar("visual/zoom_rompecabezas.jfif",1400,800)
 
+        self.pieza1 = self.cargar("visual/pieza1.jpeg",150,100)
+        self.pieza2 = self.cargar("visual/pieza2.jpeg",150,100)
+        self.pieza3 = self.cargar("visual/pieza3.jpeg",150,100)
+        self.pieza4 = self.cargar("visual/pieza4.jpeg",150,100)
+
         #Parque
         self.parque = self.cargar("visual/Parque_diverciones.jfif",1400,800)
         self.parque_adentro = self.cargar("visual/parque_adentro.jfif",1400,800)
+        self.viejo_carrucel = self.cargar("visual/viejo_feliz_calesita.jpeg",1400,800)
+        self.viejo_zoom = self.cargar("visual/viejo_feliz_zoom.jpeg",1400,800)
+        self.viejo_puzzle = self.cargar("visual/viejo_oso_puerta.jpeg",1400,800)
 
+        self.viejo_con_oso = self.cargar("visual/viejo_con_oso.png",1400,800)
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):
@@ -461,9 +472,13 @@ class Sonidos():
         self.efecto_hoja = self.cargar("musica_sonido/pagina_libro.mp3")
         self.efecto_Pcerrado = self.cargar("musica_sonido/puerta_cerrada.mp3")
         self.efecto_Pabierta = self.cargar("musica_sonido/puerta_abierta.mp3")
+        self.musica_nivel2 = self.cargar("musica_sonido/musica_nivel2.mp3",0.5)
         #------------- NIVEL TRES -----------------------------------------------------------
+        self.musica_nivel4 = self.cargar("musica_sonido/musica_nivel4.mp3",0.5)
         self.maquinista3_hablando = self.cargar("musica_sonido/maquinista3_intro.mpeg")
         self.maquinista_gracias3 = self.cargar("musica_sonido/gracias_maquinista3.mpeg")
+        self.voz_viejo = self.cargar("musica_sonido/memoria_nivel3.mp3")
 
+        self.musica_nivel3 = self.cargar("musica_sonido/musica_nivel3.mp3",0.5)
         #------------- NIVEL CUATRO -----------------------------------------------------------
         self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mpeg")

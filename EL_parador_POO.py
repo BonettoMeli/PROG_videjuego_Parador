@@ -93,10 +93,11 @@ imagenes_objetos = {
     "semilla_objeto": imagenes.semilla_transp, 
     "llave_objeto": imagenes.llave_transp,
     "fusible_objeto": imagenes.fusible_transp,
-    "brujula_objeto": imagenes.brujula_transp}
+    "brujula_objeto": imagenes.brujula_transp,
+    "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "parque_adentro" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -118,7 +119,6 @@ brujula_recogida = False
 Mensaje_ce = False
 tiempo_cerrado = 0
 tiempo_intro2 = 0
-
 
 while True:
     mostrar_inventario = True
@@ -408,7 +408,6 @@ while True:
                     juego.sonidos.maquinista2_intro.stop()
                     juego.sonidos.viejo_libro.stop()
                 if botones.botonMaquinista.collidepoint(evento.pos):
-
                     if inventario.objeto_seleccionado == "fusible_objeto":
                         inventario.objetos.remove("fusible_objeto")
                         inventario.objeto_seleccionado = None
@@ -423,12 +422,17 @@ while True:
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior2",evento):
                     juego.sonidos.maquinista2_intro.stop()
                     maquinista2_intro_son_reproduciendo = False
-                    
 
     #------------------------------- NIVEL 3 (flechas y botones)---------------------------------------
             elif pantalla_actual == "ciudad_invertida":
-                cambiar_pantalla_si_toca(botones.B_camino,"flechas_ciudad_invertida",evento)
-                cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento)
+                if cambiar_pantalla_si_toca(botones.B_camino,"flechas_ciudad_invertida",evento):
+                    sonidos.voz_viejo.stop()
+                    juego.voz_viejo_son_reproduciendo = False
+                if cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento):
+                    sonidos.voz_viejo.stop()
+                elif botones.B_viejo_n3.collidepoint(evento.pos):
+                    sonidos.voz_viejo.stop()
+                    sonidos.voz_viejo.play()
 
             elif pantalla_actual == "tren_afuera":
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"tren_adentro",evento)
@@ -437,7 +441,6 @@ while True:
             elif pantalla_actual == "tren_adentro":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento)
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"maquinista1",evento)
-               
 
             elif pantalla_actual == "flechas_ciudad_invertida":
                 cambiar_pantalla_si_toca(botones.B_camino_flechas,"camino1",evento)
@@ -475,7 +478,6 @@ while True:
                     cambiar_pantalla_si_toca(botones.atras,"escena_brujula",evento)
                 else:
                     cambiar_pantalla_si_toca(botones.atras,"escena_sin_brujula",evento)
-                    
 
             elif pantalla_actual == "escena_brujula":
                 if cambiar_pantalla_si_toca(botones.flecha_centro_central,"escena_sin_brujula",evento):
@@ -541,7 +543,15 @@ while True:
 
             elif pantalla_actual == "parque_adentro":
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_diverciones",evento)
-    
+                cambiar_pantalla_si_toca(botones.boton_calesita,"calesita",evento)
+
+            elif pantalla_actual == "calesita":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"parque_adentro",evento)
+                cambiar_pantalla_si_toca(botones.flecha_centro_central,"calesita_zoom",evento)
+
+            #elif pantalla_actual == "calesita_zoom":
+
+
             elif pantalla_actual == "vagon_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina_nivel4",evento)               
@@ -1072,8 +1082,6 @@ while True:
     if pantalla_actual == "ciudad_invertida":
         flecha_abajo_pequena_f(680,690)
         flecha_camino_f(420,600)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_viejo_n3, 2)
-        
 
     elif pantalla_actual == "tren_afuera":
         flecha_arriba_f(680,600)
@@ -1192,25 +1200,43 @@ while True:
     elif pantalla_actual == "parque_diverciones":
         pantalla.blit(imagenes.parque, (0,0))
         flecha_izquierda_f(120,400)
+        flecha_arriba_grande_f(700,720)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)  
 
     elif pantalla_actual == "parque_adentro":
         pantalla.blit(imagenes.parque_adentro, (0,0))
+        flecha_abajo_f(750,660)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2) 
+        pygame.draw.rect(pantalla, (255,0,0), botones.boton_calesita, 2) 
+
+    elif pantalla_actual == "calesita":
+        pantalla.blit(imagenes.viejo_carrucel, (0,0))
+        flecha_abajo_f(690,660)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_centro_central, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
+
+    elif pantalla_actual == "calesita_zoom":
+        pantalla.blit(imagenes.viejo_zoom, (0,0)) 
+        flecha_abajo_f(690,660)
+        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
+        pygame.draw.rect(pantalla, (255,0,0), botones.B_viejo_n4, 2)
 
     elif pantalla_actual == "vagon_nivel4":
         pantalla.blit(imagenes.vagon_luces, (0,0))
+        flecha_abajo_f(640,660)
+        flecha_arriba_f(660,550)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina, 2)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)  
 
     elif pantalla_actual == "cabina_nivel4":
         pantalla.blit(imagenes.maquinista4, (0,0))
+        flecha_abajo_f(710,660)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)  
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
-                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2"]
+                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula"]
 
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)
