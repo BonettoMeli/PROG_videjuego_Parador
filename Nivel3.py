@@ -13,6 +13,7 @@ class nivel3:
         self.tiempo_gracias3 = 0
         self.tiempo = 0
         self.tiempo_escena_sin_brujula = 0
+        self.BRU = False
         
 
     def dibujar(self, pantalla_actual):
@@ -24,13 +25,12 @@ class nivel3:
             self.pantalla.blit(self.imagenes.tren_adentro, (0, 0))
         elif pantalla_actual == "maquinista1":
             if self.juego.maquinista3_intro_son_reproduciendo:
-                    self.pantalla.blit(self.imagenes.maquinista2_n3, (0, 0))
+                self.pantalla.blit(self.imagenes.maquinista2_n3, (0, 0))
             else:
                 self.pantalla.blit(self.imagenes.maquinista1_n3, (0, 0))
 
         elif pantalla_actual == "flechas_ciudad_invertida":
             self.pantalla.blit(self.imagenes.flechas_ciudad_invertida, (0, 0))
-
         elif pantalla_actual == "camino1":
             self.pantalla.blit(self.imagenes.camino1, (0, 0))
         elif pantalla_actual == "camino2":
@@ -51,3 +51,8 @@ class nivel3:
             self.pantalla.blit(self.imagenes.camino_brujula, (0, 0))
         elif pantalla_actual == "escena_sin_brujula":
             self.pantalla.blit(self.imagenes.camino_sin_brujula, (0, 0))
+        elif pantalla_actual == "gracias3":
+            self.pantalla.blit(self.imagenes.gracias3, (0, 0))
+    
+
+

@@ -235,6 +235,7 @@ class Botones:
         self.B_camino_abajo2 = Boton(780,400,100,100)
         self.B_camino_ultimo1 = Boton(550,530,100,100)
         self.B_camino_ultimo2 = Boton(780,560,100,100)
+        self.B_viejo_n3 = Boton(950,380,100,400)
 
         #nivel4
         self.boton_izq = Boton(300,550,150,150)
@@ -371,6 +372,7 @@ class Imagenes():
         self.tren_adentro = self.cargar("visual/vagon_nivel3.jpeg",1400,800)
         self.maquinista1_n3 = self.cargar("visual/maquinista1_nivel3.jpeg",1400,800)
         self.maquinista2_n3 = self.cargar("visual/maquinista2_nivel3.jpeg",1400,800)
+        self.gracias3 = self.cargar("visual/gracias3.jpeg",1400,800)
 
         #CAMINOS
         self.flechas_ciudad_invertida = self.cargar("visual/flechas_ciudad_invertida.jpeg",1400,800)
