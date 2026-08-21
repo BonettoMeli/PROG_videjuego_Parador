@@ -31,6 +31,8 @@ arrastrando_pieza = False
 piezas_colocadas = set()
 rompecabezas_completo = False
 oso_recogido = False
+OOO = False
+tiempo_final = 0
 
 posicion_piezas = {
     2: pygame.Rect(300, 100, 216, 236),
@@ -128,7 +130,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "camino_abierto" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -546,8 +548,12 @@ while True:
 
     #------------------------------- NIVEL 4 (flechas y botones)---------------------------------------   
             elif pantalla_actual == "estacion4":
-                cambiar_pantalla_si_toca(botones.flecha_abajo,"caminos_nivel4",evento)
-                cambiar_pantalla_si_toca(botones.vagon_izq,"vagon_nivel4",evento)
+                if botones.flecha_abajo.collidepoint(evento.pos):
+                    if OOO:
+                        pantalla_actual = "camino_abierto"
+                    else:
+                        pantalla_actual = "caminos_nivel4"
+                cambiar_pantalla_si_toca(botones.vagon_izq,"vagon_nivel4", evento)
 
             elif pantalla_actual == "caminos_nivel4":
                 cambiar_pantalla_si_toca(botones.boton_izq,"jugueteria_afuera",evento)
@@ -555,8 +561,12 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento)
 
             elif pantalla_actual == "jugueteria_afuera":
-                cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
-                cambiar_pantalla_si_toca(botones.flecha_cabina2,"jugueteria_adentro",evento)
+                if botones.flecha_izquierda.collidepoint(evento.pos):
+                    if OOO:
+                        pantalla_actual = "camino_abierto"
+                    else:
+                        pantalla_actual = "caminos_nivel4"
+                cambiar_pantalla_si_toca(botones.flecha_cabina2, "jugueteria_adentro", evento)
 
             elif pantalla_actual == "jugueteria_adentro":
                 cambiar_pantalla_si_toca(botones.afuera_juego,"jugueteria_afuera",evento)
@@ -599,8 +609,12 @@ while True:
                     pantalla.blit(imagenes.osito_transp, (0, 0))
 
             elif pantalla_actual == "parque_diverciones":
-                cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
-                cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_adentro",evento)
+                if botones.flecha_izquierda.collidepoint(evento.pos):
+                    if OOO:
+                        pantalla_actual = "camino_abierto"
+                    else:
+                        pantalla_actual = "caminos_nivel4"
+                cambiar_pantalla_si_toca(botones.flecha_cabina2, "parque_adentro", evento)
 
             elif pantalla_actual == "parque_adentro":
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_diverciones",evento)
@@ -611,10 +625,40 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"calesita_zoom",evento)
                     
             elif pantalla_actual == "calesita_zoom":
-                cambiar_pantalla_si_toca(botones.flecha_atras,"parque_adentro",evento)
-                if cambiar_pantalla_si_toca(botones.flecha_centro_central,"calesita_puzzle",evento):
-                    juego.tiempo_calesita = pygame.time.get_ticks()
+                cambiar_pantalla_si_toca(botones.flecha_atras,"calesita", evento)
+                if botones.B_viejo_n4.collidepoint(evento.pos):
+                    # 🧸 PRIMERA VEZ: entrega el osito
+                    if inventario.objeto_seleccionado == "osito_objeto" and not OOO:
+                        inventario.objetos.remove("osito_objeto")
+                        inventario.objeto_seleccionado = None
+                        OOO = True
+                        pantalla_actual = "calesita_puzzle"
+                        juego.tiempo_oso = pygame.time.get_ticks()
+                    # 🧸 YA LE ENTREGÓ EL OSITO
+                    elif OOO:
+                        pantalla_actual = "calesita_puzzle"
+                        juego.tiempo_oso = pygame.time.get_ticks()
+                    # 🧩 TODAVÍA NO LE ENTREGÓ EL OSITO
+                    else:
+                        pantalla_actual = "calesita_puzzle"
+                        juego.tiempo_calesita = pygame.time.get_ticks()
 
+            elif pantalla_actual == "camino_abierto":
+                cambiar_pantalla_si_toca(botones.boton_izq,"jugueteria_afuera",evento)
+                cambiar_pantalla_si_toca(botones.boton_der,"parque_diverciones",evento)
+                cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento)
+                cambiar_pantalla_si_toca(botones.B_camino_abierto,"puerta_cerrada_n4",evento)
+
+            elif pantalla_actual == "puerta_cerrada_n4":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"camino_abierto",evento)
+                cambiar_pantalla_si_toca(botones.flecha_centro_central,"puerta_abierta_n4",evento)
+
+            elif pantalla_actual == "puerta_abierta_n4":
+                cambiar_pantalla_si_toca(botones.flecha_atras,"camino_abierto",evento)
+                if botones.flecha_centro_central.collidepoint(evento.pos):
+                    tiempo_final = pygame.time.get_ticks()
+                    pantalla_actual = "final"   
+                        
             elif pantalla_actual == "vagon_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina_nivel4",evento)               
@@ -1237,41 +1281,33 @@ while True:
                 pantalla_actual = "estacion4"
 
 #________________________________________ NIVEL 4 ___________________________________________________
+    # pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
+    
     elif pantalla_actual == "estacion4":
         pantalla.blit(imagenes.estacion_n4, (0,0))
         flecha_izquierda_f(200,450)
         flecha_arriba_grande_f(870,670)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_abajo, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.vagon_izq, 2)
-
+       
     elif pantalla_actual == "caminos_nivel4":
         pantalla.blit(imagenes.camino_luces, (0,0))
         flecha_camino_izq_f(400,630)
         flecha_camino_der_f(900,630)
         flecha_abajo_f(650,680)
-        pygame.draw.rect(pantalla, (255,0,0), botones.boton_izq, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.boton_der, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
-
+       
     elif pantalla_actual == "jugueteria_afuera":
         pantalla.blit(imagenes.jugueteria, (0,0))
         flecha_izquierda_f(120,400)
         flecha_arriba_f(750,700)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
-
+       
     elif pantalla_actual == "jugueteria_adentro":
         pantalla.blit(imagenes.jugueteria_adentro, (0,0))
         flecha_camino_izq_f(450,530)
         flecha_derecha_f(1280,400)
-        pygame.draw.rect(pantalla, (255,0,0), botones.afuera_juego, 2)
-
+       
     elif pantalla_actual == "rompecabezas":
         pantalla.blit(imagenes.zona_rompecabezas, (0,0))
         flecha_izquierda_f(120,400)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.boton_zoom, 2)
-
+        
     elif pantalla_actual == "zoom_rompecabezas":
         pantalla.blit(imagenes.zoom_rompecabezas, (0, 0))
         if not oso_recogido:
@@ -1284,58 +1320,89 @@ while True:
                 pantalla.blit(imagenes.osito_puzzle, (550, 300))
 
         flecha_izquierda_f(120, 400)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
-
+       
     elif pantalla_actual == "parque_diverciones":
         pantalla.blit(imagenes.parque, (0,0))
         flecha_izquierda_f(120,400)
         flecha_arriba_grande_f(700,720)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)  
-
+        
     elif pantalla_actual == "parque_adentro":
         pantalla.blit(imagenes.parque_adentro, (0,0))
         flecha_abajo_f(750,660)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2) 
-        pygame.draw.rect(pantalla, (255,0,0), botones.boton_calesita, 2) 
-
+        
     elif pantalla_actual == "calesita":
         pantalla.blit(imagenes.viejo_carrucel, (0,0))
         flecha_abajo_f(690,660)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_centro_central, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
-
-    elif pantalla_actual == "calesita_zoom":
-        pantalla.blit(imagenes.viejo_zoom, (0,0)) 
-        flecha_abajo_f(690,660)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_viejo_n4, 2)
-
-    elif pantalla_actual == "calesita_puzzle":
-        pantalla.blit(imagenes.viejo_zoom, (0, 0))
-        tiempo = pygame.time.get_ticks() - juego.tiempo_calesita
-        if tiempo > 500:
-            pantalla.blit(imagenes.viejo_puzzle, (0, 0))
-        if tiempo > 3000:
-            pantalla_actual = "calesita_zoom"
         
-        flecha_abajo_f(690,660)
+    elif pantalla_actual == "calesita_zoom":
+        pantalla.blit(imagenes.viejo_zoom, (0, 0))
+        flecha_abajo_f(690, 660)
+        
+    elif pantalla_actual == "calesita_puzzle":
+        flecha_abajo_f(690, 660)
+        if OOO:
+            # ESCENA DE ENTREGAR EL OSITO
+            tiempo = pygame.time.get_ticks() - juego.tiempo_oso
+            if tiempo < 2000:
+                pantalla.blit(imagenes.viejo_con_oso, (0, 0))
+            else:
+                pantalla.blit(imagenes.viejo_zoom, (0, 0))
+                pantalla_actual = "calesita_zoom"
+        else:
+            # ESCENA DEL PUZZLE
+            tiempo = pygame.time.get_ticks() - juego.tiempo_calesita
+            pantalla.blit(imagenes.viejo_zoom, (0, 0))
+            if tiempo > 500:
+                pantalla.blit(imagenes.viejo_puzzle, (0, 0))
+            if tiempo > 3000:
+                pantalla_actual = "calesita_zoom"
+
+    elif pantalla_actual == "camino_abierto":
+        pantalla.blit(imagenes.camino_abierto, (0,0))
+        flecha_camino_izq_f(400,630)
+        flecha_camino_der_f(900,630)
+        flecha_abajo_f(650,680)
+        flecha_arriba_f(650,500)
+       
+    elif pantalla_actual == "puerta_cerrada_n4":
+        pantalla.blit(imagenes.puerta_cerrada_n4, (0,0))
+        flecha_abajo_f(700,680)
+        
+    elif pantalla_actual == "puerta_abierta_n4":
+        pantalla.blit(imagenes.puerta_abierta_n4, (0,0))
+        flecha_abajo_f(700,680)
 
     elif pantalla_actual == "vagon_nivel4":
         pantalla.blit(imagenes.vagon_luces, (0,0))
         flecha_abajo_f(640,660)
         flecha_arriba_f(660,550)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)  
-
+        
     elif pantalla_actual == "cabina_nivel4":
         pantalla.blit(imagenes.maquinista4, (0,0))
         flecha_abajo_f(710,660)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_cabina2, 2)  
-
+        
+    elif pantalla_actual == "final":
+        tiempo = pygame.time.get_ticks() - tiempo_final
+        if tiempo < 2000:
+            pantalla.fill((0, 0, 0))
+        elif tiempo < 5000:
+            pantalla.blit(imagenes.final1, (0, 0))
+        elif tiempo < 8000:
+            pantalla.blit(imagenes.final2, (0, 0))
+        elif tiempo < 11000:
+            pantalla.blit(imagenes.final3, (0, 0))
+        elif tiempo < 14000:
+            pantalla.blit(imagenes.final4, (0, 0))
+        elif tiempo < 17000:
+            pantalla.blit(imagenes.final5, (0, 0))
+        elif tiempo < 20000:
+            pantalla.blit(imagenes.final6, (0, 0))
+        else:
+            pantalla.fill((0, 0, 0))
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
-                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula"]
+                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula",
+                        "final"]
 
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)

@@ -17,6 +17,7 @@ class Juego:
 
         self.tiempo_cofre_abierto = 0
         self.tiempo_calesita = 0
+        self.tiempo_oso = 0
 
         #--------- ESTADOS DE LOS SONIDOS ------------------------------------------------
         self.sonido_n1 = False
@@ -247,6 +248,9 @@ class Botones:
         self.boton_zoom = Boton(560,150,300,300)
         self.boton_calesita = Boton(770,330,280,250)
         self.B_viejo_n4 = Boton(550,150,400,400)
+        self.B_camino_abierto = Boton(600,470,100,100)
+
+            
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -396,6 +400,9 @@ class Imagenes():
         self.camino_luces = self.cargar("visual/clausurado.png",1400,800)
         self.vagon_luces = self.cargar("visual/vagon_nivel4.jpg",1400,800)
         self.maquinista4 = self.cargar("visual/maquinista_n4.jfif",1400,800)
+        self.puerta_cerrada_n4 = self.cargar("visual/puerta_cerrada_n4.jpeg",1400,800)
+        self.puerta_abierta_n4 = self.cargar("visual/puerta_abierta_n4.jpeg",1400,800)
+        self.camino_abierto = self.cargar("visual/camino_abierto.jpeg",1400,800)
 
         #Jugueteria
         self.jugueteria = self.cargar("visual/Jugueteria.jfif",1400,800)
@@ -417,6 +424,15 @@ class Imagenes():
         self.viejo_puzzle = self.cargar("visual/viejo_oso_puerta.jpeg",1400,800)
 
         self.viejo_con_oso = self.cargar("visual/viejo_con_oso.png",1400,800)
+
+        #final
+        self.final1 = self.cargar("visual/final1.jpeg",1400,800)
+        self.final2 = self.cargar("visual/final2.jpeg",1400,800)
+        self.final3 = self.cargar("visual/final3.jpeg",1400,800)
+        self.final4 = self.cargar("visual/final4.jpeg",1400,800)
+        self.final5 = self.cargar("visual/final5.jpeg",1400,800)
+        self.final6 = self.cargar("visual/final6.jpeg",1400,800)
+
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):
