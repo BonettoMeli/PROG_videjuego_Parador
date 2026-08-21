@@ -128,7 +128,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "rompecabezas" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -661,7 +661,7 @@ while True:
         pantalla.blit(imagenes.carga2, (0, 0))
         if tiempo > 2000:
             pantalla.blit(imagenes.n1, (0, 0))
-            if not sonido_n1:
+            if not juego.sonido_n1:
                 juego.sonidos.texto_gris.play()
                 sonido_n1 = True
         if tiempo > 4000:
