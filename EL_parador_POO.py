@@ -25,6 +25,37 @@ def siguiente_numero(numero):
     return (numero + 1) % 10
 
 palancas = [False, False, False, False]
+#-------------------- NIVEL 4 --------------------------------------------
+pieza_seleccionada = None
+arrastrando_pieza = False
+piezas_colocadas = set()
+rompecabezas_completo = False
+oso_recogido = False
+
+posicion_piezas = {
+    2: pygame.Rect(300, 100, 216, 236),
+    3: pygame.Rect(950, 100, 216, 236),
+    4: pygame.Rect(300, 600, 216, 236),
+    1: pygame.Rect(950, 600, 216, 236)}
+posicion_correctas = {
+    1: pygame.Rect(499, 185, 216, 236),
+    2: pygame.Rect(715, 185, 216, 236),
+    3: pygame.Rect(499, 421, 216, 236),
+    4: pygame.Rect(715, 421, 216, 236)}
+
+ancho_pieza = posicion_piezas[1].width
+alto_pieza = posicion_piezas[1].height
+
+ancho_puzzle = ancho_pieza * 2
+alto_puzzle = alto_pieza * 2
+x_puzzle = (1400 - ancho_puzzle) // 2
+y_puzzle = (800 - alto_puzzle) // 2
+posiciones_correctas = {
+    1: pygame.Rect(x_puzzle,y_puzzle,ancho_pieza,alto_pieza),
+    2: pygame.Rect(x_puzzle + ancho_pieza,y_puzzle,ancho_pieza,alto_pieza),
+    3: pygame.Rect(x_puzzle,y_puzzle + alto_pieza,ancho_pieza,alto_pieza),
+    4: pygame.Rect(x_puzzle + ancho_pieza,y_puzzle + alto_pieza,ancho_pieza,alto_pieza)}
+
 #-----------FUNCIONES FLECHAS-------------------------------------------------------------
 def flecha_derecha_f(x, y):
     pygame.draw.polygon(pantalla,(255,255,255),
@@ -97,7 +128,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "calesita" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "rompecabezas" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 
@@ -536,7 +567,36 @@ while True:
 
             elif pantalla_actual == "zoom_rompecabezas":
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"rompecabezas",evento)
-     
+                if rompecabezas_completo:
+                    rect_osito = pygame.Rect(550, 300, 216, 236)
+                    if rect_osito.collidepoint(evento.pos):
+                        if "osito_objeto" not in inventario.objetos:
+                            inventario.objetos.append("osito_objeto")
+                        oso_recogido = True
+                        rompecabezas_completo = False
+                        print("osito guardado")
+                    #rect_osito = imagenes.osito_transp.get_rect(topleft=(605, 350))
+                    #if rect_osito.collidepoint(evento.pos):
+                        #inventario.objetos.append("osito_objeto")
+                        #rompecabezas_completo = False
+
+                if posicion_piezas[1].collidepoint(evento.pos):
+                    pieza_seleccionada = 1
+                    arrastrando_pieza = True
+                elif posicion_piezas[2].collidepoint(evento.pos):
+                    pieza_seleccionada = 2
+                    arrastrando_pieza = True
+                elif posicion_piezas[3].collidepoint(evento.pos):
+                    pieza_seleccionada = 3
+                    arrastrando_pieza = True
+                elif posicion_piezas[4].collidepoint(evento.pos):
+                    pieza_seleccionada = 4
+                    arrastrando_pieza = True
+
+            elif pantalla_actual == "rompecabezas_completo":
+                if rompecabezas_completo and not oso_recogido:
+                    pantalla.blit(imagenes.osito_transp, (0, 0))
+
             elif pantalla_actual == "parque_diverciones":
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"caminos_nivel4",evento)
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"parque_adentro",evento)
@@ -560,6 +620,23 @@ while True:
 
             elif pantalla_actual == "cabina_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"vagon_nivel4",evento)
+
+        elif evento.type == pygame.MOUSEMOTION:
+            if pantalla_actual == "zoom_rompecabezas":
+                if arrastrando_pieza and pieza_seleccionada is not None:
+                    posicion_piezas[pieza_seleccionada].center = evento.pos
+
+        elif evento.type == pygame.MOUSEBUTTONUP:
+            if arrastrando_pieza and pieza_seleccionada is not None:
+                pieza = posicion_piezas[pieza_seleccionada]
+                correcta = posicion_correctas[pieza_seleccionada]
+                if pieza.colliderect(correcta):
+                    pieza.topleft = correcta.topleft
+                    piezas_colocadas.add(pieza_seleccionada)
+                    if len(piezas_colocadas) == 4:
+                        rompecabezas_completo = True
+                arrastrando_pieza = False
+                pieza_seleccionada = None
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -1195,8 +1272,17 @@ while True:
         pygame.draw.rect(pantalla, (255,0,0), botones.boton_zoom, 2)
 
     elif pantalla_actual == "zoom_rompecabezas":
-        pantalla.blit(imagenes.zoom_rompecabezas, (0,0))
-        flecha_izquierda_f(120,400)
+        pantalla.blit(imagenes.zoom_rompecabezas, (0, 0))
+        if not oso_recogido:
+            if not rompecabezas_completo:
+                pantalla.blit(imagenes.pieza1, posicion_piezas[1])
+                pantalla.blit(imagenes.pieza2, posicion_piezas[2])
+                pantalla.blit(imagenes.pieza3, posicion_piezas[3])
+                pantalla.blit(imagenes.pieza4, posicion_piezas[4])
+            else:
+                pantalla.blit(imagenes.osito_puzzle, (550, 300))
+
+        flecha_izquierda_f(120, 400)
         pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
 
     elif pantalla_actual == "parque_diverciones":

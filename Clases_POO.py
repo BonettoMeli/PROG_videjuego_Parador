@@ -402,10 +402,11 @@ class Imagenes():
         self.zona_rompecabezas = self.cargar("visual/Zona_rompecabezas.jfif",1400,800)
         self.zoom_rompecabezas = self.cargar("visual/zoom_rompecabezas.jfif",1400,800)
 
-        self.pieza1 = self.cargar("visual/pieza1.jpeg",150,100)
-        self.pieza2 = self.cargar("visual/pieza2.jpeg",150,100)
-        self.pieza3 = self.cargar("visual/pieza3.jpeg",150,100)
-        self.pieza4 = self.cargar("visual/pieza4.jpeg",150,100)
+        self.pieza1 = self.cargar("visual/pieza1.jpeg",216,236)
+        self.pieza2 = self.cargar("visual/pieza2.jpeg",216,236)
+        self.pieza3 = self.cargar("visual/pieza3.jpeg",216,236)
+        self.pieza4 = self.cargar("visual/pieza4.jpeg",216,236)
+        self.osito_puzzle = self.cargar("visual/osito_transp.png",300,300)
 
         #Parque
         self.parque = self.cargar("visual/Parque_diverciones.jfif",1400,800)
