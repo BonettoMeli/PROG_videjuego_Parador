@@ -41,6 +41,7 @@ class Juego:
         self.gracias2_son_reproduciendo = False
         self.maquinista2_intro_son_reproduciendo = False
         self.maquinista3_intro_son_reproduciendo = False
+        self.maquinista4_intro_son_reproduciendo = False
         self.maquinista_gracias1_son_reproduciendo = False
         self.maquinista_gracias2_son_reproduciendo = False
         self.viejo_intro2_son_reproduciendo = False
@@ -399,7 +400,8 @@ class Imagenes():
         self.estacion_n4 = self.cargar("visual/estacion4.jpeg",1400,800)
         self.camino_luces = self.cargar("visual/clausurado.png",1400,800)
         self.vagon_luces = self.cargar("visual/vagon_nivel4.jpg",1400,800)
-        self.maquinista4 = self.cargar("visual/maquinista_n4.jfif",1400,800)
+        self.maquinista4 = self.cargar("visual/maquinista_n4.png",1400,800)
+        self.maquinista_hablando4 = self.cargar("visual/maquinista_hablando_n4.png",1400,800)
         self.puerta_cerrada_n4 = self.cargar("visual/puerta_cerrada_n4.jpeg",1400,800)
         self.puerta_abierta_n4 = self.cargar("visual/puerta_abierta_n4.jpeg",1400,800)
         self.camino_abierto = self.cargar("visual/camino_abierto.jpeg",1400,800)
@@ -483,7 +485,7 @@ class Sonidos():
         self.maquinista_gracias2 = self.cargar("musica_sonido/gracias_maquinista2.mp3")
 
         #------------- NIVEL UNO -----------------------------------------------------------
-        self.cascada = self.cargar("musica_sonido/Cascadas_agua.mp3",0.5)
+        self.cascada = self.cargar("musica_sonido/Cascadas_agua.mp3",0.2 )
         self.acertijo1 = self.cargar("musica_sonido/acertijo_viejo.mp3",0.5)
         #------------- NIVEL DOS -----------------------------------------------------------
         self.efecto_palanca = self.cargar("musica_sonido/efecto_palanca.mp3")
@@ -501,3 +503,6 @@ class Sonidos():
         self.musica_nivel3 = self.cargar("musica_sonido/musica_nivel3.mp3",0.5)
         #------------- NIVEL CUATRO -----------------------------------------------------------
         self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mpeg")
+        self.error = self.cargar("musica_sonido/sonido_error.mp3")
+        self.pajarito = self.cargar("musica_sonido/pajarito.mp3",0.1)
+        self.chucuchu = self.cargar("musica_sonido/chucuchu.mp3")

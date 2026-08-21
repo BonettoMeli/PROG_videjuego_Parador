@@ -33,6 +33,7 @@ rompecabezas_completo = False
 oso_recogido = False
 OOO = False
 tiempo_final = 0
+tiempo_maquinista4 = 0
 
 posicion_piezas = {
     2: pygame.Rect(300, 100, 216, 236),
@@ -130,7 +131,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "camino_abierto" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "final" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -310,6 +311,7 @@ while True:
 
     #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
             elif pantalla_actual == "archivo":
+                juego.sonidos.musica_nivel2.play()
                 cambiar_pantalla_si_toca(botones.BCentro_n2,"caminos",evento)
                 cambiar_pantalla_si_toca(botones.B_interior,"interior2",evento)
                 viejo_libro_son_reproduciendo = False
@@ -328,7 +330,7 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"casa",evento)
                 cambiar_pantalla_si_toca(botones.B_palancas,"panel",evento)
                 if LLL == True:
-                    juego.sonidos.sistema_poleas.play()
+                    juego.sonidos.semilla_efecto.play()
                     if botones.B_llave.collidepoint(evento.pos):
                         llave_recogida=True
                         inventario.objetos.append("llave_objeto")
@@ -372,6 +374,9 @@ while True:
                 elif botones.B_palanca4.collidepoint(evento.pos):
                     palancas[3] = not palancas[3]
                     juego.sonidos.efecto_palanca.play()
+                if palancas == [False, True, False, True] and not panel_resuelto:
+                    juego.sonidos.sistema_poleas.play()
+                    panel_resuelto = True
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"casa2",evento)
 
             elif pantalla_actual == "puerta":
@@ -418,6 +423,7 @@ while True:
         
                 if botones.B_fusible.collidepoint(evento.pos):
                     if not fusible_recogido:
+                        juego.sonidos.semilla_efecto.play()
                         fusible_recogido = True
                         inventario.objetos.append("fusible_objeto")
                         print(inventario.objetos)
@@ -443,6 +449,7 @@ while True:
                     juego.sonidos.viejo_libro.stop()
                 if botones.botonMaquinista.collidepoint(evento.pos):
                     if inventario.objeto_seleccionado == "fusible_objeto":
+                        juego.sonidos.maquinista2_intro.stop()
                         inventario.objetos.remove("fusible_objeto")
                         inventario.objeto_seleccionado = None
                         pantalla_actual = "gracias2"
@@ -459,6 +466,7 @@ while True:
 
     #------------------------------- NIVEL 3 (flechas y botones)---------------------------------------
             elif pantalla_actual == "ciudad_invertida":
+                juego.sonidos.musica_nivel3.play()
                 if cambiar_pantalla_si_toca(botones.B_camino,"flechas_ciudad_invertida",evento):
                     sonidos.voz_viejo.stop()
                     juego.voz_viejo_son_reproduciendo = False
@@ -481,14 +489,14 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_atras,"ciudad_invertida",evento)
 
             elif pantalla_actual == "camino1":
-                cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento)
-                cambiar_pantalla_si_toca(botones.B_camino2_ciudad,"ciudad_invertida",evento)
+                if cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento) or cambiar_pantalla_si_toca(botones.B_camino2_ciudad,"ciudad_invertida",evento):
+                    juego.sonidos.error.play()
                 cambiar_pantalla_si_toca(botones.B_camino3_ciudad,"camino2",evento)
 
             elif pantalla_actual == "camino2":
-                cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento)
+                if cambiar_pantalla_si_toca(botones.B_camino1_ciudad,"ciudad_invertida",evento) or cambiar_pantalla_si_toca(botones.B_camino3_ciudad,"ciudad_invertida",evento):
+                    juego.sonidos.error.play()
                 cambiar_pantalla_si_toca(botones.B_camino2_ciudad,"camino3",evento)
-                cambiar_pantalla_si_toca(botones.B_camino3_ciudad,"ciudad_invertida",evento)
 
             elif pantalla_actual == "camino3":
                 cambiar_pantalla_si_toca(botones.B_camino_medio,"camino4",evento)
@@ -498,14 +506,16 @@ while True:
 
             elif pantalla_actual == "camino5":
                 cambiar_pantalla_si_toca(botones.B_camino_abajo1,"camino6",evento)
-                cambiar_pantalla_si_toca(botones.B_camino_abajo2,"ciudad_invertida",evento)
+                if cambiar_pantalla_si_toca(botones.B_camino_abajo2,"ciudad_invertida",evento):
+                    juego.sonidos.error.play()
 
             elif pantalla_actual == "camino6":
                 cambiar_pantalla_si_toca(botones.atras,"camino7",evento)
 
             elif pantalla_actual == "camino7":
                 cambiar_pantalla_si_toca(botones.B_camino_ultimo1,"camino8",evento)
-                cambiar_pantalla_si_toca(botones.B_camino_ultimo2,"ciudad_invertida",evento) 
+                if cambiar_pantalla_si_toca(botones.B_camino_ultimo2,"ciudad_invertida",evento):
+                    juego.sonidos.error.play() 
 
             elif pantalla_actual == "camino8":
                 if juego.nivel3.BRU == False:
@@ -515,6 +525,7 @@ while True:
 
             elif pantalla_actual == "escena_brujula":
                 if cambiar_pantalla_si_toca(botones.flecha_centro_central,"escena_sin_brujula",evento):
+                    juego.sonidos.semilla_efecto.play()
                     inventario.objetos.append("brujula_objeto")
                     juego.nivel3.BRU= True
                     juego.nivel3.tiempo_escena_sin_brujula = pygame.time.get_ticks()
@@ -548,6 +559,7 @@ while True:
 
     #------------------------------- NIVEL 4 (flechas y botones)---------------------------------------   
             elif pantalla_actual == "estacion4":
+                juego.sonidos.musica_nivel4.play()
                 if botones.flecha_abajo.collidepoint(evento.pos):
                     if OOO:
                         pantalla_actual = "camino_abierto"
@@ -586,10 +598,6 @@ while True:
                         oso_recogido = True
                         rompecabezas_completo = False
                         print("osito guardado")
-                    #rect_osito = imagenes.osito_transp.get_rect(topleft=(605, 350))
-                    #if rect_osito.collidepoint(evento.pos):
-                        #inventario.objetos.append("osito_objeto")
-                        #rompecabezas_completo = False
 
                 if posicion_piezas[1].collidepoint(evento.pos):
                     pieza_seleccionada = 1
@@ -627,18 +635,15 @@ while True:
             elif pantalla_actual == "calesita_zoom":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"calesita", evento)
                 if botones.B_viejo_n4.collidepoint(evento.pos):
-                    # 🧸 PRIMERA VEZ: entrega el osito
                     if inventario.objeto_seleccionado == "osito_objeto" and not OOO:
                         inventario.objetos.remove("osito_objeto")
                         inventario.objeto_seleccionado = None
                         OOO = True
                         pantalla_actual = "calesita_puzzle"
                         juego.tiempo_oso = pygame.time.get_ticks()
-                    # 🧸 YA LE ENTREGÓ EL OSITO
                     elif OOO:
                         pantalla_actual = "calesita_puzzle"
                         juego.tiempo_oso = pygame.time.get_ticks()
-                    # 🧩 TODAVÍA NO LE ENTREGÓ EL OSITO
                     else:
                         pantalla_actual = "calesita_puzzle"
                         juego.tiempo_calesita = pygame.time.get_ticks()
@@ -661,10 +666,21 @@ while True:
                         
             elif pantalla_actual == "vagon_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
-                cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina_nivel4",evento)               
+                cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina_nivel4",evento)                 
 
             elif pantalla_actual == "cabina_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_cabina2,"vagon_nivel4",evento)
+                if botones.botonMaquinista.collidepoint(evento.pos):
+                    if not juego.maquinista4_intro_son_reproduciendo:
+                        pantalla_actual = "maquinista4_hablando"
+                        juego.sonidos.maquinista4_hablando.play()
+                        juego.maquinista4_intro_son_reproduciendo = True
+                        tiempo_maquinista4 = pygame.time.get_ticks()
+
+            elif pantalla_actual == "maquinista4_hablando": 
+                if cambiar_pantalla_si_toca(botones.flecha_cabina2, "vagon_nivel4", evento):
+                    juego.sonidos.maquinista4_hablando.stop()
+                    juego.maquinista4_intro_son_reproduciendo = False
 
         elif evento.type == pygame.MOUSEMOTION:
             if pantalla_actual == "zoom_rompecabezas":
@@ -1072,10 +1088,6 @@ while True:
             pantalla.blit(imagenes.palanca_arriba, (970,200))
         else:
             pantalla.blit(imagenes.palanca_abajo, (970, 280))
-
-        if palancas == [False, True, False, True]:
-            panel_resuelto = True 
-            
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "libro":
@@ -1191,6 +1203,7 @@ while True:
                 juego.maquinista_gracias2_son_reproduciendo = True
     
         if tiempo > 5000:
+            juego.sonidos.musica_nivel2.stop()
             pantalla.fill((0, 0, 0))
         if tiempo > 7000:
             pantalla.blit(imagenes.nivel3, (0, 0))
@@ -1229,35 +1242,35 @@ while True:
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
 
     elif pantalla_actual == "camino2":
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
         
     elif pantalla_actual == "camino3":
         flecha_arriba_f(700,570)
 
     elif pantalla_actual == "camino4":
         flecha_camino_f(660,600)
-        pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
 
     elif pantalla_actual == "camino5":
         flecha_camino_izq_f(680,480)
         flecha_camino_der_f(820,470)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_abajo1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_abajo1, 2)
 
     elif pantalla_actual == "camino6":
         flecha_arriba_grande_f(700,750)
-        pygame.draw.rect(pantalla, (255,0,0), botones.atras, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.atras, 2)
 
     elif pantalla_actual == "camino7":
         flecha_camino_izq_f(600,600)
         flecha_camino_der_f(820,600)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo1, 2)
-        pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo2, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo1, 2)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo2, 2)
 
     elif pantalla_actual == "camino8":
         flecha_arriba_grande_f(700,750) 
@@ -1272,6 +1285,7 @@ while True:
     elif pantalla_actual == "gracias3":
             tiempo = pygame.time.get_ticks() - juego.nivel3.tiempo_gracias3
             if tiempo > 5000:
+                juego.sonidos.musica_nivel3.stop()
                 pantalla.fill((0, 0, 0))
             if tiempo > 7000:
                 pantalla.blit(imagenes.nivel4, (0, 0))
@@ -1281,8 +1295,6 @@ while True:
                 pantalla_actual = "estacion4"
 
 #________________________________________ NIVEL 4 ___________________________________________________
-    # pygame.draw.rect(pantalla, (255,0,0), botones.flecha_izquierda, 2)
-    
     elif pantalla_actual == "estacion4":
         pantalla.blit(imagenes.estacion_n4, (0,0))
         flecha_izquierda_f(200,450)
@@ -1341,7 +1353,6 @@ while True:
     elif pantalla_actual == "calesita_puzzle":
         flecha_abajo_f(690, 660)
         if OOO:
-            # ESCENA DE ENTREGAR EL OSITO
             tiempo = pygame.time.get_ticks() - juego.tiempo_oso
             if tiempo < 2000:
                 pantalla.blit(imagenes.viejo_con_oso, (0, 0))
@@ -1349,7 +1360,6 @@ while True:
                 pantalla.blit(imagenes.viejo_zoom, (0, 0))
                 pantalla_actual = "calesita_zoom"
         else:
-            # ESCENA DEL PUZZLE
             tiempo = pygame.time.get_ticks() - juego.tiempo_calesita
             pantalla.blit(imagenes.viejo_zoom, (0, 0))
             if tiempo > 500:
@@ -1377,28 +1387,43 @@ while True:
         flecha_abajo_f(640,660)
         flecha_arriba_f(660,550)
         
+    elif pantalla_actual == "maquinista4_hablando":
+        pantalla.blit(imagenes.maquinista_hablando4, (0,0))
+        tiempo = pygame.time.get_ticks() - tiempo_maquinista4
+        if tiempo > 6500:
+            juego.sonidos.maquinista4_hablando.stop()
+            juego.maquinista4_intro_son_reproduciendo = False
+            pantalla_actual = "cabina_nivel4"
+        flecha_abajo_f(710,660)
+
     elif pantalla_actual == "cabina_nivel4":
         pantalla.blit(imagenes.maquinista4, (0,0))
         flecha_abajo_f(710,660)
-        
+    
     elif pantalla_actual == "final":
         tiempo = pygame.time.get_ticks() - tiempo_final
         if tiempo < 2000:
+            juego.sonidos.musica_nivel4.stop()
             pantalla.fill((0, 0, 0))
         elif tiempo < 5000:
+            juego.sonidos.pajarito.play()
             pantalla.blit(imagenes.final1, (0, 0))
         elif tiempo < 8000:
             pantalla.blit(imagenes.final2, (0, 0))
         elif tiempo < 11000:
+            juego.sonidos.pajarito.stop()
             pantalla.blit(imagenes.final3, (0, 0))
         elif tiempo < 14000:
             pantalla.blit(imagenes.final4, (0, 0))
         elif tiempo < 17000:
             pantalla.blit(imagenes.final5, (0, 0))
         elif tiempo < 20000:
+            juego.sonidos.ruido_tren.play()
             pantalla.blit(imagenes.final6, (0, 0))
+            juego.sonidos.chucuchu.play()
         else:
             pantalla.fill((0, 0, 0))
+
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
                         "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula",
