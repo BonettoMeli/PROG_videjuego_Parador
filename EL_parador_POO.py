@@ -131,6 +131,7 @@ imagenes_objetos = {
 pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
+tiempo_comienzo = 0
 
 num_encontrado = []
 num_correcto = "7352"
@@ -663,7 +664,7 @@ while True:
             pantalla.blit(imagenes.n1, (0, 0))
             if not juego.sonido_n1:
                 juego.sonidos.texto_gris.play()
-                sonido_n1 = True
+                juego.sonido_n1 = True
         if tiempo > 4000:
             pantalla.blit(imagenes.n2, (0, 0))
         if tiempo > 6500:
@@ -680,9 +681,9 @@ while True:
 
     elif pantalla_actual == "comienzo":  
         juego.sonidos.texto_gris.stop()
-        if not favela_reproduciendo:
+        if not juego.favela_reproduciendo:
             juego.sonidos.favela.play()
-            favela_reproduciendo = True
+            juego.favela_reproduciendo = True
 
         pantalla.fill((244, 228, 188))   
         tiempo = pygame.time.get_ticks() - tiempo_comienzo
@@ -696,9 +697,9 @@ while True:
         if tiempo > 10000:
             pantalla.blit(imagenes.auto3, (920, 0))
             juego.sonidos.interfe.stop()
-            if not auto0_paro_reproducido:
+            if not juego.auto0_paro_reproducido:
                 juego.sonidos.auto_paro_sonido0.play()
-                auto0_paro_reproducido = True
+                juego.auto0_paro_reproducido = True
 
             juego.sonidos.sin_arranque.play()
             pantalla_actual = "auto3"
@@ -709,9 +710,9 @@ while True:
         tiempo = pygame.time.get_ticks() - tiempo_auto_parado
         pantalla.blit(imagenes.parte2, (0, 0))
 
-        if not auto_paro_reproducido:
+        if not juego.auto_paro_reproducido:
             juego.sonidos.auto_paro_sonido.play()
-            auto_paro_reproducido = True
+            juego.auto_paro_reproducido = True
 
         if tiempo > 4000:
             juego.sonidos.auto_paro_sonido.stop()
@@ -727,15 +728,15 @@ while True:
 
         if tiempo > 2000:
             pantalla.blit(imagenes.llegada1, (0, 0))
-            if not llegada1_son_reproduciendo:
+            if not juego.llegada1_son_reproduciendo:
                 juego.sonidos.llegada1_sonido.play()
-                llegada1_son_reproduciendo = True
+                juego.llegada1_son_reproduciendo = True
         if tiempo > 6000:
             pantalla.blit(imagenes.llegada2, (475, 0))
             juego.sonidos.ruido_tren.play()
-            if not llegada2_son_reproduciendo:
+            if not juego.llegada2_son_reproduciendo:
                 juego.sonidos.llegada2_sonido.play()
-                llegada2_son_reproduciendo = True
+                juego.llegada2_son_reproduciendo = True
         if tiempo > 10000:
             pantalla.blit(imagenes.llegada3, (920, 0))
             juego.sonidos.ruido_tren.stop()
@@ -750,9 +751,9 @@ while True:
         if tiempo > 3000:
             juego.sonidos.tren_humo.stop()
             pantalla.blit(imagenes.tren2, (470, 0))
-            if not boleto1_son_reproduciendo:
+            if not juego.boleto1_son_reproduciendo:
                 juego.sonidos.boleto1_sonido.play()
-                boleto1_son_reproduciendo = True
+                juego.boleto1_son_reproduciendo = True
         if tiempo > 5000:
             pantalla.blit(imagenes.tren3, (920, 0))
             pantalla_actual = "tren3"
@@ -764,69 +765,69 @@ while True:
             pantalla.fill((0, 0, 0))
         if tiempo > 2500:
             pantalla.blit(imagenes.charla1, (0, 0))
-            if not charla1_son_reproduciendo:
+            if not juego.charla1_son_reproduciendo:
                 juego.sonidos.charla1_sonido.play()
-                charla1_son_reproduciendo = True
+                juego.charla1_son_reproduciendo = True
         if tiempo > 5000:
             juego.sonidos.charla1_sonido.stop()
             pantalla.blit(imagenes.charla2, (0, 0))
-            if not charla2_son_reproduciendo:
+            if not juego.charla2_son_reproduciendo:
                 juego.sonidos.charla2_sonido.play()
-                charla2_son_reproduciendo = True
+                juego.charla2_son_reproduciendo = True
         if tiempo > 7000:
             juego.sonidos.charla2_sonido.stop()
             pantalla.blit(imagenes.charla3, (0, 0))
-            if not charla3_son_reproduciendo:
+            if not juego.charla3_son_reproduciendo:
                 juego.sonidos.charla3_sonido.play()
-                charla3_son_reproduciendo = True
+                juego.charla3_son_reproduciendo = True
         if tiempo > 9500:
             juego.sonidos.charla3_sonido.stop()
             pantalla.blit(imagenes.charla4, (0, 0))
-            if not charla4_son_reproduciendo:
+            if not juego.charla4_son_reproduciendo:
                 juego.sonidos.charla4_sonido.play()
-                charla4_son_reproduciendo = True
+                juego.charla4_son_reproduciendo = True
         if tiempo > 27000:
             juego.sonidos.charla4_sonido.stop()
             pantalla.blit(imagenes.charla5, (0, 0))
-            if not charla5_son_reproduciendo:
+            if not juego.charla5_son_reproduciendo:
                 juego.sonidos.charla5_sonido.play()
-                charla5_son_reproduciendo = True
+                juego.charla5_son_reproduciendo = True
         if tiempo > 42000:
             juego.sonidos.charla5_sonido.stop()
             pantalla.blit(imagenes.charla6, (0, 0))
-            if not charla6_son_reproduciendo:
+            if not juego.charla6_son_reproduciendo:
                 juego.sonidos.charla6_sonido.play()#y cada una es unica
-                charla6_son_reproduciendo = True
+                juego.charla6_son_reproduciendo = True
         if tiempo > 50000:
             juego.sonidos.charla6_sonido.stop()
             pantalla.blit(imagenes.charla7, (0, 0)) 
-            if not charla7_son_reproduciendo:
+            if not juego.charla7_son_reproduciendo:
                 juego.sonidos.charla7_sonido.play() #que raro el tren
-                charla7_son_reproduciendo = True
+                juego.charla7_son_reproduciendo = True
         if tiempo > 53000:
             juego.sonidos.charla7_sonido.stop()
             pantalla.blit(imagenes.charla8, (0, 0))
-            if not charla8_son_reproduciendo:
+            if not juego.charla8_son_reproduciendo:
                 juego.sonidos.charla8_sonido.play()
-                charla8_son_reproduciendo = True
+                juego.charla8_son_reproduciendo = True
         if tiempo > 57000:
             juego.sonidos.charla8_sonido.stop()
             pantalla.blit(imagenes.maquinista1, (0, 0))
         if tiempo > 60000:
             pantalla.blit(imagenes.maquinista2, (0, 0)) #9
-            if not charla9_son_reproduciendo:
+            if not juego.charla9_son_reproduciendo:
                 juego.sonidos.charla9_sonido.play()
-                charla9_son_reproduciendo = True
+                juego.charla9_son_reproduciendo = True
         if tiempo > 67000:
             pantalla.blit(imagenes.charla10, (0, 0))
-            if not charla10_son_reproduciendo:
+            if not juego.charla10_son_reproduciendo:
                 juego.sonidos.charla10_sonido.play()
-                charla10_son_reproduciendo = True
+                juego.charla10_son_reproduciendo = True
         if tiempo > 77000:
             pantalla.blit(imagenes.charla11, (0, 0))
-            if not charla11_son_reproduciendo:
+            if not juego.charla11_son_reproduciendo:
                 juego.sonidos.charla11_sonido.play()
-                charla11_son_reproduciendo = True
+                juego.charla11_son_reproduciendo = True
 
         if tiempo > 80000:
             pantalla.fill((0, 0, 0))

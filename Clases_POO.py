@@ -35,6 +35,7 @@ class Juego:
         self.charla9_son_reproduciendo = False
         self.charla10_son_reproduciendo = False
         self.charla11_son_reproduciendo = False
+        self.auto0_paro_reproducido = False
 
         self.gracias2_son_reproduciendo = False
         self.maquinista2_intro_son_reproduciendo = False
