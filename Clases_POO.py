@@ -37,6 +37,8 @@ class Juego:
         self.charla10_son_reproduciendo = False
         self.charla11_son_reproduciendo = False
         self.auto0_paro_reproducido = False
+        self.ruido_tren_reproduciendo = False
+        self.tren_humo_reproduciendo = False
 
         self.gracias2_son_reproduciendo = False
         self.maquinista2_intro_son_reproduciendo = False
@@ -47,6 +49,7 @@ class Juego:
         self.viejo_intro2_son_reproduciendo = False
         self.viejo_libro_son_reproduciendo = False
         self.favela_reproduciendo = False
+        self.final_reproduciendo = False
 
         self.voz_viejo_son_reproduciendo = False
         #---------------------------------------------------------
@@ -506,3 +509,4 @@ class Sonidos():
         self.error = self.cargar("musica_sonido/sonido_error.mp3")
         self.pajarito = self.cargar("musica_sonido/pajarito.mp3",0.1)
         self.chucuchu = self.cargar("musica_sonido/chucuchu.mp3")
+        self.audio_final = self.cargar("musica_sonido/audio_final.mpeg")

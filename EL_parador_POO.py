@@ -35,6 +35,7 @@ OOO = False
 tiempo_final = 0
 tiempo_maquinista4 = 0
 
+
 posicion_piezas = {
     2: pygame.Rect(300, 100, 216, 236),
     3: pygame.Rect(950, 100, 216, 236),
@@ -131,7 +132,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "final" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -295,20 +296,22 @@ while True:
                     if inventario.objeto_seleccionado == "semilla_objeto":
                         inventario.objetos.remove("semilla_objeto")
                         inventario.objeto_seleccionado = None
+                        juego.sonidos.charla9_sonido.stop()
+                        juego.charla9_son_reproduciendo = False
+                        juego.nivel1.maquinista_hablando = False
                         pantalla_actual = "gracias"
                         juego.nivel1.tiempo_gracias = pygame.time.get_ticks()
                     else:
                         if not juego.charla9_son_reproduciendo:
                             juego.sonidos.charla9_sonido.play()
-                            charla9_son_reproduciendo = True
+                            juego.charla9_son_reproduciendo = True
                             juego.nivel1.maquinista_hablando = True
-                            tiempo_maquinista = pygame.time.get_ticks()
-
-                if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior",evento):
+                            juego.nivel1.tiempo_maquinista = pygame.time.get_ticks()
+                if cambiar_pantalla_si_toca(botones.flecha_cabina2, "interior", evento):
                     juego.sonidos.charla9_sonido.stop()
                     juego.charla9_son_reproduciendo = False
                     juego.nivel1.maquinista_hablando = False
-
+                    
     #------------------------------- NIVEL 2 (flechas y botones)-----------------------------------------------
             elif pantalla_actual == "archivo":
                 juego.sonidos.musica_nivel2.play()
@@ -462,7 +465,7 @@ while True:
 
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior2",evento):
                     juego.sonidos.maquinista2_intro.stop()
-                    maquinista2_intro_son_reproduciendo = False
+                    juego.maquinista2_intro_son_reproduciendo = False
 
     #------------------------------- NIVEL 3 (flechas y botones)---------------------------------------
             elif pantalla_actual == "ciudad_invertida":
@@ -662,7 +665,8 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_atras,"camino_abierto",evento)
                 if botones.flecha_centro_central.collidepoint(evento.pos):
                     tiempo_final = pygame.time.get_ticks()
-                    pantalla_actual = "final"   
+                    pantalla_actual = "final" 
+                    juego.final_reproduciendo = False  
                         
             elif pantalla_actual == "vagon_nivel4":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"estacion4",evento) 
@@ -793,23 +797,29 @@ while True:
                 juego.llegada1_son_reproduciendo = True
         if tiempo > 6000:
             pantalla.blit(imagenes.llegada2, (475, 0))
-            juego.sonidos.ruido_tren.play()
+            if not juego.ruido_tren_reproduciendo:
+                juego.sonidos.ruido_tren.play()
+                juego.ruido_tren_reproduciendo = True
             if not juego.llegada2_son_reproduciendo:
                 juego.sonidos.llegada2_sonido.play()
                 juego.llegada2_son_reproduciendo = True
         if tiempo > 10000:
             pantalla.blit(imagenes.llegada3, (920, 0))
             juego.sonidos.ruido_tren.stop()
+            juego.ruido_tren_reproduciendo = False
             pantalla_actual = "llegada3"
 
     elif pantalla_actual == "boleto":
         pantalla.fill((244, 228, 188))  
         tiempo = pygame.time.get_ticks() - tiempo_boleto
         if tiempo > 1000:
-            juego.sonidos.tren_humo.play()
             pantalla.blit(imagenes.tren1, (0, 0))
+            if not juego.tren_humo_reproduciendo:
+                juego.sonidos.tren_humo.play()
+                juego.tren_humo_reproduciendo = True
         if tiempo > 3000:
             juego.sonidos.tren_humo.stop()
+            juego.tren_humo_reproduciendo = False
             pantalla.blit(imagenes.tren2, (470, 0))
             if not juego.boleto1_son_reproduciendo:
                 juego.sonidos.boleto1_sonido.play()
@@ -817,7 +827,7 @@ while True:
         if tiempo > 5000:
             pantalla.blit(imagenes.tren3, (920, 0))
             pantalla_actual = "tren3"
-    
+
     elif pantalla_actual == "charla":
         tiempo = pygame.time.get_ticks() - tiempo_charla
         pantalla.blit(imagenes.man, (0, 0))
@@ -991,10 +1001,10 @@ while True:
 
         flecha_abajo_f(710,660)
         if juego.nivel1.maquinista_hablando:
-            if pygame.time.get_ticks() - juego.nivel1.tiempo_maquinista > 6000:
-                juego.maquinista_hablando = False
-                juego.charla9_son_reproduciendo = False
-
+            if juego.nivel1.maquinista_hablando:
+                if pygame.time.get_ticks() - juego.nivel1.tiempo_maquinista > 6000:
+                    juego.nivel1.maquinista_hablando = False
+                    juego.charla9_son_reproduciendo = False
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "gracias":
@@ -1026,7 +1036,7 @@ while True:
             
         if tiempo > 12000:
             juego.sonidos.viejo_intro2.stop()
-            viejo_intro2_son_reproduciendo = False
+            juego.viejo_intro2_son_reproduciendo = False
             pantalla.blit(imagenes.cabina2_hablando,(0,0))
             if not juego.maquinista2_intro_son_reproduciendo:
                 juego.sonidos.maquinista2_intro.play()
@@ -1187,7 +1197,7 @@ while True:
             pantalla.blit(imagenes.maquinista_fusible, (0,0))
             tiempo = pygame.time.get_ticks() - tiempo_maquinista2
             if tiempo > 4000:
-                juego.maquinista_intro_son_reproduciendo = False
+                juego.maquinista2_intro_son_reproduciendo = False
                 pantalla.blit(imagenes.cabina2,(0,0))
         else:
             pantalla.blit(imagenes.cabina2,(0,0))
@@ -1406,21 +1416,20 @@ while True:
             juego.sonidos.musica_nivel4.stop()
             pantalla.fill((0, 0, 0))
         elif tiempo < 5000:
-            juego.sonidos.pajarito.play()
+            if not juego.final_reproduciendo:
+                juego.sonidos.audio_final.play()
+                juego.final_reproduciendo = True
             pantalla.blit(imagenes.final1, (0, 0))
         elif tiempo < 8000:
             pantalla.blit(imagenes.final2, (0, 0))
         elif tiempo < 11000:
-            juego.sonidos.pajarito.stop()
             pantalla.blit(imagenes.final3, (0, 0))
         elif tiempo < 14000:
             pantalla.blit(imagenes.final4, (0, 0))
         elif tiempo < 17000:
             pantalla.blit(imagenes.final5, (0, 0))
-        elif tiempo < 20000:
-            juego.sonidos.ruido_tren.play()
-            pantalla.blit(imagenes.final6, (0, 0))
-            juego.sonidos.chucuchu.play()
+        elif tiempo < 22000:
+            pantalla.blit(imagenes.final6, (0, 0))  
         else:
             pantalla.fill((0, 0, 0))
 
