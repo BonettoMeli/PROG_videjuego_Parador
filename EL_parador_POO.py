@@ -132,7 +132,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "gracias" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -225,13 +225,18 @@ while True:
 
             elif pantalla_actual == "cofre":
                 if botones.BAcertijo.collidepoint(evento.pos):
-                    juego.sonidos.acertijo1.play()
+                    if not juego.acertijo1_son_reproduciendo:
+                        juego.sonidos.acertijo1.play()
+                        juego.acertijo1_son_reproduciendo = True
+                        juego.nivel1.tiempo_acertijo1 = pygame.time.get_ticks()
 
                 elif cambiar_pantalla_si_toca(botones.flecha_izquierda,"jardin",evento):
                     juego.sonidos.acertijo1.stop()
+                    juego.acertijo1_son_reproduciendo = False
 
                 elif cambiar_pantalla_si_toca(botones.flecha_derecha,"afuera",evento):
                     juego.sonidos.acertijo1.stop()
+                    juego.acertijo1_son_reproduciendo = False
 
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"cofre_zoom",evento)
 
@@ -702,7 +707,9 @@ while True:
                         rompecabezas_completo = True
                 arrastrando_pieza = False
                 pieza_seleccionada = None
+
     #----------------------------------------------------------------------------------------------------------  
+    
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
         mouse = pygame.mouse.get_pos()
@@ -946,6 +953,9 @@ while True:
     elif pantalla_actual == "cofre":
         flecha_izquierda_f(120,400)
         flecha_derecha_f(1280,400)
+        if juego.acertijo1_son_reproduciendo:
+            if pygame.time.get_ticks() - juego.nivel1.tiempo_acertijo1 > 20000:
+                juego.acertijo1_son_reproduciendo = False
 
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
@@ -1028,13 +1038,13 @@ while True:
     #________________________________________ NIVEL 2 ___________________________________________________
     if pantalla_actual == "intro_archivo":
         tiempo = pygame.time.get_ticks() - tiempo_intro2
-        if tiempo > 2000:
+        if tiempo > 3000:
             pantalla.blit(imagenes.intro_archivo, (0,0))
             if not juego.viejo_intro2_son_reproduciendo:
                 juego.sonidos.viejo_intro2.play()
                 juego.viejo_intro2_son_reproduciendo = True
             
-        if tiempo > 12000:
+        if tiempo > 9000:
             juego.sonidos.viejo_intro2.stop()
             juego.viejo_intro2_son_reproduciendo = False
             pantalla.blit(imagenes.cabina2_hablando,(0,0))
@@ -1042,11 +1052,11 @@ while True:
                 juego.sonidos.maquinista2_intro.play()
                 juego.maquinista2_intro_son_reproduciendo = True
             
-        if tiempo > 17000:
+        if tiempo > 15000:
             juego.sonidos.maquinista2_intro.stop()
             juego.maquinista2_intro_son_reproduciendo = False
             pantalla.fill((0, 0, 0))
-        if tiempo > 18000:
+        if tiempo > 17000:
             pantalla_actual = "archivo"
 
     elif pantalla_actual == "archivo":

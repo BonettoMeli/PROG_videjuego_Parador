@@ -4,6 +4,7 @@ class Nivel1:
         self.imagenes = imagenes
         self.maquinista_hablando = False
 
+        self.tiempo_acertijo1 = 0
         self.tiempo_maquinista = 0
         self.tiempo_gracias = 0
 

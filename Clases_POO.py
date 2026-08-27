@@ -52,6 +52,8 @@ class Juego:
         self.final_reproduciendo = False
 
         self.voz_viejo_son_reproduciendo = False
+        self.acertijo1_son_reproduciendo = False
+        
         #---------------------------------------------------------
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
