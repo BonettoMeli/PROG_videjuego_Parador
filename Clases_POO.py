@@ -187,6 +187,7 @@ class Botones:
         self.flecha_centro_casa = Boton(950, 300, 150, 200)
         self.BAcertijo = Boton(890, 280, 150, 300)
 
+        #nivel2
         self.planta_A = Boton(500, 180, 220, 220)
         self.planta_M = Boton(450, 330, 280, 180)
         self.planta_T = Boton(680, 620, 180, 110)# x y ancho largo
@@ -256,7 +257,6 @@ class Botones:
         self.B_viejo_n4 = Boton(550,150,400,400)
         self.B_camino_abierto = Boton(600,470,100,100)
 
-            
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -304,7 +304,7 @@ class Imagenes():
         self.charla2 = self.cargar("visual/charla2.jpg",1400,800)
         self.charla3 = self.cargar("visual/charla3.jpg",1400,800)
         self.charla4 = self.cargar("visual/charla4.jpg",1400,800)
-        self.charla5 = self.cargar("visual/charla5.jpg",1400,800)
+        self.charla5 = self.cargar("visual/charla5.jpeg",1400,800)
         self.charla6 = self.cargar("visual/charla6.jpeg",1400,800)
         self.charla7 = self.cargar("visual/charla7.PNG",1400,800)
         self.charla8 = self.cargar("visual/charla8.jpeg",1400,800)
@@ -456,7 +456,7 @@ class Sonidos():
         self.tren_avanzando = self.cargar("musica_sonido/tren_avanzando.WAV")
         #
         self.cofre_efecto = self.cargar("musica_sonido/cofre_abriendose.mp3")
-        self.semilla_efecto = self.cargar("musica_sonido/efecto_semilla.mp3",0.5)
+        self.semilla_efecto = self.cargar("musica_sonido/efecto_semilla.mp3",0.3)
         #-------------HISTORIA--------------------------------------------------------------------------------
         self.texto_gris = self.cargar("musica_sonido/1_texto_gris_audio.mpeg")
         self.auto_paro_sonido0 = self.cargar("musica_sonido/y_eso.mpeg")
@@ -490,8 +490,8 @@ class Sonidos():
         self.maquinista_gracias2 = self.cargar("musica_sonido/gracias_maquinista2.mp3")
 
         #------------- NIVEL UNO -----------------------------------------------------------
-        self.cascada = self.cargar("musica_sonido/Cascadas_agua.mp3",0.2 )
-        self.acertijo1 = self.cargar("musica_sonido/acertijo_viejo.mp3",0.5)
+        self.cascada = self.cargar("musica_sonido/Cascadas_agua.mp3",0.2)
+        self.acertijo1 = self.cargar("musica_sonido/acertijo_viejo.mp3",0.6)
         #------------- NIVEL DOS -----------------------------------------------------------
         self.efecto_palanca = self.cargar("musica_sonido/efecto_palanca.mp3")
         self.sistema_poleas = self.cargar("musica_sonido/sistema_poleas.mp3")
@@ -505,7 +505,7 @@ class Sonidos():
         self.maquinista_gracias3 = self.cargar("musica_sonido/gracias_maquinista3.mpeg")
         self.voz_viejo = self.cargar("musica_sonido/memoria_nivel3.mp3")
 
-        self.musica_nivel3 = self.cargar("musica_sonido/musica_nivel3.mp3",0.5)
+        self.musica_nivel3 = self.cargar("musica_sonido/musica_nivel3.mp3",0.4)
         #------------- NIVEL CUATRO -----------------------------------------------------------
         self.maquinista4_hablando = self.cargar("musica_sonido/maquinista4_intro.mpeg")
         self.error = self.cargar("musica_sonido/sonido_error.mp3")

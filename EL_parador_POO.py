@@ -35,7 +35,6 @@ OOO = False
 tiempo_final = 0
 tiempo_maquinista4 = 0
 
-
 posicion_piezas = {
     2: pygame.Rect(300, 100, 216, 236),
     3: pygame.Rect(950, 100, 216, 236),
@@ -113,7 +112,6 @@ def flecha_camino_f(x,y):
     pygame.draw.polygon(pantalla,(255,255,255),
         [(x, y+70), (x+50, y+20), (x+100, y+70)])
 
-
 def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
     global pantalla_actual #le dice a la funcion que quiere modificar la variable ya existente
     if boton.collidepoint(evento.pos):
@@ -122,7 +120,6 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
         pantalla_actual = destino
         return True #si toca el boton
     return False #si no toca el boton
-
 #--------------INVENTARIO-------------------------------------------------
 imagenes_objetos = {
     "semilla_objeto": imagenes.semilla_transp, 
@@ -130,9 +127,8 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp,
     "brujula_objeto": imagenes.brujula_transp,
     "osito_objeto": imagenes.osito_transp}
-
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "gracias" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -222,7 +218,6 @@ while True:
                 elif botones.flecha_abajo.collidepoint(evento.pos):
                     pantalla_actual = "jardin"
 
-
             elif pantalla_actual == "cofre":
                 if botones.BAcertijo.collidepoint(evento.pos):
                     if not juego.acertijo1_son_reproduciendo:
@@ -246,7 +241,6 @@ while True:
                 
                 if botones.flecha_centro_central.collidepoint(evento.pos):
                     if juego.nivel1.BBB == True:
-
                         pantalla_actual = "semilla"
                     else:
                         pantalla_actual = "cofre_vacio"
@@ -275,7 +269,6 @@ while True:
                     juego.nivel1.AAA = False
                 if cambiar_pantalla_si_toca(botones.flecha_centro_central_peque,"cofre_vacio",evento): #si selecciona la semilla...
                     inventario.objetos.append("semilla_objeto")
-                    print(inventario.objetos)
                     juego.nivel1.BBB = False
 
             elif pantalla_actual == "cofre_vacio":
@@ -301,6 +294,7 @@ while True:
                     if inventario.objeto_seleccionado == "semilla_objeto":
                         inventario.objetos.remove("semilla_objeto")
                         inventario.objeto_seleccionado = None
+                        inventario.abierto = False
                         juego.sonidos.charla9_sonido.stop()
                         juego.charla9_son_reproduciendo = False
                         juego.nivel1.maquinista_hablando = False
@@ -342,7 +336,6 @@ while True:
                     if botones.B_llave.collidepoint(evento.pos):
                         llave_recogida=True
                         inventario.objetos.append("llave_objeto")
-                        print(inventario.objetos)
                         LLL=False
 
             elif pantalla_actual == "puerta_biblioteca":
@@ -434,7 +427,6 @@ while True:
                         juego.sonidos.semilla_efecto.play()
                         fusible_recogido = True
                         inventario.objetos.append("fusible_objeto")
-                        print(inventario.objetos)
 
             elif pantalla_actual == "sala_mapa":
                 cambiar_pantalla_si_toca(botones.B_volver_puerta,"puerta_interior",evento)
@@ -443,13 +435,12 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_atras,"archivo",evento) 
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"cabina2",evento)               
                 if botones.boton_viejo.collidepoint(evento.pos):
-                    if not viejo_libro_son_reproduciendo:
+                    if not juego.viejo_libro_son_reproduciendo:
                         juego.sonidos.viejo_libro.play()
-                        viejo_libro_son_reproduciendo = True
-                    else:
-                        viejo_libro_son_reproduciendo = False
+                        juego.viejo_libro_son_reproduciendo = True
                 if not pantalla_actual == "interior2":
                     juego.sonidos.viejo_libro.stop()
+                    juego.viejo_libro_son_reproduciendo = False
 
             elif pantalla_actual == "cabina2":
                 if cambiar_pantalla_si_toca(botones.flecha_cabina2,"interior2",evento):
@@ -460,6 +451,7 @@ while True:
                         juego.sonidos.maquinista2_intro.stop()
                         inventario.objetos.remove("fusible_objeto")
                         inventario.objeto_seleccionado = None
+                        inventario.abierto = False
                         pantalla_actual = "gracias2"
                         juego.nivel1.tiempo_gracias = pygame.time.get_ticks()
                     else:
@@ -486,8 +478,8 @@ while True:
 
             elif pantalla_actual == "tren_afuera":
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"tren_adentro",evento)
-                cambiar_pantalla_si_toca(botones.flecha_atras,"ciudad_invertida",evento)
-            
+                cambiar_pantalla_si_toca(botones.atras,"ciudad_invertida",evento)
+
             elif pantalla_actual == "tren_adentro":
                 cambiar_pantalla_si_toca(botones.flecha_atras,"tren_afuera",evento)
                 cambiar_pantalla_si_toca(botones.flecha_cabina,"maquinista1",evento)
@@ -543,6 +535,7 @@ while True:
                     if inventario.objeto_seleccionado == "brujula_objeto":
                         inventario.objetos.remove("brujula_objeto")
                         inventario.objeto_seleccionado = None
+                        inventario.abierto = False
                         pantalla_actual = "gracias3"
                         juego.nivel3.tiempo_gracias3 = pygame.time.get_ticks()
                         juego.sonidos.maquinista_gracias3.play()
@@ -605,7 +598,6 @@ while True:
                             inventario.objetos.append("osito_objeto")
                         oso_recogido = True
                         rompecabezas_completo = False
-                        print("osito guardado")
 
                 if posicion_piezas[1].collidepoint(evento.pos):
                     pieza_seleccionada = 1
@@ -709,7 +701,6 @@ while True:
                 pieza_seleccionada = None
 
     #----------------------------------------------------------------------------------------------------------  
-    
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
         mouse = pygame.mouse.get_pos()
@@ -933,7 +924,6 @@ while True:
     #________________________________________ NIVEL 1 ___________________________________________________
     if pantalla_actual in ["jardin", "afuera", "interior", "cofre",
         "cofre_zoom", "cofre_abierto", "semilla", "cofre_vacio", "invernadero", "cabina", "gracias"]:
-
         juego.nivel1.dibujar(pantalla_actual)
 
     if pantalla_actual == "jardin":
@@ -959,7 +949,6 @@ while True:
 
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
-
         texto1 = juego.fuente.render(juego.nivel1.letras[0], True, (0,0,0))
         pantalla.blit(texto1, (493,290))
         texto2 = juego.fuente.render(juego.nivel1.letras[1], True, (0,0,0))
@@ -989,7 +978,6 @@ while True:
 
     elif pantalla_actual == "cofre_vacio":
         flecha_abajo_f(710,660)
-        
 
     elif pantalla_actual == "invernadero":
         if juego.nivel1.planta_ampliada == "A":
@@ -1000,7 +988,6 @@ while True:
             pantalla.blit(imagenes.hoja_T, (700,200))
         elif juego.nivel1.planta_ampliada == "V":
             pantalla.blit(imagenes.hoja_V, (700,200))
-
         flecha_abajo_f(900,660)
 
     elif pantalla_actual == "cabina":
@@ -1086,8 +1073,7 @@ while True:
                 pantalla.blit(imagenes.llave2, (0,0))
                 LLL= False
             else:
-                pantalla.blit(imagenes.llave1, (0,0))
-            
+                pantalla.blit(imagenes.llave1, (0,0))  
         flecha_izquierda_f(100, 400)
 
     elif pantalla_actual == "panel":
@@ -1112,7 +1098,6 @@ while True:
 
     elif pantalla_actual == "libro":
         pantalla.blit(imagenes.libro, (0, 0))
-
         if libro_abierto:
             sombra = pygame.Surface((1400,800))
             sombra.set_alpha(150)
@@ -1149,7 +1134,6 @@ while True:
     elif pantalla_actual == "puerta":
         pantalla.blit(imagenes.puerta_zoom, (0, 0))
         flecha_abajo_pequena_f(700, 710)
-
         if Mensaje_ce:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
@@ -1183,7 +1167,6 @@ while True:
         pantalla.blit(num3, (770,480))
         num4 = juego.fuente.render(str(numeros[3]), True, (255,255,255))
         pantalla.blit(num4, (880,480))
-
         flecha_abajo_pequena_f(700, 710)
 
         if numeros == [7,3,5,2]:
@@ -1211,7 +1194,6 @@ while True:
                 pantalla.blit(imagenes.cabina2,(0,0))
         else:
             pantalla.blit(imagenes.cabina2,(0,0))
-                
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "gracias2":
@@ -1243,7 +1225,7 @@ while True:
     elif pantalla_actual == "tren_afuera":
         flecha_arriba_f(680,600)
         flecha_abajo_pequena_f(680,690)
-
+        
     elif pantalla_actual == "tren_adentro":
         flecha_abajo_f(640,660)
         flecha_arriba_f(660,550)
@@ -1262,35 +1244,28 @@ while True:
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino3_ciudad, 2)
 
     elif pantalla_actual == "camino2":
         flecha_camino_izq_f(580,550)
         flecha_arriba_f(720,480)
         flecha_camino_der_f(840,530)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino2_ciudad, 2)
-        
+    
     elif pantalla_actual == "camino3":
         flecha_arriba_f(700,570)
 
     elif pantalla_actual == "camino4":
         flecha_camino_f(660,600)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.flecha_atras, 2)
 
     elif pantalla_actual == "camino5":
         flecha_camino_izq_f(680,480)
         flecha_camino_der_f(820,470)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_abajo1, 2)
 
     elif pantalla_actual == "camino6":
         flecha_arriba_grande_f(700,750)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.atras, 2)
 
     elif pantalla_actual == "camino7":
         flecha_camino_izq_f(600,600)
         flecha_camino_der_f(820,600)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo1, 2)
-        #pygame.draw.rect(pantalla, (255,0,0), botones.B_camino_ultimo2, 2)
 
     elif pantalla_actual == "camino8":
         flecha_arriba_grande_f(700,750) 
@@ -1350,7 +1325,6 @@ while True:
                 pantalla.blit(imagenes.pieza4, posicion_piezas[4])
             else:
                 pantalla.blit(imagenes.osito_puzzle, (550, 300))
-
         flecha_izquierda_f(120, 400)
        
     elif pantalla_actual == "parque_diverciones":
