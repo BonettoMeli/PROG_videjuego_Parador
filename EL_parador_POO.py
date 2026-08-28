@@ -1,9 +1,10 @@
 import sys
 import pygame
+import random
 pygame.init()
 pygame.mixer.init()
 
-from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones
+from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, ParticulaLuz
 from nivel1 import Nivel1
 from Nivel3 import nivel3
 
@@ -14,6 +15,7 @@ inventario = Inventario()
 pantalla = juego.obtener_pantalla()
 botones  = Botones()
 #nivel3 = nivel3()
+
 
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
@@ -120,6 +122,23 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
         pantalla_actual = destino
         return True #si toca el boton
     return False #si no toca el boton
+
+#---------BRILLOS-------------------------------------------------
+
+def dibujar_brillitos(particulas, x_min, x_max, y_min, y_max):
+    if len(particulas) < 5:
+        particulas.append(
+            ParticulaLuz(
+                random.randint(x_min, x_max),
+                random.randint(y_min, y_max),
+                x_min,
+                x_max,
+                y_min
+            )
+        )
+    juego.actualizar_particulas(particulas)
+    juego.dibujar_particulas(pantalla, particulas)
+
 #--------------INVENTARIO-------------------------------------------------
 imagenes_objetos = {
     "semilla_objeto": imagenes.semilla_transp, 
@@ -128,7 +147,7 @@ imagenes_objetos = {
     "brujula_objeto": imagenes.brujula_transp,
     "osito_objeto": imagenes.osito_transp}
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "estacion4" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -332,8 +351,8 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"casa",evento)
                 cambiar_pantalla_si_toca(botones.B_palancas,"panel",evento)
                 if LLL == True:
-                    juego.sonidos.semilla_efecto.play()
                     if botones.B_llave.collidepoint(evento.pos):
+                        juego.sonidos.semilla_efecto.play()
                         llave_recogida=True
                         inventario.objetos.append("llave_objeto")
                         LLL=False
@@ -392,9 +411,10 @@ while True:
                         puerta_abierta = True
                         pantalla_actual = "puerta_abierta1"
                         juego.sonidos.efecto_Pabierta.play()
-                    else:
-                        Mensaje_ce = True
+                    else: 
+                        Mensaje_ce = True 
                         tiempo_cerrado = pygame.time.get_ticks()
+                        juego.sonidos.efecto_Pcerrado.play()
 
             elif pantalla_actual == "puerta_abierta1":
                 cambiar_pantalla_si_toca(botones.atras,"puerta_biblioteca",evento)
@@ -943,9 +963,11 @@ while True:
     elif pantalla_actual == "cofre":
         flecha_izquierda_f(120,400)
         flecha_derecha_f(1280,400)
+
         if juego.acertijo1_son_reproduciendo:
             if pygame.time.get_ticks() - juego.nivel1.tiempo_acertijo1 > 20000:
                 juego.acertijo1_son_reproduciendo = False
+        dibujar_brillitos(juego.particulas_acertijo, 890, 1040, 280, 580)
 
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
@@ -980,7 +1002,15 @@ while True:
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "invernadero":
-        if juego.nivel1.planta_ampliada == "A":
+
+        if juego.nivel1.planta_ampliada is None:
+
+            dibujar_brillitos(juego.particulas_A, 500, 700, 180, 400)
+            dibujar_brillitos(juego.particulas_M, 450, 730, 330, 510)
+            dibujar_brillitos(juego.particulas_T, 680, 860, 680, 780)
+            dibujar_brillitos(juego.particulas_V, 20, 300, 150, 430)
+
+        elif juego.nivel1.planta_ampliada == "A":
             pantalla.blit(imagenes.hoja_A, (700,200))
         elif juego.nivel1.planta_ampliada == "M":
             pantalla.blit(imagenes.hoja_M, (700,200))
@@ -988,6 +1018,7 @@ while True:
             pantalla.blit(imagenes.hoja_T, (700,200))
         elif juego.nivel1.planta_ampliada == "V":
             pantalla.blit(imagenes.hoja_V, (700,200))
+
         flecha_abajo_f(900,660)
 
     elif pantalla_actual == "cabina":
@@ -1069,11 +1100,14 @@ while True:
             LLL=False
         if panel_resuelto == True:
             LLL=True
+            
             if llave_recogida == True:
                 pantalla.blit(imagenes.llave2, (0,0))
                 LLL= False
             else:
-                pantalla.blit(imagenes.llave1, (0,0))  
+                pantalla.blit(imagenes.llave1, (0,0))
+                dibujar_brillitos(juego.particulas_llave, 1050, 1150, 300, 500)    
+        
         flecha_izquierda_f(100, 400)
 
     elif pantalla_actual == "panel":
@@ -1098,6 +1132,8 @@ while True:
 
     elif pantalla_actual == "libro":
         pantalla.blit(imagenes.libro, (0, 0))
+        dibujar_brillitos(juego.particulas_libro, 200, 460, 300, 550)
+
         if libro_abierto:
             sombra = pygame.Surface((1400,800))
             sombra.set_alpha(150)
@@ -1138,7 +1174,6 @@ while True:
             pygame.draw.rect(pantalla, (40,40,40), (1100,40,200,35))
             pygame.draw.rect(pantalla, (255,255,255), (1100,40,200,35), 2)  
             Cerrado = juego.fuente_pequenia.render("Cerrado", True, (255,255,255))
-            juego.sonidos.efecto_Pcerrado.play()
             pantalla.blit(Cerrado, (1150,40))
 
             if pygame.time.get_ticks() - tiempo_cerrado > 2000:
@@ -1150,6 +1185,7 @@ while True:
 
     elif pantalla_actual == "puerta_interior":
         pantalla.blit(imagenes.inte_biblio,(0,0))
+        dibujar_brillitos(juego.particulas_cofre, 550, 800, 250, 550)
         flecha_derecha_f(1280,400)
         flecha_abajo_pequena_f(700, 710)
 
@@ -1182,6 +1218,7 @@ while True:
              
     elif pantalla_actual == "interior2":
         pantalla.blit(imagenes.archivo2_viejo, (0,0))
+        dibujar_brillitos(juego.particulas_viejo, 950, 1150, 350, 650)
         flecha_abajo_f(620,660)
         flecha_arriba_f(640,550)
     
@@ -1221,6 +1258,7 @@ while True:
     if pantalla_actual == "ciudad_invertida":
         flecha_abajo_pequena_f(680,690)
         flecha_camino_f(420,600)
+        dibujar_brillitos(juego.particulas_viejo_n3, 930, 1070, 350, 700)
 
     elif pantalla_actual == "tren_afuera":
         flecha_arriba_f(680,600)
@@ -1313,6 +1351,7 @@ while True:
        
     elif pantalla_actual == "rompecabezas":
         pantalla.blit(imagenes.zona_rompecabezas, (0,0))
+        dibujar_brillitos(juego.particulas_rompecabezas, 550, 870, 140, 450)
         flecha_izquierda_f(120,400)
         
     elif pantalla_actual == "zoom_rompecabezas":
@@ -1334,14 +1373,17 @@ while True:
         
     elif pantalla_actual == "parque_adentro":
         pantalla.blit(imagenes.parque_adentro, (0,0))
+        dibujar_brillitos(juego.particulas_calesita, 760, 1060, 320, 570)
         flecha_abajo_f(750,660)
         
     elif pantalla_actual == "calesita":
         pantalla.blit(imagenes.viejo_carrucel, (0,0))
+        dibujar_brillitos(juego.particulas_calesita_zoom, 550, 950, 250, 550)
         flecha_abajo_f(690,660)
         
     elif pantalla_actual == "calesita_zoom":
         pantalla.blit(imagenes.viejo_zoom, (0, 0))
+        dibujar_brillitos(juego.particulas_viejo_n4, 550, 950, 150, 550)
         flecha_abajo_f(690, 660)
         
     elif pantalla_actual == "calesita_puzzle":

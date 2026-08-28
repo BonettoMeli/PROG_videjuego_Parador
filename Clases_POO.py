@@ -1,5 +1,6 @@
 import sys
 import pygame
+import random
 from nivel1 import Nivel1
 from Nivel3 import nivel3
 
@@ -62,6 +63,36 @@ class Juego:
 
         self.nivel1 = Nivel1 (self.pantalla, self.imagenes)
         self.nivel3 = nivel3 (self.pantalla, self.imagenes, self.sonidos, self.botones, self)
+
+        #-----------PARTICULAS DE LUZ----------------------------
+          #NIVEL 1
+        self.particulas_acertijo = []
+        self.particulas_A = []
+        self.particulas_M = []
+        self.particulas_T = []
+        self.particulas_V = []
+          #NIVEL 2
+        self.particulas_viejo = []
+        self.particulas_llave = []
+        self.particulas_libro = []
+        self.particulas_cofre = []
+          #NIVEL 3
+        self.particulas_viejo_n3 = []
+          #NIVEL 4 
+        self.particulas_rompecabezas = []
+        self.particulas_calesita = []
+        self.particulas_calesita_zoom = []
+        self.particulas_viejo_n4 = []
+
+        #---------------------------------------------------------
+
+    def actualizar_particulas(self, particulas):
+        for particula in particulas:
+            particula.actualizar()
+
+    def dibujar_particulas(self, pantalla, particulas):
+        for particula in particulas:
+            particula.dibujar(pantalla)
 
     def obtener_pantalla(self):
         return self.pantalla
@@ -512,3 +543,27 @@ class Sonidos():
         self.pajarito = self.cargar("musica_sonido/pajarito.mp3",0.1)
         self.chucuchu = self.cargar("musica_sonido/chucuchu.mp3")
         self.audio_final = self.cargar("musica_sonido/audio_final.mpeg")
+
+
+class ParticulaLuz:
+    def __init__(self, x, y, x_min, x_max, y_min):
+        self.x = x
+        self.y = y
+        self.x_min = x_min
+        self.x_max = x_max
+        self.y_min = y_min
+        self.tamano = random.randint(2, 4)
+        self.movimiento = random.uniform(0.08, 0.18)
+
+    def actualizar(self):
+        self.y -= self.movimiento
+        if self.y < self.y_min:
+            self.x = random.randint(self.x_min, self.x_max)
+            self.y = random.randint(self.y_min + 80, self.y_min + 200)
+
+    def dibujar(self, pantalla):
+        pygame.draw.circle(
+            pantalla,
+            (255, 215, 80),
+            (int(self.x), int(self.y)),
+            self.tamano)
