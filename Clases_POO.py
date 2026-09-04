@@ -54,8 +54,8 @@ class Juego:
 
         self.voz_viejo_son_reproduciendo = False
         self.acertijo1_son_reproduciendo = False
-        
         #---------------------------------------------------------
+
         self.imagenes = Imagenes()
         self.sonidos = Sonidos()
         self.inventario = Inventario()
@@ -83,7 +83,6 @@ class Juego:
         self.particulas_calesita = []
         self.particulas_calesita_zoom = []
         self.particulas_viejo_n4 = []
-
         #---------------------------------------------------------
 
     def actualizar_particulas(self, particulas):
@@ -140,7 +139,6 @@ class Inventario():
         Boton(860, 640, 60, 60), # '' 6
         ]
 
-
     def alternar(self):
         self.abierto = not self.abierto
 
@@ -160,7 +158,6 @@ class Inventario():
             self.alternar()
         if self.abierto:
             self.seleccionar(posicion, self.casillas)
-
 
     def dibujar(self, pantalla, imagenes):
         pantalla.blit(imagenes.bolso, (1210, 610))
@@ -257,10 +254,10 @@ class Botones:
         self.C_num3 = Boton(740,480,90,90)
         self.C_num4 = Boton(850,480,90,90)
 
-        self.B_palanca1 = Boton(220,300,100,210)
-        self.B_palanca2 = Boton(500,300,100,210)
-        self.B_palanca3 = Boton(780,300,100,210)
-        self.B_palanca4 = Boton(1050,300,100,210)
+        self.B_palanca1 = Boton(220,210,100,380)
+        self.B_palanca2 = Boton(500,210,100,380)
+        self.B_palanca3 = Boton(780,210,100,380)
+        self.B_palanca4 = Boton(1050,210,100,380)
 
         self.B_llave = Boton(1050,300,100,200)
         self.boton_viejo = Boton(950,350,200,300)
@@ -287,7 +284,6 @@ class Botones:
         self.boton_calesita = Boton(770,330,280,250)
         self.B_viejo_n4 = Boton(550,150,400,400)
         self.B_camino_abierto = Boton(600,470,100,100)
-
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
@@ -470,7 +466,6 @@ class Imagenes():
         self.final4 = self.cargar("visual/final4.jpeg",1400,800)
         self.final5 = self.cargar("visual/final5.jpeg",1400,800)
         self.final6 = self.cargar("visual/final6.jpeg",1400,800)
-
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):

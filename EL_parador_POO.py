@@ -1,4 +1,4 @@
-import sys
+#import sys
 import pygame
 import random
 pygame.init()
@@ -14,7 +14,6 @@ sonidos = Sonidos()
 inventario = Inventario()
 pantalla = juego.obtener_pantalla()
 botones  = Botones()
-#nivel3 = nivel3()
 
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
@@ -125,7 +124,6 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
     return False #si no toca el boton
 
 #---------BRILLOS-------------------------------------------------
-
 def dibujar_brillitos(particulas, x_min, x_max, y_min, y_max):
     if len(particulas) < 5: #si hay menos de 5 crea uno nuevo
         particulas.append(
@@ -147,8 +145,9 @@ imagenes_objetos = {
     "fusible_objeto": imagenes.fusible_transp,
     "brujula_objeto": imagenes.brujula_transp,
     "osito_objeto": imagenes.osito_transp}
+
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -1130,6 +1129,10 @@ while True:
         else:
             pantalla.blit(imagenes.palanca_abajo, (970, 280))
         flecha_abajo_f(710,660)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_palanca1, 3)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_palanca2, 3)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_palanca3, 3)
+        #pygame.draw.rect(pantalla, (255,0,0), botones.B_palanca4, 3)
 
     elif pantalla_actual == "libro":
         pantalla.blit(imagenes.libro, (0, 0))
