@@ -8,7 +8,7 @@ from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, Par
 from nivel1 import Nivel1
 from Nivel3 import nivel3
 
-juego = Juego()
+juego = Juego() #creamos los obejtos que vamos a usar en el juego
 imagenes = Imagenes()
 sonidos = Sonidos()
 inventario = Inventario()
@@ -16,15 +16,14 @@ pantalla = juego.obtener_pantalla()
 botones  = Botones()
 #nivel3 = nivel3()
 
-
 #-------------------- NIVEL 2 --------------------------------------------
 tiempo_maquinista = 0
 tiempo_gracias = 0
 tiempo_intro2 = 0
 
 numeros = [0,0,0,0]
-def siguiente_numero(numero):
-    return (numero + 1) % 10
+def siguiente_numero(numero): #pasa al numero siguiente
+    return (numero + 1) % 10  #si llega a 9, vuelve al cero
 
 palancas = [False, False, False, False]
 #-------------------- NIVEL 4 --------------------------------------------
@@ -37,23 +36,25 @@ OOO = False
 tiempo_final = 0
 tiempo_maquinista4 = 0
 
+#posiciones en las que empiezas cada pieza
 posicion_piezas = {
     2: pygame.Rect(300, 100, 216, 236),
     3: pygame.Rect(950, 100, 216, 236),
     4: pygame.Rect(300, 600, 216, 236),
-    1: pygame.Rect(950, 600, 216, 236)}
+    1: pygame.Rect(950, 600, 216, 236)} 
+#guarda donde tienen que ir las piezas
 posicion_correctas = {
     1: pygame.Rect(499, 185, 216, 236),
     2: pygame.Rect(715, 185, 216, 236),
     3: pygame.Rect(499, 421, 216, 236),
-    4: pygame.Rect(715, 421, 216, 236)}
+    4: pygame.Rect(715, 421, 216, 236)} 
 
 ancho_pieza = posicion_piezas[1].width
 alto_pieza = posicion_piezas[1].height
 
-ancho_puzzle = ancho_pieza * 2
+ancho_puzzle = ancho_pieza * 2 #calcula el ancho y alto de todo el puzzle, se multiplica por 2 ya que son dos piezas
 alto_puzzle = alto_pieza * 2
-x_puzzle = (1400 - ancho_puzzle) // 2
+x_puzzle = (1400 - ancho_puzzle) // 2 #esto es para que quede centrado
 y_puzzle = (800 - alto_puzzle) // 2
 posiciones_correctas = {
     1: pygame.Rect(x_puzzle,y_puzzle,ancho_pieza,alto_pieza),
@@ -126,7 +127,7 @@ def cambiar_pantalla_si_toca(boton, destino, evento, sonido=None):
 #---------BRILLOS-------------------------------------------------
 
 def dibujar_brillitos(particulas, x_min, x_max, y_min, y_max):
-    if len(particulas) < 5:
+    if len(particulas) < 5: #si hay menos de 5 crea uno nuevo
         particulas.append(
             ParticulaLuz(
                 random.randint(x_min, x_max),
@@ -134,7 +135,7 @@ def dibujar_brillitos(particulas, x_min, x_max, y_min, y_max):
                 x_min,
                 x_max,
                 y_min
-            )
+            ) #agrega un nuevo brillo a la lista
         )
     juego.actualizar_particulas(particulas)
     juego.dibujar_particulas(pantalla, particulas)
@@ -147,7 +148,7 @@ imagenes_objetos = {
     "brujula_objeto": imagenes.brujula_transp,
     "osito_objeto": imagenes.osito_transp}
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "estacion4" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -619,7 +620,7 @@ while True:
                         oso_recogido = True
                         rompecabezas_completo = False
 
-                if posicion_piezas[1].collidepoint(evento.pos):
+                if posicion_piezas[1].collidepoint(evento.pos): #se fija si hice click en la piezas y si la estoy arrastrando
                     pieza_seleccionada = 1
                     arrastrando_pieza = True
                 elif posicion_piezas[2].collidepoint(evento.pos):
@@ -1358,7 +1359,7 @@ while True:
         pantalla.blit(imagenes.zoom_rompecabezas, (0, 0))
         if not oso_recogido:
             if not rompecabezas_completo:
-                pantalla.blit(imagenes.pieza1, posicion_piezas[1])
+                pantalla.blit(imagenes.pieza1, posicion_piezas[1]) #posicon correcta de las piezas
                 pantalla.blit(imagenes.pieza2, posicion_piezas[2])
                 pantalla.blit(imagenes.pieza3, posicion_piezas[3])
                 pantalla.blit(imagenes.pieza4, posicion_piezas[4])
