@@ -304,7 +304,7 @@ class Imagenes():
         #---------- IMAGENES DE CARGA GENERAL ------------------------------------
         self.inicio = self.cargar('visual/Inicio.png',1400,800)
         self.carga = self.cargar('visual/explorando_dimen.png',1400,800)
-        self.intro = self.cargar('visual/instrucciones.png',1400,800)
+        self.intro = self.cargar('visual/instrucciones.jpeg',1400,800)
         self.carga2 = self.cargar('visual/carga2.png',1400,800)
 
         #---------- HISTORIA -----------------------------------------------------
@@ -385,7 +385,7 @@ class Imagenes():
         self.vagon_archivo = self.cargar("visual/vagon_interior.jpeg",1400,800)
         self.gracias2 = self.cargar("visual/gracias2.jpeg",1400,800)
         self.maquinista_fusible = self.cargar("visual/cabina2_hablando.jpeg",1400,800)
-        self.archivo2_viejo = self.cargar("visual/archivo2_viejo.jpeg",1400,800)
+        self.archivo2_viejo = self.cargar("visual/archivo2_viejo2.jpeg",1400,800)
 
         #BIBLIOTECA
         self.puerta = self.cargar("visual/biblioteca_sumergido.jpeg",1400,800)
