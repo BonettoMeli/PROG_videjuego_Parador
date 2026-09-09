@@ -338,7 +338,7 @@ class Imagenes():
         self.charla9 = self.cargar("visual/charla9.png",1400,800)
         self.charla10 = self.cargar("visual/charla10.jpeg",1400,800)
         self.charla11 = self.cargar("visual/charla11.jpeg",1400,800)
-        self.maquinista1 = self.cargar("visual/maquinista1.jpg",1400,800)
+        self.maquinista1 = self.cargar("visual/maquinista1.jpeg",1400,800)
         self.maquinista2 = self.cargar("visual/maquinista2.jpeg",1400,800)
 
         #-------------- OBJETOS QUE CONSIGUE EL USUARIO ------------------------------
@@ -359,6 +359,7 @@ class Imagenes():
         self.cofre_semilla = self.cargar("visual/cofre_semilla.jpeg",1400,800)
         self.cofre_vacio = self.cargar("visual/cofre_vacio.jpeg",1400,800)
         self.gracias1 = self.cargar("visual/gracias1.jpeg",1400,800)
+        self.acertijo_viejo = self.cargar("visual/acertijo_viejo.png",1400,800)
 
         #HOJAS DEL INVERNADERO
         self.hoja_A = self.cargar("visual/hoja_A.jpg",600,400)
@@ -386,6 +387,7 @@ class Imagenes():
         self.gracias2 = self.cargar("visual/gracias2.jpeg",1400,800)
         self.maquinista_fusible = self.cargar("visual/cabina2_hablando.jpeg",1400,800)
         self.archivo2_viejo = self.cargar("visual/archivo2_viejo2.jpeg",1400,800)
+        self.viejo_pista2 = self.cargar("visual/viejo_pista_2.jpeg",1400,800)
 
         #BIBLIOTECA
         self.puerta = self.cargar("visual/biblioteca_sumergido.jpeg",1400,800)
@@ -416,6 +418,7 @@ class Imagenes():
         self.gracias3 = self.cargar("visual/gracias3.jpeg",1400,800)
 
         #CAMINOS
+        self.viejo_pista3 = self.cargar("visual/viejo_pista_3.jpeg",1400,800)
         self.flechas_ciudad_invertida = self.cargar("visual/flechas_ciudad_invertida.jpeg",1400,800)
         self.camino1 = self.cargar("visual/camino1_ciudad_invertida.jpeg",1400,800)
         self.camino2 = self.cargar("visual/camino2_ciudad_invertida.jpeg",1400,800)
