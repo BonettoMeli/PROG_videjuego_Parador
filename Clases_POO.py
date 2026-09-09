@@ -16,6 +16,9 @@ class Juego:
         self.fuente = pygame.font.SysFont("Times New Roman", 80)
         self.fuente_pequenia = pygame.font.SysFont("Times New Roman", 25)
 
+        self.cronometro_inicio = 0
+        self.cronometro_final = 0
+
         self.tiempo_cofre_abierto = 0
         self.tiempo_calesita = 0
         self.tiempo_oso = 0
@@ -285,6 +288,8 @@ class Botones:
         self.B_viejo_n4 = Boton(550,150,400,400)
         self.B_camino_abierto = Boton(600,470,100,100)
 
+        self.boton_reiniciar = Boton(600,600,100,200)
+
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
         imagen = pygame.image.load(ruta)
@@ -469,6 +474,7 @@ class Imagenes():
         self.final4 = self.cargar("visual/final4.jpeg",1400,800)
         self.final5 = self.cargar("visual/final5.jpeg",1400,800)
         self.final6 = self.cargar("visual/final6.jpeg",1400,800)
+        self.fin = self.cargar("visual/fin.jpeg",1400,800)
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):

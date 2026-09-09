@@ -156,7 +156,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "estacion4" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -691,6 +691,7 @@ while True:
                 cambiar_pantalla_si_toca(botones.flecha_atras,"camino_abierto",evento)
                 if botones.flecha_centro_central.collidepoint(evento.pos):
                     tiempo_final = pygame.time.get_ticks()
+                    juego.cronometro_final = tiempo_final
                     pantalla_actual = "final" 
                     juego.final_reproduciendo = False  
                         
@@ -933,6 +934,7 @@ while True:
         if tiempo > 86000:
             pantalla.blit(imagenes.carga, (0, 0))
         if tiempo > 90000:
+            juego.cronometro_inicio = pygame.time.get_ticks()
             pantalla_actual = "afuera"
 
     elif pantalla_actual == "n7":
@@ -1470,7 +1472,12 @@ while True:
         elif tiempo < 22000:
             pantalla.blit(imagenes.final6, (0, 0))  
         else:
-            pantalla.fill((0, 0, 0))
+            tiempo_total = (juego.cronometro_final - juego.cronometro_inicio) // 1000
+            minutos = tiempo_total // 60
+            segundos = tiempo_total % 60
+            texto_tiempo = juego.fuente_pequenia.render(f"{minutos} min {segundos} seg", True,(0,0,0))
+            pantalla.blit(imagenes.fin, (0, 0))
+            pantalla.blit(texto_tiempo, (600, 450))
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
