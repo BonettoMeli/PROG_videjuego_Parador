@@ -180,9 +180,6 @@ Mensaje_ce = False
 tiempo_cerrado = 0
 tiempo_intro2 = 0
 
-def cambiar_fondo(imagen):
-    
-
 while True:
     mostrar_inventario = True
     eventos = juego.manejar_eventos()
