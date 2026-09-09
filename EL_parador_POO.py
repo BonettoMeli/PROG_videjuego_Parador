@@ -4,6 +4,15 @@ import random
 pygame.init()
 pygame.mixer.init()
 
+# 1. Configuración de dimensiones
+ANCHO_BASE, ALTO_BASE = 1400, 800
+
+# 2. Las DOS superficies
+ventana_real = pygame.display.set_mode((ANCHO_BASE, ALTO_BASE))
+DIMENSIONES_REALES = (ventana_real.get_width(), ventana_real.get_height())
+# Esta es la superficie virtual donde diseñas todo a 800x600:
+pantalla = pygame.Surface((ANCHO_BASE, ALTO_BASE))
+
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, ParticulaLuz
 from nivel1 import Nivel1
 from Nivel3 import nivel3
@@ -170,6 +179,9 @@ brujula_recogida = False
 Mensaje_ce = False
 tiempo_cerrado = 0
 tiempo_intro2 = 0
+
+def cambiar_fondo(imagen):
+    
 
 while True:
     mostrar_inventario = True
@@ -719,7 +731,7 @@ while True:
                         rompecabezas_completo = True
                 arrastrando_pieza = False
                 pieza_seleccionada = None
-
+    
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
@@ -1470,5 +1482,9 @@ while True:
 
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)
+
+    pantalla_escalada = pygame.transform.scale(pantalla, DIMENSIONES_REALES)
+
+    ventana_real.blit(pantalla_escalada, (0,0))
     
     pygame.display.flip()
