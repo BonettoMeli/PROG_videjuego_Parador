@@ -5,23 +5,32 @@ pygame.init()
 pygame.mixer.init()
 
 # 1. Configuración de dimensiones
-ANCHO_BASE, ALTO_BASE = 1400, 800
-
+ANCHO_BASE, ALTO_BASE = 1400, 900
 # 2. Las DOS superficies
-ventana_real = pygame.display.set_mode((ANCHO_BASE, ALTO_BASE))
+ventana_real = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 DIMENSIONES_REALES = (ventana_real.get_width(), ventana_real.get_height())
 # Esta es la superficie virtual donde diseñas todo a 800x600:
 pantalla = pygame.Surface((ANCHO_BASE, ALTO_BASE))
+
+def traducir_raton(pos_real, dim_real, dim_virtual):
+    x_real, y_real = pos_real
+    ancho_real, alto_real = dim_real
+    ancho_virtual, alto_virtual = dim_virtual
+
+    # Calculamos la proporción matemática exacta
+    x_virtual = int(x_real * (ancho_virtual / ancho_real))
+    y_virtual = int(y_real * (alto_virtual / alto_real))
+
+    return (x_virtual, y_virtual)
 
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, ParticulaLuz
 from nivel1 import Nivel1
 from Nivel3 import nivel3
 
-juego = Juego() #creamos los obejtos que vamos a usar en el juego
+juego = Juego(pantalla) #creamos los obejtos que vamos a usar en el juego
 imagenes = Imagenes()
 sonidos = Sonidos()
 inventario = Inventario()
-pantalla = juego.obtener_pantalla()
 botones  = Botones()
 
 #-------------------- NIVEL 2 --------------------------------------------
@@ -185,6 +194,17 @@ while True:
     eventos = juego.manejar_eventos()
     for evento in eventos:
         juego.manejar_teclado(evento)
+
+        if evento.type == pygame.MOUSEMOTION or evento.type == pygame.MOUSEBUTTONDOWN or evento.type == pygame.MOUSEBUTTONUP:
+            # 1 y 2. Traducimos la posición
+            posicion_corregida = traducir_raton(
+                evento.pos, 
+                DIMENSIONES_REALES, 
+                (ANCHO_BASE, ALTO_BASE)
+            )
+            
+            # 3. Sobrescribimos el evento para engañar al resto del código
+            evento.pos = posicion_corregida
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
             inventario.manejar_click(evento.pos, pantalla_actual, pantallas_ocultas)
@@ -733,8 +753,10 @@ while True:
     #----------------------------------------------------------------------------------------------------------  
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
-        mouse = pygame.mouse.get_pos()
-        if botones.boton_jugar.collidepoint(mouse):
+        mouse_real = pygame.mouse.get_pos()
+        mouse_virtual = traducir_raton(mouse_real, DIMENSIONES_REALES, (ANCHO_BASE, ALTO_BASE))
+
+        if botones.boton_jugar.collidepoint(mouse_virtual):
             pygame.draw.rect(pantalla, (80, 80, 80), botones.boton_jugar, 3)
 
     elif pantalla_actual == "carga":
@@ -744,8 +766,9 @@ while True:
 
     elif pantalla_actual == "juego":
         pantalla.blit(imagenes.intro, (0, 0))
-        mouse = pygame.mouse.get_pos()
-        if botones.boton_jugar2.collidepoint(mouse):
+        mouse_real = pygame.mouse.get_pos()
+        mouse_virtual = traducir_raton(mouse_real, DIMENSIONES_REALES, (ANCHO_BASE, ALTO_BASE))
+        if botones.boton_jugar2.collidepoint(mouse_virtual):
             pygame.draw.rect(pantalla, (205, 170, 125), botones.boton_jugar2, 4)
 
     elif pantalla_actual == "historia":

@@ -5,11 +5,11 @@ from nivel1 import Nivel1
 from Nivel3 import nivel3
 
 class Juego:
-    def __init__(self):
+    def __init__(self, pantalla):
         pygame.init()
         pygame.mixer.init()
 
-        self.pantalla = pygame.display.set_mode((1400,800))
+        self.pantalla = pantalla
         pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
