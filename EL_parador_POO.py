@@ -4,24 +4,28 @@ import random
 pygame.init()
 pygame.mixer.init()
 
-# 1. Configuración de dimensiones
-ANCHO_BASE, ALTO_BASE = 1400, 900
-# 2. Las DOS superficies
-ventana_real = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
-DIMENSIONES_REALES = (ventana_real.get_width(), ventana_real.get_height())
-# Esta es la superficie virtual donde diseñas todo a 800x600:
+# ---------------- CONFIGURACIÓN DE PANTALLA ----------------
+ANCHO_BASE, ALTO_BASE = 1400, 800
+# Ventana normal, pero redimensionable
+ventana_real = pygame.display.set_mode(
+    (ANCHO_BASE, ALTO_BASE),
+    pygame.RESIZABLE
+)
+pygame.display.set_caption("EL PARADOR")
+# Superficie virtual donde funciona TODO el juego
 pantalla = pygame.Surface((ANCHO_BASE, ALTO_BASE))
 
-def traducir_raton(pos_real, dim_real, dim_virtual):
-    x_real, y_real = pos_real
-    ancho_real, alto_real = dim_real
-    ancho_virtual, alto_virtual = dim_virtual
 
-    # Calculamos la proporción matemática exacta
-    x_virtual = int(x_real * (ancho_virtual / ancho_real))
-    y_virtual = int(y_real * (alto_virtual / alto_real))
+def traducir_raton(pos_real):
+    x_real, y_real = pos_real
+
+    ancho_real, alto_real = ventana_real.get_size()
+
+    x_virtual = int(x_real * ANCHO_BASE / ancho_real)
+    y_virtual = int(y_real * ALTO_BASE / alto_real)
 
     return (x_virtual, y_virtual)
+
 
 from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, ParticulaLuz
 from nivel1 import Nivel1
@@ -165,7 +169,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -177,6 +181,7 @@ num_ingresado = ""
 inventario_abierto = False
 mostrar_inventario = True
 
+acertijo_abierto = False
 libro_abierto = False
 pagina_libro = 1
 panel_resuelto = False
@@ -197,11 +202,7 @@ while True:
 
         if evento.type == pygame.MOUSEMOTION or evento.type == pygame.MOUSEBUTTONDOWN or evento.type == pygame.MOUSEBUTTONUP:
             # 1 y 2. Traducimos la posición
-            posicion_corregida = traducir_raton(
-                evento.pos, 
-                DIMENSIONES_REALES, 
-                (ANCHO_BASE, ALTO_BASE)
-            )
+            posicion_corregida = traducir_raton(evento.pos)
             
             # 3. Sobrescribimos el evento para engañar al resto del código
             evento.pos = posicion_corregida
@@ -272,16 +273,25 @@ while True:
                         juego.sonidos.acertijo1.play()
                         juego.acertijo1_son_reproduciendo = True
                         juego.nivel1.tiempo_acertijo1 = pygame.time.get_ticks()
-
+                    acertijo_abierto = True
+                    pantalla_actual = "acertijo_zoom"
                 elif cambiar_pantalla_si_toca(botones.flecha_izquierda,"jardin",evento):
                     juego.sonidos.acertijo1.stop()
                     juego.acertijo1_son_reproduciendo = False
-
                 elif cambiar_pantalla_si_toca(botones.flecha_derecha,"afuera",evento):
                     juego.sonidos.acertijo1.stop()
                     juego.acertijo1_son_reproduciendo = False
-
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"cofre_zoom",evento)
+
+                
+            elif pantalla_actual == "acertijo_zoom":
+                if botones.B_libro_atras.collidepoint(evento.pos):
+                    acertijo_abierto = False
+                    pantalla_actual = "cofre"
+                elif not botones.Rect_libro.collidepoint(evento.pos):
+                    acertijo_abierto = False
+                    pantalla_actual = "cofre"
+
 
             elif pantalla_actual == "cofre_abierto":
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"jardin",evento)
@@ -754,7 +764,7 @@ while True:
     if pantalla_actual == "inicio":
         pantalla.blit(imagenes.inicio, (0, 0))
         mouse_real = pygame.mouse.get_pos()
-        mouse_virtual = traducir_raton(mouse_real, DIMENSIONES_REALES, (ANCHO_BASE, ALTO_BASE))
+        mouse_virtual = traducir_raton(mouse_real)
 
         if botones.boton_jugar.collidepoint(mouse_virtual):
             pygame.draw.rect(pantalla, (80, 80, 80), botones.boton_jugar, 3)
@@ -767,7 +777,7 @@ while True:
     elif pantalla_actual == "juego":
         pantalla.blit(imagenes.intro, (0, 0))
         mouse_real = pygame.mouse.get_pos()
-        mouse_virtual = traducir_raton(mouse_real, DIMENSIONES_REALES, (ANCHO_BASE, ALTO_BASE))
+        mouse_virtual = traducir_raton(mouse_real)
         if botones.boton_jugar2.collidepoint(mouse_virtual):
             pygame.draw.rect(pantalla, (205, 170, 125), botones.boton_jugar2, 4)
 
@@ -1002,6 +1012,27 @@ while True:
             if pygame.time.get_ticks() - juego.nivel1.tiempo_acertijo1 > 20000:
                 juego.acertijo1_son_reproduciendo = False
         dibujar_brillitos(juego.particulas_acertijo, 890, 1040, 280, 580)
+
+    elif pantalla_actual == "acertijo_zoom":
+        # Primero dibujamos la imagen que había de fondo
+        juego.nivel1.dibujar("cofre")
+        # Sombra semitransparente sobre el fondo
+        if acertijo_abierto:
+            sombra = pygame.Surface((1400, 800), pygame.SRCALPHA)
+            sombra.fill((0, 0, 0, 150))
+            pantalla.blit(sombra, (0, 0))
+            # Achicamos la imagen del acertijo
+            acertijo = pygame.transform.scale(
+                imagenes.acertijo_viejo,
+                (900, 520)
+            )
+            # La centramos
+            x = (1400 - acertijo.get_width()) // 2
+            y = (800 - acertijo.get_height()) // 2
+            pantalla.blit(acertijo, (x, y))
+        # Flechita para cerrar
+        #flecha_abajo_derecha_f(1250, 500)
+            
 
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
@@ -1510,8 +1541,10 @@ while True:
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)
 
-    pantalla_escalada = pygame.transform.scale(pantalla, DIMENSIONES_REALES)
+#--------- ESCALAMOS PANTALLA --------------------------------------------
+    print(ventana_real.get_size())
+    ancho_ventana, alto_ventana = ventana_real.get_size()
+    pantalla_escalada = pygame.transform.scale(pantalla,(ancho_ventana, alto_ventana))
+    ventana_real.blit(pantalla_escalada, (0, 0))
 
-    ventana_real.blit(pantalla_escalada, (0,0))
-    
     pygame.display.flip()

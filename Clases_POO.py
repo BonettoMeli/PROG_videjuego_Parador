@@ -10,7 +10,7 @@ class Juego:
         pygame.mixer.init()
 
         self.pantalla = pantalla
-        pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
+        #pygame.display.set_caption("Videojuego: ¨EL PARADOR¨")
         self.pantalla_actual = "inicio"
 
         self.fuente = pygame.font.SysFont("Times New Roman", 80)

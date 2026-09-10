@@ -30,6 +30,9 @@ class Nivel1:
 
         elif pantalla_actual == "cofre":
             self.pantalla.blit(self.imagenes.cofre, (0,0))
+
+        elif pantalla_actual == "acertijo_zoom":
+            self.pantalla.blit(self.imagenes.acertijo_viejo, (0,0))
             
         elif pantalla_actual == "cofre_desbloqueando":
             self.pantalla.blit(self.imagenes.cofre_zoom, (0,0))
