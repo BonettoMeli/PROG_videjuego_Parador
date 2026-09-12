@@ -169,10 +169,12 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "jardin" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
+tiempo_nivel1_inicio = 0
+mostrar_boton_omitir = False
 
 num_encontrado = []
 num_correcto = "7352"
@@ -201,16 +203,64 @@ while True:
         juego.manejar_teclado(evento)
 
         if evento.type == pygame.MOUSEMOTION or evento.type == pygame.MOUSEBUTTONDOWN or evento.type == pygame.MOUSEBUTTONUP:
-            # 1 y 2. Traducimos la posición
             posicion_corregida = traducir_raton(evento.pos)
-            
-            # 3. Sobrescribimos el evento para engañar al resto del código
             evento.pos = posicion_corregida
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
             inventario.manejar_click(evento.pos, pantalla_actual, pantallas_ocultas)
 
-            if pantalla_actual == "inicio": # BOTÓN DEL MENÚ PRINCIPAL
+            # ---------------- BOTÓN OMITIR INTRO ----------------
+            if botones.boton_omitir_intro.collidepoint(evento.pos):
+
+                intro_puede_omitirse = False
+
+                # En historia, recién se puede omitir cuando aparece N1
+                if pantalla_actual == "historia":
+                    if pygame.time.get_ticks() - tiempo_historia > 2000:
+                        intro_puede_omitirse = True
+
+                # En las demás escenas de la intro, se puede omitir
+                elif pantalla_actual in [
+                    "n7",
+                    "comienzo",
+                    "auto3",
+                    "auto_parado",
+                    "parte3",
+                    "llegada3",
+                    "boleto",
+                    "tren3",
+                    "charla"
+                ]:
+                    intro_puede_omitirse = True
+
+                if intro_puede_omitirse:
+                    pygame.mixer.stop()
+
+                    juego.sonido_n1 = False
+                    juego.favela_reproduciendo = False
+                    juego.auto0_paro_reproducido = False
+                    juego.auto_paro_reproducido = False
+                    juego.llegada1_son_reproduciendo = False
+                    juego.llegada2_son_reproduciendo = False
+                    juego.ruido_tren_reproduciendo = False
+                    juego.tren_humo_reproduciendo = False
+                    juego.boleto1_son_reproduciendo = False
+                    juego.charla1_son_reproduciendo = False
+                    juego.charla2_son_reproduciendo = False
+                    juego.charla3_son_reproduciendo = False
+                    juego.charla4_son_reproduciendo = False
+                    juego.charla5_son_reproduciendo = False
+                    juego.charla6_son_reproduciendo = False
+                    juego.charla7_son_reproduciendo = False
+                    juego.charla8_son_reproduciendo = False
+                    juego.charla9_son_reproduciendo = False
+                    juego.charla10_son_reproduciendo = False
+                    juego.charla11_son_reproduciendo = False
+
+                    tiempo_nivel1_inicio = pygame.time.get_ticks()
+                    pantalla_actual = "nivel1_inicio"
+                       
+            elif pantalla_actual == "inicio": # BOTÓN DEL MENÚ PRINCIPAL
                 cambiar_pantalla_si_toca(botones.boton_jugar,"carga",evento,sonidos.botonson)
                 tiempo_carga = pygame.time.get_ticks()
 
@@ -785,6 +835,7 @@ while True:
         pantalla.fill((244, 228, 188)) 
         tiempo = pygame.time.get_ticks() - tiempo_historia
         pantalla.blit(imagenes.carga2, (0, 0))
+
         if tiempo > 2000:
             pantalla.blit(imagenes.n1, (0, 0))
             if not juego.sonido_n1:
@@ -794,7 +845,7 @@ while True:
             pantalla.blit(imagenes.n2, (0, 0))
         if tiempo > 6500:
             pantalla.blit(imagenes.n3, (0, 0))
-        if tiempo > 9500: 
+        if tiempo > 9500:
             pantalla.blit(imagenes.n4, (0, 0))
         if tiempo > 12500:
             pantalla.blit(imagenes.n5, (0, 0))
@@ -985,6 +1036,41 @@ while True:
 
     elif pantalla_actual == "tren3":
         flecha_abajo_derecha_f(1340, 720)
+
+    elif pantalla_actual == "nivel1_inicio":
+        tiempo = pygame.time.get_ticks() - tiempo_nivel1_inicio
+        if tiempo < 1500:
+            pantalla.fill((0, 0, 0))
+        elif tiempo < 4500:
+            pantalla.blit(imagenes.nivel1, (0, 0))
+        elif tiempo < 7500:
+            pantalla.blit(imagenes.carga, (0, 0))
+        else:
+            juego.cronometro_inicio = pygame.time.get_ticks()
+            pantalla_actual = "afuera"
+
+    # ---------------- BOTÓN OMITIR INTRO ----------------
+
+    mostrar_boton_omitir = False
+
+    if pantalla_actual == "historia":
+        if pygame.time.get_ticks() - tiempo_historia > 2000:
+            mostrar_boton_omitir = True
+
+    elif pantalla_actual in [
+        "n7","comienzo","auto3","auto_parado",
+        "parte3","llegada3","boleto","tren3","charla"]:
+        mostrar_boton_omitir = True
+
+    if mostrar_boton_omitir:
+        pygame.draw.rect(pantalla,(40, 40, 40),botones.boton_omitir_intro)
+        pygame.draw.rect(pantalla,(255, 255, 255),botones.boton_omitir_intro,2)
+        texto_omitir = juego.fuente_pequenia.render("Omitir intro",True,(255, 255, 255))
+
+        pantalla.blit(texto_omitir,
+            (botones.boton_omitir_intro.centerx - texto_omitir.get_width() // 2,
+                botones.boton_omitir_intro.centery - texto_omitir.get_height() // 2))
+
     #________________________________________ NIVEL 1 ___________________________________________________
     if pantalla_actual in ["jardin", "afuera", "interior", "cofre",
         "cofre_zoom", "cofre_abierto", "semilla", "cofre_vacio", "invernadero", "cabina", "gracias"]:
@@ -1526,17 +1612,20 @@ while True:
         elif tiempo < 22000:
             pantalla.blit(imagenes.final6, (0, 0))  
         else:
+            pantalla_actual = "fin"
+
+        if pantalla_actual == "fin":
             tiempo_total = (juego.cronometro_final - juego.cronometro_inicio) // 1000
             minutos = tiempo_total // 60
             segundos = tiempo_total % 60
             texto_tiempo = juego.fuente_pequenia.render(f"{minutos} min {segundos} seg", True,(0,0,0))
             pantalla.blit(imagenes.fin, (0, 0))
-            pantalla.blit(texto_tiempo, (600, 450))
+            pantalla.blit(texto_tiempo, (630, 470))
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
-                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula",
-                        "final"]
+                        "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "nivel1_inicio", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula",
+                        "final", "fin"]
 
     if mostrar_inventario and pantalla_actual not in pantallas_ocultas:
         inventario.dibujar(pantalla, juego.imagenes)

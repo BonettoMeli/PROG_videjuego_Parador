@@ -198,6 +198,8 @@ class Botones:
         self.boton_jugar = Boton(510, 468, 350, 65)
         self.boton_jugar2 = Boton(600, 726, 220, 61)
 
+        self.boton_omitir_intro = pygame.Rect(30, 720, 200, 35)
+
         self.boton1_historia = Boton(600, 726, 220, 61)
         self.boton_cabina = Boton(600, 726, 220, 61)
 
