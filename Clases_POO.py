@@ -290,7 +290,7 @@ class Botones:
         self.B_viejo_n4 = Boton(550,150,400,400)
         self.B_camino_abierto = Boton(600,470,100,100)
 
-        self.boton_reiniciar = Boton(600,600,100,200)
+        self.boton_reiniciar = Boton(500,550,400,100)
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):

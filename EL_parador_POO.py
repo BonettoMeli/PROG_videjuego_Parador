@@ -174,6 +174,7 @@ tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
 tiempo_nivel1_inicio = 0
+tiempo_reinicio = 0
 mostrar_boton_omitir = False
 
 num_encontrado = []
@@ -208,6 +209,23 @@ while True:
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
             inventario.manejar_click(evento.pos, pantalla_actual, pantallas_ocultas)
+            # ---------------- BOTÓN REINICIAR ----------------
+            if botones.boton_reiniciar.collidepoint(evento.pos) and pantalla_actual == "fin":
+                pygame.mixer.stop()
+                sonidos.botonson.play()
+                tiempo_reinicio = pygame.time.get_ticks()
+                juego.cronometro_inicio = 0
+                juego.cronometro_final = 0
+
+                llave_recogida = False
+                puerta_abierta = False
+                fusible_recogido = False
+                brujula_recogida = False
+
+                tiempo_carga = 0
+                tiempo_historia = 0
+                tiempo_comienzo = 0
+                tiempo_nivel1_inicio = 0
 
             # ---------------- BOTÓN OMITIR INTRO ----------------
             if botones.boton_omitir_intro.collidepoint(evento.pos):
@@ -235,6 +253,7 @@ while True:
 
                 if intro_puede_omitirse:
                     pygame.mixer.stop()
+                    sonidos.botonson.play()
 
                     juego.sonido_n1 = False
                     juego.favela_reproduciendo = False
@@ -1610,17 +1629,34 @@ while True:
         elif tiempo < 17000:
             pantalla.blit(imagenes.final5, (0, 0))
         elif tiempo < 22000:
-            pantalla.blit(imagenes.final6, (0, 0))  
+            pantalla.blit(imagenes.final6, (0, 0))
+        elif tiempo < 24000:
+            pantalla.fill((0,0,0))  
         else:
             pantalla_actual = "fin"
 
-        if pantalla_actual == "fin":
+    if pantalla_actual == "fin":
+        if tiempo_reinicio != 0:
+            tiempo = pygame.time.get_ticks() - tiempo_reinicio
+            if tiempo < 1500:
+                pantalla.fill((0, 0, 0))
+            else:
+                tiempo_reinicio = 0
+                pantalla_actual = "inicio"
+        else:
             tiempo_total = (juego.cronometro_final - juego.cronometro_inicio) // 1000
             minutos = tiempo_total // 60
             segundos = tiempo_total % 60
-            texto_tiempo = juego.fuente_pequenia.render(f"{minutos} min {segundos} seg", True,(0,0,0))
+            texto_tiempo = juego.fuente_pequenia.render(
+                f"{minutos} min {segundos} seg",
+                True,
+                (0,0,0)
+            )
             pantalla.blit(imagenes.fin, (0, 0))
             pantalla.blit(texto_tiempo, (630, 470))
+
+           # pygame.draw.rect(pantalla, (255,0,0), botones.boton_reiniciar, 2)
+            
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
@@ -1631,7 +1667,6 @@ while True:
         inventario.dibujar(pantalla, juego.imagenes)
 
 #--------- ESCALAMOS PANTALLA --------------------------------------------
-    print(ventana_real.get_size())
     ancho_ventana, alto_ventana = ventana_real.get_size()
     pantalla_escalada = pygame.transform.scale(pantalla,(ancho_ventana, alto_ventana))
     ventana_real.blit(pantalla_escalada, (0, 0))
