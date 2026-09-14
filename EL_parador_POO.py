@@ -169,7 +169,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -213,19 +213,40 @@ while True:
             if botones.boton_reiniciar.collidepoint(evento.pos) and pantalla_actual == "fin":
                 pygame.mixer.stop()
                 sonidos.botonson.play()
-                tiempo_reinicio = pygame.time.get_ticks()
-                juego.cronometro_inicio = 0
-                juego.cronometro_final = 0
+                juego = Juego(pantalla) #reiniciamos los objetos principales
+                inventario = Inventario() #aca tambien
 
+                #Reiniciamos nivel 2
+                numeros = [0, 0, 0, 0]
+                palancas = [False, False, False, False]
+
+                #Reiniciamos todo lo del nivel 4
+                pieza_seleccionada = None
+                arrastrando_pieza = False
+                piezas_colocadas.clear()
+                rompecabezas_completo = False
+                oso_recogido = False
+                OOO = False
+
+                posicion_piezas[1].topleft = (950, 600) # Volvemos las piezas del rompe a sus lugares iniciales
+                posicion_piezas[2].topleft = (300, 100)
+                posicion_piezas[3].topleft = (950, 100)
+                posicion_piezas[4].topleft = (300, 600)
+
+                #reiniciamos objetos y puertas para que aparezca todo lindo
                 llave_recogida = False
                 puerta_abierta = False
                 fusible_recogido = False
                 brujula_recogida = False
 
-                tiempo_carga = 0
-                tiempo_historia = 0
-                tiempo_comienzo = 0
-                tiempo_nivel1_inicio = 0
+                # Reiniciamos pantallas/puzzles
+                acertijo_abierto = False
+                libro_abierto = False
+                pagina_libro = 1
+                panel_resuelto = False
+                Mensaje_ce = False
+
+                pantalla_actual = "inicio" #volvemos al comienzo de todso
 
             # ---------------- BOTÓN OMITIR INTRO ----------------
             if botones.boton_omitir_intro.collidepoint(evento.pos):
@@ -515,6 +536,7 @@ while True:
                         pantalla_actual = "puerta_abierta1"
                     elif inventario.objeto_seleccionado == "llave_objeto":
                         inventario.objetos.remove("llave_objeto")
+                        inventario.abierto = False
                         inventario.objeto_seleccionado = None
                         puerta_abierta = True
                         pantalla_actual = "puerta_abierta1"
@@ -666,6 +688,7 @@ while True:
                         inventario.abierto = False
                         pantalla_actual = "gracias3"
                         juego.nivel3.tiempo_gracias3 = pygame.time.get_ticks()
+                        juego.sonidos.maquinista3_hablando.stop()
                         juego.sonidos.maquinista_gracias3.play()
                     else:
                         if not juego.maquinista3_intro_son_reproduciendo:
@@ -765,6 +788,7 @@ while True:
                 if botones.B_viejo_n4.collidepoint(evento.pos):
                     if inventario.objeto_seleccionado == "osito_objeto" and not OOO:
                         inventario.objetos.remove("osito_objeto")
+                        inventario.abierto = False
                         inventario.objeto_seleccionado = None
                         OOO = True
                         pantalla_actual = "calesita_puzzle"
@@ -1656,7 +1680,6 @@ while True:
             pantalla.blit(texto_tiempo, (630, 470))
 
            # pygame.draw.rect(pantalla, (255,0,0), botones.boton_reiniciar, 2)
-            
 
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
