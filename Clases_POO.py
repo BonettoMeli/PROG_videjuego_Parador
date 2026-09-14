@@ -1,8 +1,19 @@
 import sys
+import os
 import pygame
 import random
 from nivel1 import Nivel1
 from Nivel3 import nivel3
+
+def ruta_recurso(ruta_relativa):
+    """Obtiene la ruta absoluta a un recurso, funciona para el entorno de desarrollo y para PyInstaller."""
+    try:
+        # PyInstaller crea una carpeta temporal y guarda la ruta en sys._MEIPASS
+        ruta_base = sys._MEIPASS
+    except Exception:
+        ruta_base = os.path.abspath(".")
+
+    return os.path.join(ruta_base, ruta_relativa)
 
 class Juego:
     def __init__(self, pantalla):
@@ -294,7 +305,8 @@ class Botones:
 
 class Imagenes():
     def cargar(self, ruta, ancho, alto):
-        imagen = pygame.image.load(ruta)
+        ruta_absoluta = ruta_recurso(ruta) # <--- Nueva línea
+        imagen = pygame.image.load(ruta_absoluta) # <--- Usar ruta_absoluta
         return pygame.transform.scale(imagen, (ancho, alto))
 
     def __init__(self):
@@ -480,7 +492,8 @@ class Imagenes():
 
 class Sonidos():
     def cargar(self, ruta, volumen=1):
-        sonido = pygame.mixer.Sound(ruta)
+        ruta_absoluta = ruta_recurso(ruta) # <--- Nueva línea
+        sonido = pygame.mixer.Sound(ruta_absoluta) # <--- Usar ruta_absoluta
         sonido.set_volume(volumen)
         return sonido
 
