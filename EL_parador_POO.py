@@ -15,10 +15,8 @@ pygame.display.set_caption("EL PARADOR")
 # Superficie virtual donde funciona TODO el juego
 pantalla = pygame.Surface((ANCHO_BASE, ALTO_BASE))
 
-
 def traducir_raton(pos_real):
     x_real, y_real = pos_real
-
     ancho_real, alto_real = ventana_real.get_size()
 
     x_virtual = int(x_real * ANCHO_BASE / ancho_real)
@@ -26,8 +24,7 @@ def traducir_raton(pos_real):
 
     return (x_virtual, y_virtual)
 
-
-from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Boton, Botones, ParticulaLuz
+from Clases_POO import Juego, Imagenes, Sonidos, Inventario, Botones, ParticulaLuz
 from nivel1 import Nivel1
 from Nivel3 import nivel3
 
@@ -169,7 +166,7 @@ imagenes_objetos = {
     "osito_objeto": imagenes.osito_transp}
 
 #----------INICIO DEL PROGRAMA-------------------------------------------------------------------------------
-pantalla_actual = "ciudad_invertida" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+pantalla_actual = "inicio" #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tiempo_carga = 0
 tiempo_historia = 0
 tiempo_comienzo = 0
@@ -216,7 +213,7 @@ while True:
                 juego = Juego(pantalla) #reiniciamos los objetos principales
                 inventario = Inventario() #aca tambien
 
-                #Reiniciamos nivel 2
+                # nivel 2
                 numeros = [0, 0, 0, 0]
                 palancas = [False, False, False, False]
 
@@ -239,37 +236,27 @@ while True:
                 fusible_recogido = False
                 brujula_recogida = False
 
-                # Reiniciamos pantallas/puzzles
+                #reiniciamos pantallas/puzzles
                 acertijo_abierto = False
                 libro_abierto = False
                 pagina_libro = 1
                 panel_resuelto = False
                 Mensaje_ce = False
 
-                pantalla_actual = "inicio" #volvemos al comienzo de todso
-
-            # ---------------- BOTÓN OMITIR INTRO ----------------
+                #pantalla_actual = "inicio" #volvemos al comienzo de todso
+                tiempo_reinicio = pygame.time.get_ticks()
+            # ---------------- BOTÓN OMITIR INTRO ---------------------------------------------------------------
             if botones.boton_omitir_intro.collidepoint(evento.pos):
-
                 intro_puede_omitirse = False
 
-                # En historia, recién se puede omitir cuando aparece N1
-                if pantalla_actual == "historia":
-                    if pygame.time.get_ticks() - tiempo_historia > 2000:
+                if pantalla_actual == "historia": #se puede omitir recien cuando aparece N1
+                    if pygame.time.get_ticks() - tiempo_historia > 2000: 
                         intro_puede_omitirse = True
 
-                # En las demás escenas de la intro, se puede omitir
+                #las demás escenas de la intro en las que se puede omitir
                 elif pantalla_actual in [
-                    "n7",
-                    "comienzo",
-                    "auto3",
-                    "auto_parado",
-                    "parte3",
-                    "llegada3",
-                    "boleto",
-                    "tren3",
-                    "charla"
-                ]:
+                    "n7", "comienzo", "auto3", "auto_parado", "parte3",
+                    "llegada3", "boleto", "tren3", "charla"]:
                     intro_puede_omitirse = True
 
                 if intro_puede_omitirse:
@@ -372,7 +359,6 @@ while True:
                     juego.sonidos.acertijo1.stop()
                     juego.acertijo1_son_reproduciendo = False
                 cambiar_pantalla_si_toca(botones.flecha_centro_central,"cofre_zoom",evento)
-
                 
             elif pantalla_actual == "acertijo_zoom":
                 if botones.B_libro_atras.collidepoint(evento.pos):
@@ -381,7 +367,6 @@ while True:
                 elif not botones.Rect_libro.collidepoint(evento.pos):
                     acertijo_abierto = False
                     pantalla_actual = "cofre"
-
 
             elif pantalla_actual == "cofre_abierto":
                 cambiar_pantalla_si_toca(botones.flecha_izquierda,"jardin",evento)
@@ -1093,7 +1078,6 @@ while True:
             pantalla_actual = "afuera"
 
     # ---------------- BOTÓN OMITIR INTRO ----------------
-
     mostrar_boton_omitir = False
 
     if pantalla_actual == "historia":
@@ -1143,25 +1127,19 @@ while True:
         dibujar_brillitos(juego.particulas_acertijo, 890, 1040, 280, 580)
 
     elif pantalla_actual == "acertijo_zoom":
-        # Primero dibujamos la imagen que había de fondo
         juego.nivel1.dibujar("cofre")
-        # Sombra semitransparente sobre el fondo
-        if acertijo_abierto:
+        
+        if acertijo_abierto: #hacemos la sombra del fondo
             sombra = pygame.Surface((1400, 800), pygame.SRCALPHA)
             sombra.fill((0, 0, 0, 150))
             pantalla.blit(sombra, (0, 0))
-            # Achicamos la imagen del acertijo
-            acertijo = pygame.transform.scale(
-                imagenes.acertijo_viejo,
-                (900, 520)
-            )
-            # La centramos
-            x = (1400 - acertijo.get_width()) // 2
+            acertijo = pygame.transform.scale(imagenes.acertijo_viejo, (900, 520))
+            
+            x = (1400 - acertijo.get_width()) // 2 #la centramos
             y = (800 - acertijo.get_height()) // 2
             pantalla.blit(acertijo, (x, y))
-        # Flechita para cerrar
+
         #flecha_abajo_derecha_f(1250, 500)
-            
 
     elif pantalla_actual == "cofre_zoom":
         flecha_abajo_f(710,660)
@@ -1175,6 +1153,8 @@ while True:
         pantalla.blit(texto4, (837,290))
 
         if "".join(juego.nivel1.letras) == "AMTV":
+            juego.sonidos.acertijo1.stop()
+            juego.acertijo1_son_reproduciendo = False
             juego.nivel1.tiempo_cofre_abierto = pygame.time.get_ticks()
             pantalla_actual = "cofre_abierto"
 
@@ -1196,9 +1176,7 @@ while True:
         flecha_abajo_f(710,660)
 
     elif pantalla_actual == "invernadero":
-
         if juego.nivel1.planta_ampliada is None:
-
             dibujar_brillitos(juego.particulas_A, 500, 700, 180, 400)
             dibujar_brillitos(juego.particulas_M, 450, 730, 330, 510)
             dibujar_brillitos(juego.particulas_T, 680, 860, 680, 780)
@@ -1672,15 +1650,12 @@ while True:
             minutos = tiempo_total // 60
             segundos = tiempo_total % 60
             texto_tiempo = juego.fuente_pequenia.render(
-                f"{minutos} min {segundos} seg",
-                True,
-                (0,0,0)
-            )
+                f"{minutos} min {segundos} seg", True, (0,0,0))
+            
             pantalla.blit(imagenes.fin, (0, 0))
             pantalla.blit(texto_tiempo, (630, 470))
 
-           # pygame.draw.rect(pantalla, (255,0,0), botones.boton_reiniciar, 2)
-
+            #pygame.draw.rect(pantalla, (255,0,0), botones.boton_reiniciar, 2)
 #------------------------------------------------------------------------
     pantallas_ocultas = ["inicio", "carga", "juego", "historia", "n7", "comienzo", "auto3",
                         "auto_parado", "parte3", "llegada_estacion", "llegada3", "boleto", "tren3","charla", "nivel1_inicio", "gracias", "intro_archivo", "gracias2", "gracias3", "escena_sin_brujula",

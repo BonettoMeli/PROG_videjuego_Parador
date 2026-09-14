@@ -505,7 +505,7 @@ class Sonidos():
         self.tren_humo = self.cargar("musica_sonido/tren_humo.mp3",0.1)
         self.tren_avanzando = self.cargar("musica_sonido/tren_avanzando.WAV")
         #
-        self.cofre_efecto = self.cargar("musica_sonido/cofre_abriendose.mp3")
+        self.cofre_efecto = self.cargar("musica_sonido/cofre_abriendose.mp3",0.4)
         self.semilla_efecto = self.cargar("musica_sonido/efecto_semilla.mp3",0.3)
         #-------------HISTORIA--------------------------------------------------------------------------------
         self.texto_gris = self.cargar("musica_sonido/1_texto_gris_audio.mpeg")
