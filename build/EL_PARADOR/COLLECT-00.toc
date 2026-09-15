@@ -1,0 +1,1208 @@
+([('EL_PARADOR.exe',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\build\\EL_PARADOR\\EL_PARADOR.exe',
+   'EXECUTABLE'),
+  ('SDL2.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('SDL2_image.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('SDL2_mixer.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_mixer.dll',
+   'BINARY'),
+  ('SDL2_ttf.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('VCRUNTIME140_1.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('_bz2.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('_ctypes.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_ctypes.pyd',
+   'EXTENSION'),
+  ('_decimal.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_ssl.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('_wmi.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_wmi.pyd',
+   'EXTENSION'),
+  ('_zstd.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_zstd.pyd',
+   'EXTENSION'),
+  ('base_library.zip',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\build\\EL_PARADOR\\base_library.zip',
+   'DATA'),
+  ('freetype.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\freetype.dll',
+   'BINARY'),
+  ('libcrypto-3.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\libcrypto-3.dll',
+   'BINARY'),
+  ('libffi-8.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\libffi-8.dll',
+   'BINARY'),
+  ('libjpeg-62.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libjpeg-62.dll',
+   'BINARY'),
+  ('libogg-0.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('libopus-0.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
+  ('libopusfile-0.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libopusfile-0.dll',
+   'BINARY'),
+  ('libpng16-16.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libpng16-16.dll',
+   'BINARY'),
+  ('libssl-3.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\libssl-3.dll',
+   'BINARY'),
+  ('libtiff-5.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libtiff-5.dll',
+   'BINARY'),
+  ('libwavpack-1.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libwavpack-1.dll',
+   'BINARY'),
+  ('libwebp-7.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
+  ('libwebpdemux-2.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libwebpdemux-2.dll',
+   'BINARY'),
+  ('libxmp.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libxmp.dll',
+   'BINARY'),
+  ('musica_sonido\\10_es_no_es_un_tren.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\10_es_no_es_un_tren.mpeg',
+   'DATA'),
+  ('musica_sonido\\11_hoy_vamos_a_pasar.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\11_hoy_vamos_a_pasar.mpeg',
+   'DATA'),
+  ('musica_sonido\\12_y_cada_una_es_unica.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\12_y_cada_una_es_unica.mpeg',
+   'DATA'),
+  ('musica_sonido\\13_que_raro_el_tren.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\13_que_raro_el_tren.mpeg',
+   'DATA'),
+  ('musica_sonido\\14_rapido_ve_a_preguntarle.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\14_rapido_ve_a_preguntarle.mpeg',
+   'DATA'),
+  ('musica_sonido\\15_el_maquinista_me_dijo.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\15_el_maquinista_me_dijo.mpeg',
+   'DATA'),
+  ('musica_sonido\\16_claro_por_supuesto.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\16_claro_por_supuesto.mp3',
+   'DATA'),
+  ('musica_sonido\\17_sin_combustible_maquinista.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\17_sin_combustible_maquinista.mp3',
+   'DATA'),
+  ('musica_sonido\\18_gracias_maquinista.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\18_gracias_maquinista.mp3',
+   'DATA'),
+  ('musica_sonido\\1_texto_gris_audio.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\1_texto_gris_audio.mpeg',
+   'DATA'),
+  ('musica_sonido\\2_ay_no_el_auto_se_paro.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\2_ay_no_el_auto_se_paro.mpeg',
+   'DATA'),
+  ('musica_sonido\\3_bueno_por_suerte_hay_un_tren_cerca.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\3_bueno_por_suerte_hay_un_tren_cerca.mpeg',
+   'DATA'),
+  ('musica_sonido\\4_por_fin_llegue_a_la_estacion.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\4_por_fin_llegue_a_la_estacion.mpeg',
+   'DATA'),
+  ('musica_sonido\\5_wow_que_rapido.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\5_wow_que_rapido.mpeg',
+   'DATA'),
+  ('musica_sonido\\6_este_tren_debe.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\6_este_tren_debe.mpeg',
+   'DATA'),
+  ('musica_sonido\\7_es_raro.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\7_es_raro.mpeg',
+   'DATA'),
+  ('musica_sonido\\8_por_que_dice_eso.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\8_por_que_dice_eso.mpeg',
+   'DATA'),
+  ('musica_sonido\\9_debes_ser_nueva.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\9_debes_ser_nueva.mpeg',
+   'DATA'),
+  ('musica_sonido\\Bocina_tren.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\Bocina_tren.mp3',
+   'DATA'),
+  ('musica_sonido\\Cascadas_agua.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\Cascadas_agua.mp3',
+   'DATA'),
+  ('musica_sonido\\Favela.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\Favela.mp3',
+   'DATA'),
+  ('musica_sonido\\Interferencia_efecto.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\Interferencia_efecto.mp3',
+   'DATA'),
+  ('musica_sonido\\acertijo_viejo.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\acertijo_viejo.mp3',
+   'DATA'),
+  ('musica_sonido\\audio_final.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\audio_final.mpeg',
+   'DATA'),
+  ('musica_sonido\\boton_efecto.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\boton_efecto.mp3',
+   'DATA'),
+  ('musica_sonido\\chica_estacion_cerca.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\chica_estacion_cerca.mp3',
+   'DATA'),
+  ('musica_sonido\\chucuchu.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\chucuchu.mp3',
+   'DATA'),
+  ('musica_sonido\\cofre_abriendose.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\cofre_abriendose.mp3',
+   'DATA'),
+  ('musica_sonido\\efecto_agua.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\efecto_agua.mp3',
+   'DATA'),
+  ('musica_sonido\\efecto_palanca.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\efecto_palanca.mp3',
+   'DATA'),
+  ('musica_sonido\\efecto_puertas_tren.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\efecto_puertas_tren.mp3',
+   'DATA'),
+  ('musica_sonido\\efecto_semilla.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\efecto_semilla.mp3',
+   'DATA'),
+  ('musica_sonido\\efecto_sin_arranque.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\efecto_sin_arranque.mp3',
+   'DATA'),
+  ('musica_sonido\\gracias_maquinista2.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\gracias_maquinista2.mp3',
+   'DATA'),
+  ('musica_sonido\\gracias_maquinista3.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\gracias_maquinista3.mpeg',
+   'DATA'),
+  ('musica_sonido\\maquinista2_intro.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\maquinista2_intro.mp3',
+   'DATA'),
+  ('musica_sonido\\maquinista3_intro.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\maquinista3_intro.mpeg',
+   'DATA'),
+  ('musica_sonido\\maquinista4_intro.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\maquinista4_intro.mpeg',
+   'DATA'),
+  ('musica_sonido\\memoria_nivel3.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\memoria_nivel3.mp3',
+   'DATA'),
+  ('musica_sonido\\musica_nivel2.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\musica_nivel2.mp3',
+   'DATA'),
+  ('musica_sonido\\musica_nivel3.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\musica_nivel3.mp3',
+   'DATA'),
+  ('musica_sonido\\musica_nivel4.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\musica_nivel4.mp3',
+   'DATA'),
+  ('musica_sonido\\nueve.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\nueve.mp3',
+   'DATA'),
+  ('musica_sonido\\pagina_libro.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\pagina_libro.mp3',
+   'DATA'),
+  ('musica_sonido\\pajarito.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\pajarito.mp3',
+   'DATA'),
+  ('musica_sonido\\puerta_abierta.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\puerta_abierta.mp3',
+   'DATA'),
+  ('musica_sonido\\puerta_cerrada.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\puerta_cerrada.mp3',
+   'DATA'),
+  ('musica_sonido\\sistema_poleas.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\sistema_poleas.mp3',
+   'DATA'),
+  ('musica_sonido\\sonido_error.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\sonido_error.mp3',
+   'DATA'),
+  ('musica_sonido\\tren_avanzando.wav',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\tren_avanzando.wav',
+   'DATA'),
+  ('musica_sonido\\tren_humo.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\tren_humo.mp3',
+   'DATA'),
+  ('musica_sonido\\viejo_molesto2.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\viejo_molesto2.mp3',
+   'DATA'),
+  ('musica_sonido\\viejo_molesto3.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\viejo_molesto3.mp3',
+   'DATA'),
+  ('musica_sonido\\voz_viejo_intro2.mp3',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\voz_viejo_intro2.mp3',
+   'DATA'),
+  ('musica_sonido\\y_eso.mpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\musica_sonido\\y_eso.mpeg',
+   'DATA'),
+  ('portmidi.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\portmidi.dll',
+   'BINARY'),
+  ('pygame\\SDL2.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('pygame\\SDL2_image.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('pygame\\SDL2_mixer.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_mixer.dll',
+   'BINARY'),
+  ('pygame\\SDL2_ttf.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'BINARY'),
+  ('pygame\\_freetype.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\_freetype.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\audio.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\_sdl2\\audio.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\sdl2.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\_sdl2\\sdl2.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\video.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\_sdl2\\video.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\base.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\base.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\bufferproxy.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\bufferproxy.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\color.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\color.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\constants.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\constants.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\display.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\display.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\draw.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\draw.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\event.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\event.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\font.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\font.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\freesansbold.ttf',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\freesansbold.ttf',
+   'DATA'),
+  ('pygame\\freetype.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\freetype.dll',
+   'BINARY'),
+  ('pygame\\image.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\image.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\imageext.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\imageext.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\joystick.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\joystick.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\key.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\key.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\libogg-0.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('pygame\\libopus-0.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
+  ('pygame\\libwebp-7.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
+  ('pygame\\mask.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\mask.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\math.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\math.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\mixer.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer_music.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\mixer_music.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mouse.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\mouse.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelarray.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\pixelarray.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelcopy.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\pixelcopy.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pygame_icon.bmp',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\pygame_icon.bmp',
+   'DATA'),
+  ('pygame\\rect.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\rect.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\rwobject.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\rwobject.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\scrap.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\scrap.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surface.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\surface.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surflock.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\surflock.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\system.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\system.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\time.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\time.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\transform.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\transform.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\window.cp314-win_amd64.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\pygame\\window.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('python314.dll',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.dll',
+   'BINARY'),
+  ('select.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('unicodedata.pyd',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('visual\\Inicio.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Inicio.png',
+   'DATA'),
+  ('visual\\Jugueteria.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Jugueteria.jfif',
+   'DATA'),
+  ('visual\\Jugueteria_adentro.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Jugueteria_adentro.jpeg',
+   'DATA'),
+  ('visual\\Nivel1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Nivel1.jpeg',
+   'DATA'),
+  ('visual\\Nivel2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Nivel2.jpeg',
+   'DATA'),
+  ('visual\\Nivel3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Nivel3.jpeg',
+   'DATA'),
+  ('visual\\Nivel4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Nivel4.jpeg',
+   'DATA'),
+  ('visual\\P_abajo.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\P_abajo.png',
+   'DATA'),
+  ('visual\\P_arriba.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\P_arriba.png',
+   'DATA'),
+  ('visual\\P_arriba_mal.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\P_arriba_mal.jpeg',
+   'DATA'),
+  ('visual\\Parque_diverciones.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Parque_diverciones.jfif',
+   'DATA'),
+  ('visual\\Zona_rompecabezas.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\Zona_rompecabezas.jfif',
+   'DATA'),
+  ('visual\\acertijo_viejo.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\acertijo_viejo.png',
+   'DATA'),
+  ('visual\\algopaso.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\algopaso.png',
+   'DATA'),
+  ('visual\\archivo2_viejo.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\archivo2_viejo.jpeg',
+   'DATA'),
+  ('visual\\archivo2_viejo2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\archivo2_viejo2.jpeg',
+   'DATA'),
+  ('visual\\auto_completo.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_completo.png',
+   'DATA'),
+  ('visual\\auto_parte1.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_parte1.png',
+   'DATA'),
+  ('visual\\auto_parte11.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_parte11.jpg',
+   'DATA'),
+  ('visual\\auto_parte2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_parte2.png',
+   'DATA'),
+  ('visual\\auto_parte22.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_parte22.jpg',
+   'DATA'),
+  ('visual\\auto_parte3.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\auto_parte3.png',
+   'DATA'),
+  ('visual\\biblioteca_interior.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\biblioteca_interior.jpeg',
+   'DATA'),
+  ('visual\\biblioteca_sumergido.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\biblioteca_sumergido.jpeg',
+   'DATA'),
+  ('visual\\bolso.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\bolso.png',
+   'DATA'),
+  ('visual\\brujula_sin_fondo.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\brujula_sin_fondo.png',
+   'DATA'),
+  ('visual\\cabina2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cabina2.jpeg',
+   'DATA'),
+  ('visual\\cabina2_hablando.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cabina2_hablando.jpeg',
+   'DATA'),
+  ('visual\\camino1_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino1_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino2_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino2_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino3_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino3_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino4_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino4_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino5_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino5_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino6_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino6_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino7_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino7_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino8_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino8_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\camino_abierto.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino_abierto.jpeg',
+   'DATA'),
+  ('visual\\camino_brujula.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino_brujula.jpeg',
+   'DATA'),
+  ('visual\\camino_sin_brujula.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\camino_sin_brujula.jpeg',
+   'DATA'),
+  ('visual\\carga2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\carga2.png',
+   'DATA'),
+  ('visual\\cargando_dimen.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cargando_dimen.png',
+   'DATA'),
+  ('visual\\carrucel_viejo.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\carrucel_viejo.jpeg',
+   'DATA'),
+  ('visual\\casa_adentro.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\casa_adentro.jpeg',
+   'DATA'),
+  ('visual\\casa_afuera.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\casa_afuera.jpeg',
+   'DATA'),
+  ('visual\\charla1.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla1.jpg',
+   'DATA'),
+  ('visual\\charla1.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla1.png',
+   'DATA'),
+  ('visual\\charla10.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla10.jpeg',
+   'DATA'),
+  ('visual\\charla11.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla11.jpeg',
+   'DATA'),
+  ('visual\\charla2.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla2.jpg',
+   'DATA'),
+  ('visual\\charla2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla2.png',
+   'DATA'),
+  ('visual\\charla3.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla3.jpg',
+   'DATA'),
+  ('visual\\charla3.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla3.png',
+   'DATA'),
+  ('visual\\charla4.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla4.jpg',
+   'DATA'),
+  ('visual\\charla5.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla5.jpeg',
+   'DATA'),
+  ('visual\\charla5.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla5.jpg',
+   'DATA'),
+  ('visual\\charla6.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla6.jpeg',
+   'DATA'),
+  ('visual\\charla7.PNG',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla7.PNG',
+   'DATA'),
+  ('visual\\charla8.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla8.jpeg',
+   'DATA'),
+  ('visual\\charla9.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla9.png',
+   'DATA'),
+  ('visual\\charla_6.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\charla_6.jpg',
+   'DATA'),
+  ('visual\\ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\clausurado.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\clausurado.png',
+   'DATA'),
+  ('visual\\cofre_abierto2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_abierto2.jpeg',
+   'DATA'),
+  ('visual\\cofre_archivo_cerrado.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_archivo_cerrado.png',
+   'DATA'),
+  ('visual\\cofre_lengua1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_lengua1.jpeg',
+   'DATA'),
+  ('visual\\cofre_lengua2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_lengua2.jpeg',
+   'DATA'),
+  ('visual\\cofre_semilla.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_semilla.jpeg',
+   'DATA'),
+  ('visual\\cofre_vacio.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_vacio.jpeg',
+   'DATA'),
+  ('visual\\cofre_vacio2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_vacio2.jpeg',
+   'DATA'),
+  ('visual\\cofre_zoom.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_zoom.jpeg',
+   'DATA'),
+  ('visual\\cofre_zoom2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\cofre_zoom2.jpeg',
+   'DATA'),
+  ('visual\\desde.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\desde.png',
+   'DATA'),
+  ('visual\\estacion4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\estacion4.jpeg',
+   'DATA'),
+  ('visual\\explorando_dimen.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\explorando_dimen.png',
+   'DATA'),
+  ('visual\\fin.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\fin.jpeg',
+   'DATA'),
+  ('visual\\final1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final1.jpeg',
+   'DATA'),
+  ('visual\\final2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final2.jpeg',
+   'DATA'),
+  ('visual\\final3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final3.jpeg',
+   'DATA'),
+  ('visual\\final4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final4.jpeg',
+   'DATA'),
+  ('visual\\final5.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final5.jpeg',
+   'DATA'),
+  ('visual\\final6.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\final6.jpeg',
+   'DATA'),
+  ('visual\\flechas_ciudad_invertida.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\flechas_ciudad_invertida.jpeg',
+   'DATA'),
+  ('visual\\fusible_transparente.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\fusible_transparente.png',
+   'DATA'),
+  ('visual\\gracias1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\gracias1.jpeg',
+   'DATA'),
+  ('visual\\gracias2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\gracias2.jpeg',
+   'DATA'),
+  ('visual\\gracias3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\gracias3.jpeg',
+   'DATA'),
+  ('visual\\hoja_A.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\hoja_A.jpg',
+   'DATA'),
+  ('visual\\hoja_M.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\hoja_M.jpg',
+   'DATA'),
+  ('visual\\hoja_T.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\hoja_T.jpg',
+   'DATA'),
+  ('visual\\hoja_V.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\hoja_V.jpg',
+   'DATA'),
+  ('visual\\importancia.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\importancia.jpeg',
+   'DATA'),
+  ('visual\\inicio_bliblioteca.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\inicio_bliblioteca.jpeg',
+   'DATA'),
+  ('visual\\instrucciones.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\instrucciones.jpeg',
+   'DATA'),
+  ('visual\\instrucciones.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\instrucciones.png',
+   'DATA'),
+  ('visual\\interior_biblioteca.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\interior_biblioteca.png',
+   'DATA'),
+  ('visual\\intro_archivo.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\intro_archivo.jpeg',
+   'DATA'),
+  ('visual\\inventario.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\inventario.png',
+   'DATA'),
+  ('visual\\invernadero_adentro.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\invernadero_adentro.jpg',
+   'DATA'),
+  ('visual\\lenguas_muertas2.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\lenguas_muertas2.jpg',
+   'DATA'),
+  ('visual\\libro1.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro1.png',
+   'DATA'),
+  ('visual\\libro2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro2.png',
+   'DATA'),
+  ('visual\\libro3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro3.jpeg',
+   'DATA'),
+  ('visual\\libro4.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro4.png',
+   'DATA'),
+  ('visual\\libro5.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro5.png',
+   'DATA'),
+  ('visual\\libro_archivo.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro_archivo.jpeg',
+   'DATA'),
+  ('visual\\libro_instrucciones_sumergido.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\libro_instrucciones_sumergido.jpeg',
+   'DATA'),
+  ('visual\\llave_abajo.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\llave_abajo.jpeg',
+   'DATA'),
+  ('visual\\llave_transparente.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\llave_transparente.png',
+   'DATA'),
+  ('visual\\llegada1.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\llegada1.jpg',
+   'DATA'),
+  ('visual\\llegada2.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\llegada2.jpg',
+   'DATA'),
+  ('visual\\llegada3.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\llegada3.jpg',
+   'DATA'),
+  ('visual\\maquinista1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista1.jpeg',
+   'DATA'),
+  ('visual\\maquinista1_nivel3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista1_nivel3.jpeg',
+   'DATA'),
+  ('visual\\maquinista2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista2.jpeg',
+   'DATA'),
+  ('visual\\maquinista2_nivel3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista2_nivel3.jpeg',
+   'DATA'),
+  ('visual\\maquinista_hablando_n4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista_hablando_n4.jpeg',
+   'DATA'),
+  ('visual\\maquinista_hablando_n4.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista_hablando_n4.png',
+   'DATA'),
+  ('visual\\maquinista_n4.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista_n4.jfif',
+   'DATA'),
+  ('visual\\maquinista_n4.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\maquinista_n4.png',
+   'DATA'),
+  ('visual\\mueble_palancas.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\mueble_palancas.jpeg',
+   'DATA'),
+  ('visual\\noche1.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\noche1.png',
+   'DATA'),
+  ('visual\\osito_mate.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\osito_mate.jpg',
+   'DATA'),
+  ('visual\\osito_transp.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\osito_transp.png',
+   'DATA'),
+  ('visual\\palancas.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\palancas.png',
+   'DATA'),
+  ('visual\\paro.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\paro.png',
+   'DATA'),
+  ('visual\\paro2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\paro2.png',
+   'DATA'),
+  ('visual\\parque_adentro.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\parque_adentro.jfif',
+   'DATA'),
+  ('visual\\parque_diverciones.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\parque_diverciones.jpeg',
+   'DATA'),
+  ('visual\\persiguen.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\persiguen.png',
+   'DATA'),
+  ('visual\\pieza1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\pieza1.jpeg',
+   'DATA'),
+  ('visual\\pieza2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\pieza2.jpeg',
+   'DATA'),
+  ('visual\\pieza3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\pieza3.jpeg',
+   'DATA'),
+  ('visual\\pieza4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\pieza4.jpeg',
+   'DATA'),
+  ('visual\\puerta_abierta.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\puerta_abierta.png',
+   'DATA'),
+  ('visual\\puerta_abierta_n4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\puerta_abierta_n4.jpeg',
+   'DATA'),
+  ('visual\\puerta_cerrada_n4.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\puerta_cerrada_n4.jpeg',
+   'DATA'),
+  ('visual\\puerta_zoom.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\puerta_zoom.jpeg',
+   'DATA'),
+  ('visual\\ruido.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\ruido.png',
+   'DATA'),
+  ('visual\\sala_mapa.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\sala_mapa.jpeg',
+   'DATA'),
+  ('visual\\sala_mapa.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\sala_mapa.png',
+   'DATA'),
+  ('visual\\semilla_inventario.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\semilla_inventario.jpeg',
+   'DATA'),
+  ('visual\\semilla_trasparente.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\semilla_trasparente.png',
+   'DATA'),
+  ('visual\\sin_llave.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\sin_llave.jpeg',
+   'DATA'),
+  ('visual\\tipo_sentado.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tipo_sentado.jpeg',
+   'DATA'),
+  ('visual\\tipo_sentado.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tipo_sentado.png',
+   'DATA'),
+  ('visual\\tren1.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren1.jpg',
+   'DATA'),
+  ('visual\\tren1.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren1.png',
+   'DATA'),
+  ('visual\\tren2.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren2.jpg',
+   'DATA'),
+  ('visual\\tren2.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren2.png',
+   'DATA'),
+  ('visual\\tren3.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren3.jpg',
+   'DATA'),
+  ('visual\\tren3.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren3.png',
+   'DATA'),
+  ('visual\\tren_archivo_afuera.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren_archivo_afuera.jpg',
+   'DATA'),
+  ('visual\\tren_lengua_abierto.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren_lengua_abierto.png',
+   'DATA'),
+  ('visual\\tren_lengua_cerrado.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren_lengua_cerrado.jpeg',
+   'DATA'),
+  ('visual\\tren_sumergido1.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tren_sumergido1.jpeg',
+   'DATA'),
+  ('visual\\tres_caminos.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\tres_caminos.jpeg',
+   'DATA'),
+  ('visual\\unico.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\unico.png',
+   'DATA'),
+  ('visual\\vagon_afuera_nivel3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\vagon_afuera_nivel3.jpeg',
+   'DATA'),
+  ('visual\\vagon_interior.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\vagon_interior.jpeg',
+   'DATA'),
+  ('visual\\vagon_nivel3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\vagon_nivel3.jpeg',
+   'DATA'),
+  ('visual\\vagon_nivel4.jpg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\vagon_nivel4.jpg',
+   'DATA'),
+  ('visual\\vagon_vacio.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\vagon_vacio.jpeg',
+   'DATA'),
+  ('visual\\viejo_con_oso.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_con_oso.png',
+   'DATA'),
+  ('visual\\viejo_feliz_calesita.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_feliz_calesita.jpeg',
+   'DATA'),
+  ('visual\\viejo_feliz_zoom.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_feliz_zoom.jpeg',
+   'DATA'),
+  ('visual\\viejo_oso_puerta.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_oso_puerta.jpeg',
+   'DATA'),
+  ('visual\\viejo_pista_2.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_pista_2.jpeg',
+   'DATA'),
+  ('visual\\viejo_pista_3.jpeg',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\viejo_pista_3.jpeg',
+   'DATA'),
+  ('visual\\zoom_mapa.png',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\zoom_mapa.png',
+   'DATA'),
+  ('visual\\zoom_rompecabezas.jfif',
+   'C:\\Users\\EDUARDO '
+   'GOMEZ\\Documents\\ESCUELA\\2026\\PROG\\PROG_videjuego_Parador\\visual\\zoom_rompecabezas.jfif',
+   'DATA')],)
